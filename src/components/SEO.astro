@@ -1,6 +1,7 @@
 ---
 import { site } from "@/data/site";
 import { absUrl, localBusiness } from "@/lib/seo";
+import { bloquearIndexacao } from "@/lib/deploy";
 
 interface Props {
   title: string;
@@ -15,7 +16,8 @@ interface Props {
 const { title, description, path, ogImage = "/og.png", noindex = false, tipo = "website", schemas = [] } = Astro.props;
 const canonical = absUrl(path);
 const imagem = absUrl(ogImage);
-const noindexGlobal = import.meta.env.PUBLIC_NOINDEX_ALL === "1";
+// Preview de branch e PUBLIC_NOINDEX_ALL=1 saem com noindex.
+const noindexGlobal = bloquearIndexacao;
 const robots = noindex || noindexGlobal ? "noindex, nofollow" : "index, follow, max-image-preview:large";
 const jsonLd = [localBusiness(), ...schemas];
 ---

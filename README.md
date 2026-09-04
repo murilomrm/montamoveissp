@@ -1,8 +1,8 @@
 # MontaMóveis SP
 
-Site estático de geração de leads para montagem e desmontagem de móveis em São Paulo. Astro + Tailwind + TypeScript. Deploy no GitHub Pages. Conversão só pelo WhatsApp.
+Site estático de geração de leads para montagem e desmontagem de móveis em São Paulo. Astro + Tailwind 4 + TypeScript. A empresa é um **marketplace**: conecta cliente e montador, não executa o serviço. Isso limita o que o site pode prometer, e as travas estão em `src/data/site.ts`.
 
-Regras do projeto estão em `CLAUDE.md`. Leia antes de mexer.
+Regras do projeto em `CLAUDE.md`. Leia antes de mexer.
 
 ## Rodar local
 
@@ -13,75 +13,123 @@ cp .env.example .env
 npm run dev        # http://localhost:4321
 ```
 
-- `npm run build` gera `dist/`. Antes roda `scripts/check-seo.ts` (title > 60, description > 155, "R$", "nota fiscal" ou placeholder em CI fazem o build falhar).
-- `npm run preview` serve o `dist/`.
-- `npm run check` roda `astro check` (tipos).
-- `ALLOW_PLACEHOLDERS=1 npm run dev` mostra os depoimentos de exemplo só no local.
+| Comando | O que faz |
+|---|---|
+| `npm run dev` | servidor de desenvolvimento |
+| `npm run build` | roda `check-seo` e depois `astro build`, saída em `dist/` |
+| `npm run check-seo` | só o validador de conteúdo |
+| `npm run preview` | serve o `dist/` |
+| `npm run check` | `astro check` (tipos) |
 
-## Deploy
+O `check-seo` derruba o build se um title passar de 60 caracteres, uma description passar de 155, uma região `publicada: true` estiver sem `paragrafoUnico`, ou se algum texto violar as regras de negócio (preço em reais, garantia, prazo de resposta, forma de pagamento, nota fiscal).
 
-Push na branch `main` dispara `.github/workflows/deploy.yml`, que builda e publica no GitHub Pages.
+`ALLOW_PLACEHOLDERS=1 npm run dev` mostra os depoimentos de exemplo, só no local.
 
-### Estado atual: sem domínio próprio
+## Deploy: Cloudflare Pages
 
-Sem a variável `CUSTOM_DOMAIN`, o site sai em `https://murilomrm.github.io/montamoveissp/` com `noindex` em todas as páginas e `robots.txt` bloqueando tudo. Isso evita que o Google indexe a URL provisória.
+O GitHub guarda o código. O build e a publicação acontecem no Cloudflare Pages. Não existe workflow de GitHub Actions, nem `vercel.json`, nem `netlify.toml`.
 
-### Ligar o domínio montamoveissp.com.br
+### Criar o projeto no painel, uma vez
 
-1. No registrador do domínio, crie os registros DNS:
-   - `www` CNAME `murilomrm.github.io`
-   - Apex (`@`) com os 4 registros A do GitHub Pages: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-2. No GitHub, Settings > Secrets and variables > Actions > Variables: crie `CUSTOM_DOMAIN` = `www.montamoveissp.com.br`.
-3. Settings > Pages > Custom domain: `www.montamoveissp.com.br`. Marque "Enforce HTTPS" quando o certificado sair.
-4. Rode o workflow de novo (Actions > Deploy > Run workflow). O build passa a usar `BASE_PATH=/`, canonical no domínio, sem `noindex`, e grava `dist/CNAME`.
-5. O GitHub redireciona `montamoveissp.com.br` para `www` sozinho quando os dois registros existem.
+1. Cloudflare > Workers & Pages > Create > Pages > Connect to Git.
+2. Autorize e escolha o repositório `murilomrm/montamoveissp`.
+3. Configure o build:
+
+   | Campo | Valor |
+   |---|---|
+   | Framework preset | Astro |
+   | Build command | `npm run build` |
+   | Build output directory | `dist` |
+   | Root directory | vazio (raiz do repositório) |
+   | Production branch | `main` |
+
+4. Em Environment variables, adicione o que for necessário (tabela abaixo). Se o Cloudflare escolher um Node antigo, adicione a variável `NODE_VERSION` com valor `22`. O arquivo `.nvmrc` já pede isso.
+5. Save and Deploy.
+
+A pasta `worker/` não faz parte deste build. Ela é um projeto separado, ainda não usado, e o Pages a ignora porque o build só roda `npm run build` na raiz.
 
 ### Variáveis de ambiente
 
-| Variável | Onde | Para quê |
+Definidas em **Cloudflare Pages > Projeto > Settings > Environment variables**, com escopos **Production** e **Preview** separados. Nenhuma delas vai para o repositório: `.env` está no `.gitignore`.
+
+| Variável | Escopo | Para quê |
 |---|---|---|
-| `PUBLIC_GTM_ID` | Variable no GitHub e `.env` | ID do GTM. Vazio = nenhum script de terceiros |
-| `PUBLIC_LEAD_ENDPOINT` | Variable no GitHub e `.env` | URL do Worker que grava o lead no banco (`docs/BACKEND.md`) |
-| `CUSTOM_DOMAIN` | Variable no GitHub | Domínio próprio. Define `PUBLIC_SITE_URL`, `BASE_PATH` e tira o `noindex` |
-| `PUBLIC_SITE_URL`, `BASE_PATH`, `PUBLIC_NOINDEX_ALL` | Calculadas no workflow. Local: `.env` | URL, subpasta e noindex global |
-| `ALLOW_PLACEHOLDERS` | Só local | Mostra depoimentos de exemplo |
+| `PUBLIC_SITE_URL` | Production | `https://www.montamoveissp.com.br`. Monta canonical, sitemap e Open Graph |
+| `PUBLIC_CF_ANALYTICS_TOKEN` | Production | Token do Cloudflare Web Analytics. Sem cookie, sem banner. Vazio = nada é carregado |
+| `PUBLIC_GTM_ID` | Production | ID do Google Tag Manager. Vazio = nenhum script de terceiros. Ver `docs/GTM.md` |
+| `PUBLIC_LEAD_ENDPOINT` | Production | URL do backend do formulário. Só usada com `formularioAtivo: true`. Ver `docs/BACKEND.md` |
+| `PUBLIC_NOINDEX_ALL` | qualquer | `1` força noindex em tudo. Preview já sai com noindex sozinho |
+
+Todas toleram valor vazio. Nada quebra, nada aparece pela metade para o visitante.
+
+### Preview por branch
+
+O Cloudflare Pages publica uma URL de preview para cada branch e cada pull request, no formato `nome-da-branch.montamoveissp.pages.dev`.
+
+**Não faça push de teste direto em `main`. Crie uma branch, veja o preview no link que o Cloudflare gera, aprove, e faça o merge.**
+
+```bash
+git checkout -b nova-regiao-santana
+# edite, commite
+git push -u origin nova-regiao-santana
+# abra o link de preview que aparece no painel ou no PR
+```
+
+Todo deploy de preview sai com `noindex, nofollow` e `robots.txt` bloqueando tudo, automaticamente. O site detecta a branch pela variável `CF_PAGES_BRANCH`, que o Cloudflare define sozinho. Só `main` é indexável. Isso evita que o `.pages.dev` concorra com o domínio no Google.
+
+### Domínio
+
+No projeto do Pages, em Custom domains, adicione `www.montamoveissp.com.br` e `montamoveissp.com.br`. Como o DNS já está na Cloudflare, os registros são criados sozinhos e o certificado sai em minutos.
+
+O canonical do site é o `www`. O redirecionamento do apex para o `www` está em `public/_redirects` como reserva, mas o caminho confiável é uma Redirect Rule na Cloudflare, em Rules > Redirect Rules, porque `_redirects` do Pages trabalha por caminho e não por domínio.
+
+### Cabeçalhos e redirecionamentos
+
+Dois arquivos em `public/`, copiados para a raiz do build e lidos pelo Cloudflare Pages:
+
+- `public/_headers`: segurança (HSTS, nosniff, clickjacking, permissions policy) e cache. Assets com hash no nome ficam imutáveis por um ano; HTML sempre revalida.
+- `public/_redirects`: apex para www e as rotas antigas `/precos` para `/orcamento/`.
+
+Não crie redirecionamento para rota que já existe. Esses arquivos são só para migração e canonical.
 
 ## Tarefas comuns
 
 - **Ligar GTM, GA4, Meta Pixel, Google Ads:** `docs/GTM.md`.
 - **Ligar o formulário e o banco de leads:** `docs/BACKEND.md`.
 - **Publicar região:** `docs/PUBLICAR_REGIAO.md`.
-- **Colocar fotos:** `docs/FOTOS.md` e `PROMPT_NANO_BANANA_FOTOS.md`.
-- **Criar artigo:** novo `.md` em `src/content/blog/` com frontmatter `title` (máx. 60), `description` (máx. 155), `ordem` (número que define a posição na listagem), `tags` e `imagem` opcional. Sem data: o blog é perene. Use `##` e `###`, nunca `#`. Links internos como `/orcamento/`.
+- **Colocar fotos:** `docs/FOTOS.md`.
+- **Criar artigo:** novo `.md` em `src/content/blog/` com frontmatter `title` (máx. 60), `description` (máx. 155), `ordem`, `tags` e `imagem` opcional. Sem data: o blog é perene. Use `##` e `###`, nunca `#`.
 - **Trocar WhatsApp ou horário:** `src/data/site.ts`.
 - **Religar o formulário:** `formularioAtivo: true` em `src/data/site.ts`, depois de seguir `docs/BACKEND.md`.
-- **Abrir MEI / CNPJ:** em `site.ts`, `temCnpj: true` e preencha `cnpj`, `razaoSocial`. Depois procure `// NOTA FISCAL: liberar aqui` (`src/data/faq.ts`, `src/pages/sobre.astro`).
-- **Adicionar e-mail:** `temEmail: true` e `email` em `site.ts`. Rodapé e contato passam a mostrar.
+- **Abrir MEI / CNPJ:** em `site.ts`, `temCnpj: true` e preencha `cnpj` e `razaoSocial`. Depois procure `// NOTA FISCAL: liberar aqui`.
+- **Adicionar e-mail:** `temEmail: true` e `email` em `site.ts`.
 - **Depoimentos reais:** `src/data/depoimentos.ts`, `placeholder: false`.
 
 ## Estrutura
 
 ```
-worker/        Cloudflare Worker que recebe o formulário (D1 + R2). Ver docs/BACKEND.md
+public/        _headers, _redirects, og.png, favicon.svg, apple-touch-icon.png, img/
+worker/        backend opcional do formulário (Cloudflare Worker + D1 + R2). Fora do build do site
 src/
   data/        site.ts, servicos.ts, regioes.json, faq.ts, depoimentos.ts, paginas.ts, types.ts
-  components/  SEO, Header, Footer, WhatsAppButton, WhatsAppFloat, LeadForm, FAQ, Breadcrumb, Tracking, CookieBanner, ServiceCard, RegionGrid, Steps, Provas, Testimonials, CTAFinal, Foto
+  components/  SEO, Header, Footer, WhatsAppButton, WhatsAppFloat, LeadForm, BlocoWhatsapp, FAQ,
+               Breadcrumb, Tracking, CloudflareAnalytics, CookieBanner, ServiceCard, RegionGrid,
+               Steps, Provas, Testimonials, CTAFinal, Foto
   layouts/     Base.astro
-  lib/         whatsapp.ts, tracking.ts, seo.ts, utm.ts, url.ts, regioes.ts
-  pages/       index, [servico], montador-de-moveis/, orcamento, sobre, contato, trabalhe-conosco, blog/, politica-de-privacidade, obrigado, 404, robots.txt.ts
+  lib/         whatsapp.ts, tracking.ts, seo.ts, utm.ts, url.ts, regioes.ts, deploy.ts
+  pages/       index, [servico], montador-de-moveis/, orcamento, sobre, contato, trabalhe-conosco,
+               blog/, politica-de-privacidade, obrigado, 404, robots.txt.ts
   content/blog/*.md
-scripts/check-seo.ts
+scripts/       check-seo.ts
 docs/
-public/        og.png, favicon.svg, apple-touch-icon.png, img/
 ```
 
 ## Decisões de implementação
 
-- Tailwind 4: paleta em `src/styles/global.css` (`@theme`), não em `tailwind.config`.
-- Sem `vercel.json`: o deploy é GitHub Pages. Redirect apex para `www` é feito pelo próprio GitHub.
-- Sem `PriceTable`: `exibirPrecoNoSite` é sempre `false`. A página `/orcamento/` faz o papel.
-- A empresa é um marketplace. O site nunca promete garantia, prazo de resposta ou forma de pagamento. As travas ficam em `src/data/site.ts` e o `check-seo` derruba o build se algum texto violar.
-- Formulário desligado por `formularioAtivo: false`. O componente `LeadForm` renderiza um bloco de WhatsApp no lugar, então nenhuma página precisa mudar para ligar ou desligar.
+- Site 100% estático. Sem `@astrojs/cloudflare`, sem adapter, sem `output: "server"`. Se um dia surgir rota dinâmica, aí sim se adiciona o adapter junto com `output: "server"`.
+- Sem `wrangler.toml` na raiz e sem `functions/`. O Pages tem o próprio builder e não precisa de Wrangler para servir estático.
+- Tailwind 4 entra pelo plugin do Vite (`@tailwindcss/vite`). O `@astrojs/tailwind` é da linha 3 e não se aplica aqui. A paleta fica em `src/styles/global.css`, no bloco `@theme`, não em `tailwind.config`.
+- O site nunca promete garantia, prazo de resposta ou forma de pagamento. As travas ficam em `src/data/site.ts` e o `check-seo` derruba o build se algum texto violar.
+- Formulário desligado por `formularioAtivo: false`. O `LeadForm` renderiza um bloco de WhatsApp no lugar, então nenhuma página precisa mudar para ligar ou desligar.
 - Blog sem data, ordenado pelo campo `ordem` do frontmatter.
-- Links internos passam por `href()` de `src/lib/url.ts` para funcionar em subpasta. Com domínio próprio a função vira identidade.
-- Imagens em `public/img/` são servidas como estão (o `Foto.astro` só coloca `width`, `height` e lazy). Comprima em WebP antes de subir.
+- Nenhum link canônico é escrito à mão. Tudo sai de `site` no `astro.config.mjs`, via `src/lib/seo.ts`. Nenhum caminho `.pages.dev` aparece no código.

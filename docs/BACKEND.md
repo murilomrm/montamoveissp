@@ -1,6 +1,8 @@
 # Backend dos leads (Cloudflare Worker + D1 + R2)
 
-O site é estático no GitHub Pages e não guarda nada. Quem recebe o formulário, grava no banco e armazena as fotos é um Worker na Cloudflare, na pasta `worker/` deste repositório.
+O site é estático no Cloudflare Pages e não guarda nada. Quem recebe o formulário, grava no banco e armazena as fotos é um Worker na Cloudflare, na pasta `worker/` deste repositório.
+
+> Este backend é opcional e está **desligado** (`site.formularioAtivo` é `false`). A pasta `worker/` não entra no build do site: o Cloudflare Pages roda apenas `npm run build` na raiz. Só siga este documento quando decidir religar o formulário.
 
 ## Por que assim
 

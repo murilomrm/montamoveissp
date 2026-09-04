@@ -8,11 +8,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "tsx scripts/check-seo.ts",
-    "build": "astro build",
+    "build": "npm run check-seo && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "seo": "tsx scripts/check-seo.ts"
+    "check-seo": "tsx scripts/check-seo.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",

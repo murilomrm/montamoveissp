@@ -1,0 +1,14 @@
+---
+// Cloudflare Web Analytics: sem cookie, sem dado pessoal, sem banner de consentimento.
+// Só entra se PUBLIC_CF_ANALYTICS_TOKEN estiver definida no painel do Cloudflare Pages.
+// Independente do GTM: este mede tráfego básico o tempo todo, o GTM entra quando houver anúncio.
+const token = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN?.trim() || "";
+---
+{token && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={JSON.stringify({ token })}
+  ></script>
+)}

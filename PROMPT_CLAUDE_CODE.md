@@ -1,5 +1,7 @@
 # PROMPT PARA O CLAUDE CODE
 
+> **Documento histórico.** Este é o briefing original do projeto, mantido como registro. Várias decisões mudaram depois: o deploy é Cloudflare Pages (não GitHub Pages nem Vercel), não existe `vercel.json`, o site não promete garantia, prazo de resposta nem forma de pagamento, o formulário está desligado e o blog não tem data. **As regras vigentes estão em `CLAUDE.md` e no `README.md`.** Em caso de conflito, valem aqueles, não este arquivo.
+
 Como usar:
 1. Crie a pasta do projeto e coloque dentro dela o arquivo `CLAUDE.md` (entregue junto).
 2. Abra o Claude Code na pasta e cole tudo que está abaixo da linha.

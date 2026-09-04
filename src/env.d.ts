@@ -2,7 +2,8 @@
 
 interface ImportMetaEnv {
   readonly PUBLIC_GTM_ID?: string;
-  readonly PUBLIC_LEAD_WEBHOOK_URL?: string;
+  readonly PUBLIC_LEAD_ENDPOINT?: string;
+  readonly PUBLIC_CF_ANALYTICS_TOKEN?: string;
   readonly PUBLIC_SITE_URL?: string;
   readonly PUBLIC_NOINDEX_ALL?: string;
 }

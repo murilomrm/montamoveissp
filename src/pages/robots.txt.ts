@@ -1,8 +1,9 @@
 import type { APIRoute } from "astro";
 import { absUrl } from "@/lib/seo";
+import { bloquearIndexacao } from "@/lib/deploy";
 
 export const GET: APIRoute = () => {
-  const bloquearTudo = import.meta.env.PUBLIC_NOINDEX_ALL === "1";
+  const bloquearTudo = bloquearIndexacao;
   const linhas = bloquearTudo
     ? ["User-agent: *", "Disallow: /"]
     : ["User-agent: *", "Allow: /", "Disallow: /obrigado/", "", `Sitemap: ${absUrl("/sitemap-index.xml")}`];

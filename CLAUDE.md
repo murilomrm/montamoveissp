@@ -6,7 +6,7 @@ A empresa não executa a montagem: ela intermedeia. Isso muda o que o site pode 
 
 ## Stack
 
-- Astro (estático) + Tailwind 4 + TypeScript. Deploy em GitHub Pages.
+- Astro (estático) + Tailwind 4 + TypeScript. Deploy em Cloudflare Pages, conectado ao repositório do GitHub.
 - Backend só para o formulário: Cloudflare Worker + D1 + R2, na pasta `worker/`.
 - Sem CMS. Conteúdo em `src/data/` e `src/content/blog/`.
 - Antes de instalar qualquer pacote: `npm view <pacote> version`. Não usar versões de memória.
@@ -39,7 +39,11 @@ A empresa não executa a montagem: ela intermedeia. Isso muda o que o site pode 
 16. **Blog sem data.** Conteúdo perene. O frontmatter não tem `pubDate` nem `updatedDate`, a ordem vem do campo `ordem`, e o JSON-LD `Article` sai sem `datePublished`. O build falha se aparecer campo de data.
 17. **Sem fotos reais de clientes.** As imagens de `public/img/` são fotos genéricas de banco ou geradas por IA. Nenhuma legenda pode dizer "nosso cliente" ou "serviço realizado por nós". Nomes de arquivo em `docs/FOTOS.md`.
 18. **Nenhum segredo no repositório.** Senha do painel, usuário e salt do Worker entram por `wrangler secret put`. Nunca em `wrangler.toml`, `.env` ou commit.
-19. Deploy via GitHub Actions para GitHub Pages.
+19. **Deploy só por Cloudflare Pages.** O GitHub guarda o código; o build roda no Cloudflare. Nunca criar `.github/workflows/`, `vercel.json`, `netlify.toml` nem script de deploy manual no `package.json`.
+20. **Site 100% estático.** Nada de `@astrojs/cloudflare`, `output: "server"`, adapter, pasta `functions/` ou `wrangler.toml` na raiz. Se aparecer rota dinâmica, aí sim se adiciona adapter e `output: "server"` juntos.
+21. **Cabeçalhos e redirecionamentos** ficam em `public/_headers` e `public/_redirects`, no formato do Cloudflare Pages. Não inventar formato próprio. `_redirects` só para migração e canonical, nunca para rota que já existe.
+22. **Preview de branch nunca é indexado.** `src/lib/deploy.ts` lê `CF_PAGES_BRANCH`: qualquer branch fora de `main` sai com `noindex` e `robots.txt` bloqueando tudo. Não fazer push de teste em `main`.
+23. **Nenhum caminho `.pages.dev` no código.** Todo link canônico sai de `site` no `astro.config.mjs`.
 
 ## Estilo de texto
 

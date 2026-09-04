@@ -4,33 +4,32 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import regioes from "./src/data/regioes.json" with { type: "json" };
 
+// Build e publicação acontecem no Cloudflare Pages. O GitHub só guarda o código.
+// Site 100% estático: sem @astrojs/cloudflare, sem adapter, sem output "server".
 const siteUrl = process.env.PUBLIC_SITE_URL || "https://www.montamoveissp.com.br";
-const basePath = process.env.BASE_PATH || "/";
 
 // Páginas noindex nunca entram no sitemap.
-const regioesSemTexto = regioes
-  .filter((r) => r.publicada && !r.paragrafoUnico.trim())
-  .map((r) => `/montador-de-moveis/${r.slug}/`);
-const noindex = ["/obrigado/", "/404", ...regioesSemTexto];
+const noindex = [
+  "/obrigado/",
+  "/404",
+  ...regioes.filter((r) => r.publicada && !r.paragrafoUnico.trim()).map((r) => `/montador-de-moveis/${r.slug}/`),
+];
 
 const lastmod = new Date().toISOString();
 
 export default defineConfig({
   site: siteUrl,
-  base: basePath,
   trailingSlash: "always",
-  output: "static",
   build: { format: "directory" },
   integrations: [
     sitemap({
       filter: (page) => {
-        const path = new URL(page).pathname.replace(basePath.replace(/\/$/, ""), "");
-        return !noindex.some((n) => path === n || path.startsWith(n));
+        const { pathname } = new URL(page);
+        return !noindex.some((n) => pathname === n || pathname.startsWith(n));
       },
       serialize: (item) => ({ ...item, lastmod }),
     }),
   ],
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  // Tailwind 4 entra pelo plugin do Vite. O antigo @astrojs/tailwind é da linha 3 e não se aplica.
+  vite: { plugins: [tailwindcss()] },
 });
