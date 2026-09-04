@@ -82,7 +82,8 @@ export function schemaBreadcrumb(itens: Crumb[]) {
   };
 }
 
-export function schemaArticle(opts: { titulo: string; descricao: string; url: string; publicado: Date; atualizado?: Date; imagem?: string }) {
+export function schemaArticle(opts: { titulo: string; descricao: string; url: string; imagem?: string }) {
+  // Conteúdo perene: sem datePublished/dateModified. Os artigos do blog não têm data.
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -90,8 +91,6 @@ export function schemaArticle(opts: { titulo: string; descricao: string; url: st
     description: opts.descricao,
     url: absUrl(opts.url),
     mainEntityOfPage: absUrl(opts.url),
-    datePublished: opts.publicado.toISOString(),
-    dateModified: (opts.atualizado ?? opts.publicado).toISOString(),
     image: absUrl(opts.imagem ?? "/og.png"),
     author: { "@type": "Organization", name: site.nome, "@id": idLocalBusiness },
     publisher: { "@type": "Organization", name: site.nome, "@id": idLocalBusiness },

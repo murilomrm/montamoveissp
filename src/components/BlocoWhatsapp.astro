@@ -1,0 +1,17 @@
+---
+import { site } from "@/data/site";
+import WhatsAppButton from "./WhatsAppButton.astro";
+
+interface Props {
+  servico?: string;
+  regiao?: string;
+  titulo?: string;
+}
+const { servico, regiao, titulo = "Peça seu orçamento" } = Astro.props;
+---
+<div class="card mx-auto w-full max-w-xl text-center">
+  <h2 class="mb-2">{titulo}</h2>
+  <p class="mb-5 text-cinza-medio">Mande a lista dos móveis ou a foto das caixas pelo WhatsApp. Diga o bairro e o andar. A gente retorna com o valor para você aprovar antes de agendar.</p>
+  <WhatsAppButton origem="formulario" servico={servico} regiao={regiao} class="w-full text-lg" />
+  <p class="mt-4 text-sm text-cinza-medio">Atendimento de {site.horario.toLowerCase()}.</p>
+</div>

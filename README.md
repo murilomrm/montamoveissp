@@ -41,7 +41,7 @@ Sem a variável `CUSTOM_DOMAIN`, o site sai em `https://murilomrm.github.io/mont
 | Variável | Onde | Para quê |
 |---|---|---|
 | `PUBLIC_GTM_ID` | Variable no GitHub e `.env` | ID do GTM. Vazio = nenhum script de terceiros |
-| `PUBLIC_LEAD_WEBHOOK_URL` | Variable no GitHub e `.env` | Webhook que grava o lead na planilha (`docs/LEADS_APPS_SCRIPT.md`) |
+| `PUBLIC_LEAD_ENDPOINT` | Variable no GitHub e `.env` | URL do Worker que grava o lead no banco (`docs/BACKEND.md`) |
 | `CUSTOM_DOMAIN` | Variable no GitHub | Domínio próprio. Define `PUBLIC_SITE_URL`, `BASE_PATH` e tira o `noindex` |
 | `PUBLIC_SITE_URL`, `BASE_PATH`, `PUBLIC_NOINDEX_ALL` | Calculadas no workflow. Local: `.env` | URL, subpasta e noindex global |
 | `ALLOW_PLACEHOLDERS` | Só local | Mostra depoimentos de exemplo |
@@ -49,11 +49,12 @@ Sem a variável `CUSTOM_DOMAIN`, o site sai em `https://murilomrm.github.io/mont
 ## Tarefas comuns
 
 - **Ligar GTM, GA4, Meta Pixel, Google Ads:** `docs/GTM.md`.
-- **Receber leads na planilha:** `docs/LEADS_APPS_SCRIPT.md`.
+- **Ligar o formulário e o banco de leads:** `docs/BACKEND.md`.
 - **Publicar região:** `docs/PUBLICAR_REGIAO.md`.
 - **Colocar fotos:** `docs/FOTOS.md` e `PROMPT_NANO_BANANA_FOTOS.md`.
-- **Criar artigo:** novo `.md` em `src/content/blog/` com frontmatter `title` (máx. 60), `description` (máx. 155), `pubDate` (AAAA-MM-DD), `tags`. Use `##` e `###`, nunca `#`. Links internos como `/orcamento/`.
-- **Trocar WhatsApp, horário, garantia:** `src/data/site.ts`.
+- **Criar artigo:** novo `.md` em `src/content/blog/` com frontmatter `title` (máx. 60), `description` (máx. 155), `ordem` (número que define a posição na listagem), `tags` e `imagem` opcional. Sem data: o blog é perene. Use `##` e `###`, nunca `#`. Links internos como `/orcamento/`.
+- **Trocar WhatsApp ou horário:** `src/data/site.ts`.
+- **Religar o formulário:** `formularioAtivo: true` em `src/data/site.ts`, depois de seguir `docs/BACKEND.md`.
 - **Abrir MEI / CNPJ:** em `site.ts`, `temCnpj: true` e preencha `cnpj`, `razaoSocial`. Depois procure `// NOTA FISCAL: liberar aqui` (`src/data/faq.ts`, `src/pages/sobre.astro`).
 - **Adicionar e-mail:** `temEmail: true` e `email` em `site.ts`. Rodapé e contato passam a mostrar.
 - **Depoimentos reais:** `src/data/depoimentos.ts`, `placeholder: false`.
@@ -61,6 +62,7 @@ Sem a variável `CUSTOM_DOMAIN`, o site sai em `https://murilomrm.github.io/mont
 ## Estrutura
 
 ```
+worker/        Cloudflare Worker que recebe o formulário (D1 + R2). Ver docs/BACKEND.md
 src/
   data/        site.ts, servicos.ts, regioes.json, faq.ts, depoimentos.ts, paginas.ts, types.ts
   components/  SEO, Header, Footer, WhatsAppButton, WhatsAppFloat, LeadForm, FAQ, Breadcrumb, Tracking, CookieBanner, ServiceCard, RegionGrid, Steps, Provas, Testimonials, CTAFinal, Foto
@@ -78,5 +80,8 @@ public/        og.png, favicon.svg, apple-touch-icon.png, img/
 - Tailwind 4: paleta em `src/styles/global.css` (`@theme`), não em `tailwind.config`.
 - Sem `vercel.json`: o deploy é GitHub Pages. Redirect apex para `www` é feito pelo próprio GitHub.
 - Sem `PriceTable`: `exibirPrecoNoSite` é sempre `false`. A página `/orcamento/` faz o papel.
+- A empresa é um marketplace. O site nunca promete garantia, prazo de resposta ou forma de pagamento. As travas ficam em `src/data/site.ts` e o `check-seo` derruba o build se algum texto violar.
+- Formulário desligado por `formularioAtivo: false`. O componente `LeadForm` renderiza um bloco de WhatsApp no lugar, então nenhuma página precisa mudar para ligar ou desligar.
+- Blog sem data, ordenado pelo campo `ordem` do frontmatter.
 - Links internos passam por `href()` de `src/lib/url.ts` para funcionar em subpasta. Com domínio próprio a função vira identidade.
 - Imagens em `public/img/` são servidas como estão (o `Foto.astro` só coloca `width`, `height` e lazy). Comprima em WebP antes de subir.

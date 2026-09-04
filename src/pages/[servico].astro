@@ -42,8 +42,8 @@ const outros = servicos.filter((s) => s.slug !== servico.slug).slice(0, 6);
       <p class="mb-6 text-lg">{servico.resumo}</p>
       <ul class="mb-6 grid gap-2 text-sm sm:grid-cols-3">
         <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Tempo médio</strong>{servico.tempoMedio}</li>
-        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Garantia</strong>{site.garantiaDias} dias</li>
-        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>em {site.tempoOrcamento}</li>
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Atendimento</strong>{site.horario}</li>
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>sem compromisso</li>
       </ul>
       <WhatsAppButton origem="hero" servico={nomeMin} class="text-lg" />
     </div>

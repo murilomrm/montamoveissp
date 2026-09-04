@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "exclude": ["dist", "worker"],  // worker/ tem tsconfig próprio, com os tipos da Cloudflare
   "compilerOptions": {
     "resolveJsonModule": true,
     "baseUrl": ".",

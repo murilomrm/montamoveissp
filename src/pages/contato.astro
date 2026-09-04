@@ -6,7 +6,7 @@ import { faqGeral } from "@/data/faq";
 import { schemaBreadcrumb, schemaFaq } from "@/lib/seo";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
-import LeadForm from "@/components/LeadForm.astro";
+import Foto from "@/components/Foto.astro";
 import FAQ from "@/components/FAQ.astro";
 
 const crumbs = [
@@ -17,33 +17,49 @@ const faqCurta = faqGeral.slice(0, 5);
 ---
 <Base title={paginas.contato.title} description={paginas.contato.description} path="/contato/" schemas={[schemaBreadcrumb(crumbs), schemaFaq(faqCurta)]}>
   <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
-  <section class="container-site grid gap-10 py-8 md:grid-cols-2 md:py-12">
+
+  <section class="container-site grid items-start gap-10 py-8 md:grid-cols-2 md:py-12">
     <div>
       <h1 class="mb-4">Fale com a gente</h1>
-      <p class="mb-6 text-lg">O jeito mais rápido é o WhatsApp. Você manda a lista dos móveis e recebe o valor em {site.tempoOrcamento}.</p>
-      <WhatsAppButton origem="hero" class="mb-6 text-lg" />
-      <dl class="space-y-3">
-        <div>
+      <p class="mb-6 text-lg">Todo atendimento acontece no WhatsApp. Mande a lista dos móveis ou a foto das caixas, diga o bairro e o andar, e a gente retorna com o valor fechado para você aprovar antes de agendar.</p>
+
+      <WhatsAppButton origem="hero" class="mb-8 w-full text-lg sm:w-auto" />
+
+      <dl class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-lg border border-gray-200 p-4">
           <dt class="font-semibold text-primaria">Telefone e WhatsApp</dt>
           <dd><a href={`tel:+${site.whatsapp}`} class="underline">{site.telefoneExibicao}</a></dd>
         </div>
+        <div class="rounded-lg border border-gray-200 p-4">
+          <dt class="font-semibold text-primaria">Horário</dt>
+          <dd>{site.horario}</dd>
+        </div>
         {site.temEmail && site.email && (
-          <div>
+          <div class="rounded-lg border border-gray-200 p-4">
             <dt class="font-semibold text-primaria">E-mail</dt>
             <dd><a href={`mailto:${site.email}`} class="underline">{site.email}</a></dd>
           </div>
         )}
-        <div>
-          <dt class="font-semibold text-primaria">Horário</dt>
-          <dd>{site.horario}</dd>
-        </div>
-        <div>
+        <div class="rounded-lg border border-gray-200 p-4 sm:col-span-2">
           <dt class="font-semibold text-primaria">Onde atendemos</dt>
           <dd>São Paulo (todas as zonas), ABC e Grande São Paulo.</dd>
         </div>
       </dl>
     </div>
-    <LeadForm />
+
+    <div>
+      <Foto nome="whatsapp-atendimento" alt="Pessoa enviando a lista de móveis pelo celular" largura={1200} altura={675} />
+      <div class="card mt-6">
+        <h2 class="mb-3 text-lg">O que mandar na primeira mensagem</h2>
+        <ul class="space-y-2 text-sm">
+          <li class="flex gap-2"><span class="text-whatsapp" aria-hidden="true">✓</span>Lista dos móveis, ou foto de cada caixa fechada</li>
+          <li class="flex gap-2"><span class="text-whatsapp" aria-hidden="true">✓</span>Se for planejado, o projeto ou a foto dos módulos</li>
+          <li class="flex gap-2"><span class="text-whatsapp" aria-hidden="true">✓</span>Bairro ou cidade, andar e se tem elevador de serviço</li>
+          <li class="flex gap-2"><span class="text-whatsapp" aria-hidden="true">✓</span>A data aproximada que você prefere</li>
+        </ul>
+      </div>
+    </div>
   </section>
+
   <FAQ itens={faqCurta} />
 </Base>

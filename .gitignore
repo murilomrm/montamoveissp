@@ -7,3 +7,9 @@ dist/
 .DS_Store
 npm-debug.log*
 lighthouse/
+
+# Cloudflare Worker
+worker/node_modules/
+worker/.wrangler/
+.dev.vars
+.dev.vars.*

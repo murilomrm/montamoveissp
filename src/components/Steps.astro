@@ -1,17 +1,30 @@
 ---
 import { site } from "@/data/site";
+// Fluxo em 4 etapas. No desktop a linha e as setas mostram a ordem da esquerda para a direita.
+// No mobile vira coluna, com a linha na vertical.
+// Nenhum passo promete prazo de resposta, garantia ou cita forma de pagamento (ver site.ts).
 const passos = [
-  { titulo: "Mande a lista ou as fotos", texto: "Pelo WhatsApp: quais móveis, o bairro e o andar. Foto da caixa já resolve." },
-  { titulo: `Receba o valor em ${site.tempoOrcamento}`, texto: "Valor fechado antes de agendar. Sem surpresa na hora." },
-  { titulo: "Escolha dia e horário", texto: `Atendemos de ${site.horario.toLowerCase()}. Normalmente em 24 a 48 horas.` },
-  { titulo: "Confira e pague no fim", texto: `Você testa portas e gavetas, paga por Pix, dinheiro ou cartão e leva ${site.garantiaDias} dias de garantia.` },
+  { titulo: "Mande a lista", texto: "Pelo WhatsApp: quais móveis, o bairro e o andar. Foto da caixa ou do projeto já resolve." },
+  { titulo: "Receba o valor", texto: "A gente confere o que o serviço exige e retorna com o valor fechado para aquela lista." },
+  { titulo: "Aprove e agende", texto: `Você escolhe o dia. Atendemos de ${site.horario.toLowerCase()}.` },
+  { titulo: "Confira no fim", texto: "Portas, gavetas e nivelamento testados com o montador ainda no local." },
 ];
 ---
-<ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+<ol class="relative grid gap-8 md:grid-cols-4 md:gap-4">
+  <!-- Trilho: horizontal no desktop, vertical no mobile. Puramente decorativo. -->
+  <li aria-hidden="true" class="pointer-events-none absolute left-[21px] top-3 bottom-3 w-0.5 bg-gray-200 md:left-0 md:right-0 md:top-[21px] md:bottom-auto md:h-0.5 md:w-auto"></li>
+
   {passos.map((p, i) => (
-    <li class="flex gap-4">
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-acao text-lg font-bold text-primaria" aria-hidden="true">{i + 1}</span>
-      <div>
+    <li class="relative flex gap-4 md:flex-col md:gap-0 md:pr-4">
+      <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-acao text-lg font-bold text-primaria ring-4 ring-white">
+        {i + 1}
+      </span>
+      {i < passos.length - 1 && (
+        <svg aria-hidden="true" class="absolute z-10 hidden h-4 w-4 text-gray-400 md:block" style="left: calc(100% - 1.25rem); top: 0.9rem" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 2l6 6-6 6" />
+        </svg>
+      )}
+      <div class="md:mt-4">
         <h3 class="mb-1">{p.titulo}</h3>
         <p class="text-sm text-cinza-medio">{p.texto}</p>
       </div>

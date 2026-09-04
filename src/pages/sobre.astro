@@ -19,10 +19,10 @@ const crumbs = [
   <section class="container-site grid items-center gap-8 py-8 md:grid-cols-2 md:py-12">
     <div>
       <h1 class="mb-4">Sobre a {site.nome}</h1>
-      <p class="mb-4 text-lg">Serviço de montagem e desmontagem de móveis em São Paulo, ABC e Grande SP. Um canal só, o WhatsApp, e uma promessa só: valor combinado antes, serviço conferido depois, {site.garantiaDias} dias de garantia.</p>
+      <p class="mb-4 text-lg">Serviço de montagem e desmontagem de móveis em São Paulo, ABC e Grande SP. Um canal só, o WhatsApp: você manda a lista com fotos, recebe o valor e aprova antes de qualquer agendamento.</p>
       <WhatsAppButton origem="hero" />
     </div>
-    <Foto nome="montador-1" alt="Montador com caixa de ferramentas e nível em frente a guarda-roupa montado" largura={1200} altura={900} legenda="Montagem de guarda-roupa" />
+    <Foto nome="montador-retrato" alt="Montador com caixa de ferramentas e nível em frente a guarda-roupa montado" largura={1200} altura={900} legenda="Montagem de guarda-roupa de correr" />
   </section>
 
   <section class="secao bg-cinza">
@@ -36,11 +36,11 @@ const crumbs = [
       </ol>
       <h2>O que você pode esperar</h2>
       <ul>
-        <li>Resposta com valor fechado em até {site.tempoOrcamento} no horário de atendimento ({site.horario}).</li>
+        <li>Retorno com o valor fechado pelo WhatsApp, para você aprovar antes de agendar.</li>
         <li>Horário combinado e avisado se atrasar.</li>
         <li>Proteção do piso, embalagem recolhida e sobras de parafuso explicadas.</li>
-        <li>Pagamento só depois de você conferir tudo.</li>
-        <li>{site.garantiaDias} dias de garantia sobre a montagem.</li>
+        <li>Conferência de portas, gavetas e nivelamento com você, ainda no local.</li>
+        <li>Montador que já trabalhou com o tipo de móvel que você tem, planejado inclusive.</li>
       </ul>
       <h2>Empresa</h2>
       <p>{site.nome} atua em {site.enderecoBase.cidade}, {site.enderecoBase.uf}.

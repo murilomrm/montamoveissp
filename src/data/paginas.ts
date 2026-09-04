@@ -3,34 +3,35 @@ export interface PaginaSEO {
   description: string; // máx. 155
 }
 
+// Nenhuma description promete garantia, prazo de resposta ou forma de pagamento (ver site.ts).
 export const paginas = {
   home: {
     title: "Montador de Móveis em São Paulo | MontaMóveis SP",
-    description: "Montagem e desmontagem de móveis em São Paulo, ABC e Grande SP. Orçamento em 5 minutos pelo WhatsApp e garantia de 90 dias.",
+    description: "Montagem e desmontagem de móveis e planejados em São Paulo, ABC e Grande SP. Mande a lista pelo WhatsApp e receba o orçamento.",
   },
   hubRegioes: {
     title: "Montador de Móveis por Região em SP | MontaMóveis SP",
-    description: "Encontre montador de móveis no seu bairro ou cidade: capital, ABC e Grande São Paulo. Orçamento em 5 minutos pelo WhatsApp.",
+    description: "Encontre montador de móveis no seu bairro ou cidade: capital, ABC e Grande São Paulo. Peça o orçamento pelo WhatsApp.",
   },
   orcamento: {
     title: "Orçamento de Montagem de Móveis | MontaMóveis SP",
-    description: "Veja como pedir orçamento de montagem de móveis pelo WhatsApp: mande a lista ou fotos e receba o valor fechado em 5 minutos.",
+    description: "Veja como pedir orçamento de montagem de móveis pelo WhatsApp: mande a lista ou as fotos e receba o valor antes de agendar.",
   },
   sobre: {
     title: "Sobre a MontaMóveis SP | Montadores em São Paulo",
-    description: "Quem somos, como escolhemos os montadores e por que damos 90 dias de garantia em toda montagem em São Paulo e região.",
+    description: "Quem somos e como selecionamos os montadores que atendem montagem, desmontagem e móveis planejados em São Paulo e região.",
   },
   contato: {
     title: "Contato | MontaMóveis SP",
-    description: "Fale com a MontaMóveis SP pelo WhatsApp ou pelo formulário. Atendimento de segunda a sábado em São Paulo, ABC e Grande SP.",
+    description: "Fale com a MontaMóveis SP pelo WhatsApp. Atendimento de segunda a sábado em São Paulo, ABC e Grande São Paulo.",
   },
   trabalheConosco: {
     title: "Trabalhe Conosco: Montador de Móveis | MontaMóveis SP",
-    description: "Vaga para montador de móveis em São Paulo e região. Tenha ferramenta própria e experiência. Cadastre-se em 2 minutos.",
+    description: "Vaga para montador de móveis em São Paulo e região. Tenha ferramenta própria e experiência com kit de loja e planejado."
   },
   blog: {
     title: "Blog: Dicas de Montagem de Móveis | MontaMóveis SP",
-    description: "Guias práticos sobre montagem, desmontagem e mudança de móveis em São Paulo, escritos por quem monta todo dia.",
+    description: "Guias práticos sobre montagem, desmontagem, móveis planejados e mudança em São Paulo, escritos por quem monta todo dia.",
   },
   politica: {
     title: "Política de Privacidade | MontaMóveis SP",
@@ -49,5 +50,5 @@ export const paginas = {
 // Padrões das páginas de região (o nome entra no lugar de {nome}).
 export const regiaoSEO = {
   title: "Montador de Móveis em {nome} | MontaMóveis SP",
-  description: "Montador de móveis em {nome}: montagem e desmontagem com garantia de 90 dias. Orçamento em 5 minutos pelo WhatsApp.",
+  description: "Montador de móveis em {nome}: montagem, desmontagem e planejados. Mande a lista pelo WhatsApp e receba o orçamento.",
 };

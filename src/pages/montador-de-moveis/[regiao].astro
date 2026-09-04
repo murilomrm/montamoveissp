@@ -34,10 +34,10 @@ const crumbs = [
 
 // Bloco padrão de FAQ: mesmo formato em toda região, com o nome da região no texto.
 const faqRegiao: FaqItem[] = [
-  { pergunta: `Vocês atendem ${regiao.nome} em quanto tempo?`, resposta: `Normalmente em 24 a 48 horas. Atendemos ${regiao.nome} de ${site.horario.toLowerCase()}. Se precisar para o mesmo dia, pergunte no WhatsApp: às vezes sobra horário.` },
-  { pergunta: `Como peço orçamento de montagem em ${regiao.nome}?`, resposta: `Mande pelo WhatsApp a lista dos móveis ou uma foto das caixas, o bairro em ${regiao.nome} e o andar. Você recebe o valor fechado em até ${site.tempoOrcamento}.` },
-  { pergunta: `O montador leva as ferramentas?`, resposta: `Sim. Parafusadeira, furadeira, nível, brocas e jogo de chaves. Você só deixa as caixas no cômodo certo e um espaço livre no chão.` },
-  { pergunta: `Tem garantia para o serviço em ${regiao.nome}?`, resposta: `${site.garantiaDias} dias sobre a montagem. Porta desalinhada, gaveta travando ou fixação solta nesse prazo, voltamos sem custo.` },
+  { pergunta: `Vocês atendem ${regiao.nome}?`, resposta: `Sim. Atendemos ${regiao.nome} de ${site.horario.toLowerCase()}. Diga no WhatsApp a data que você prefere e a gente confirma o que dá para encaixar na agenda.` },
+  { pergunta: `Como peço orçamento de montagem em ${regiao.nome}?`, resposta: `Mande pelo WhatsApp a lista dos móveis ou uma foto das caixas, o bairro em ${regiao.nome} e o andar. A gente confere o que o serviço exige e retorna com o valor para você aprovar.` },
+  { pergunta: `O montador leva as ferramentas?`, resposta: `Sim. Parafusadeira, furadeira, nível, brocas e jogo de chaves. Você só deixa as caixas no cômodo certo e um espaço livre no chão para abrir as peças.` },
+  { pergunta: `Montam móveis planejados em ${regiao.nome}?`, resposta: `Montamos. Planejado chega em módulos numerados e exige conferir as peças contra o projeto antes de começar. Mande o projeto ou a foto dos módulos junto com o pedido.` },
   { pergunta: `Montam móvel comprado pela internet em ${regiao.nome}?`, resposta: `Montamos. Móvel de loja online chega em caixa plana com manual, e o montador conhece as linhas mais vendidas. Mande a foto da caixa que a gente confirma o valor.` },
 ];
 
@@ -55,17 +55,17 @@ const schemas = [
   <section class="container-site grid items-start gap-8 py-8 md:grid-cols-2 md:py-12">
     <div>
       <h1 class="mb-4">Montador de móveis em {regiao.nome}</h1>
-      <p class="mb-6 text-lg">Montagem e desmontagem de móveis em {regiao.nome} com garantia de {site.garantiaDias} dias. Valor fechado pelo WhatsApp em {site.tempoOrcamento}, antes de agendar.</p>
+      <p class="mb-6 text-lg">Montagem, desmontagem e móveis planejados em {regiao.nome}. Mande a lista com fotos pelo WhatsApp e receba o valor fechado antes de agendar.</p>
       <WhatsAppButton origem="hero" regiao={regiao.nome} class="text-lg" />
     </div>
-    <Foto nome="regiao-predio-sp" alt={`Prédios residenciais em ${regiao.nome}, São Paulo`} largura={1280} altura={720} />
+    <Foto nome="planejado-closet" alt={`Montagem de móveis em ${regiao.nome}, São Paulo`} largura={1200} altura={900} />
   </section>
 
   <section class="secao bg-cinza">
     <div class="container-site prosa max-w-3xl">
       <h2>Como é atender em {regiao.nome}</h2>
       {semTexto ? (
-        <p>Estamos preparando o texto sobre {regiao.nome}. Enquanto isso, mande sua lista de móveis no WhatsApp e receba o valor em {site.tempoOrcamento}.</p>
+        <p>Estamos preparando o texto sobre {regiao.nome}. Enquanto isso, mande sua lista de móveis no WhatsApp e receba o valor.</p>
       ) : (
         <p>{regiao.paragrafoUnico}</p>
       )}
@@ -78,7 +78,7 @@ const schemas = [
   <section class="secao">
     <div class="container-site">
       <h2 class="mb-2">Serviços em {regiao.nome}</h2>
-      <p class="mb-6 text-cinza-medio">Tudo que montamos e desmontamos, com garantia de {site.garantiaDias} dias.</p>
+      <p class="mb-6 text-cinza-medio">Tudo que montamos, desmontamos e instalamos, de kit de loja a planejado sob medida.</p>
       <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {servicos.map((s) => (
           <li><a href={href(`/${s.slug}/`)} class="card block h-full hover:border-primaria"><strong class="text-primaria">{s.nome}</strong><span class="mt-1 block text-sm text-cinza-medio">{s.tempoMedio}</span></a></li>

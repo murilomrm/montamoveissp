@@ -5,24 +5,25 @@ import { paginas } from "@/data/paginas";
 import { schemaBreadcrumb } from "@/lib/seo";
 import { href } from "@/lib/url";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import Foto from "@/components/Foto.astro";
 import CTAFinal from "@/components/CTAFinal.astro";
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+// Sem data: a ordem vem do campo "ordem" do frontmatter.
+const posts = (await getCollection("blog")).sort((a, b) => a.data.ordem - b.data.ordem || a.data.title.localeCompare(b.data.title, "pt-BR"));
 const crumbs = [
   { nome: "Início", url: "/" },
   { nome: "Blog", url: "/blog/" },
 ];
-const fmt = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" });
 ---
 <Base title={paginas.blog.title} description={paginas.blog.description} path="/blog/" schemas={[schemaBreadcrumb(crumbs)]}>
   <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
   <section class="container-site py-8 md:py-12">
     <h1 class="mb-2">Blog</h1>
-    <p class="mb-8 max-w-2xl text-lg">Guias curtos sobre montagem, desmontagem e mudança, escritos por quem monta todo dia.</p>
+    <p class="mb-8 max-w-2xl text-lg">Guias sobre montagem, desmontagem, planejados e mudança, escritos por quem monta todo dia.</p>
     <ul class="grid gap-4 md:grid-cols-3">
       {posts.map((p) => (
         <li class="card flex flex-col">
-          <time datetime={p.data.pubDate.toISOString()} class="mb-2 text-xs text-cinza-medio">{fmt.format(p.data.pubDate)}</time>
+          {p.data.imagem && <Foto nome={p.data.imagem} alt={p.data.title} largura={1200} altura={675} class="mb-3" />}
           <h2 class="mb-2 text-lg"><a href={href(`/blog/${p.id}/`)} class="hover:text-acao-texto">{p.data.title}</a></h2>
           <p class="mb-3 text-sm text-cinza-medio">{p.data.description}</p>
           <a href={href(`/blog/${p.id}/`)} class="mt-auto text-sm font-semibold text-acao-texto">Ler artigo</a>

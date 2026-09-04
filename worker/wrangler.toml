@@ -1,0 +1,18 @@
+# Configuração do Worker que recebe os leads do site.
+# NENHUM segredo mora neste arquivo. Senha do painel e salt vão por `wrangler secret put` (ver docs/BACKEND.md).
+name = "montamoveissp-leads"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+# Origens autorizadas a enviar o formulário. Ajuste ao ligar o domínio próprio.
+[vars]
+ORIGENS_PERMITIDAS = "https://www.montamoveissp.com.br,https://montamoveissp.com.br,https://murilomrm.github.io,http://localhost:4321"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "montamoveissp-leads"
+database_id = "PREENCHER_APOS_CRIAR_O_BANCO"
+
+[[r2_buckets]]
+binding = "FOTOS"
+bucket_name = "montamoveissp-fotos"

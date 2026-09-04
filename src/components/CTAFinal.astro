@@ -8,7 +8,7 @@ const { servico, regiao, titulo = "Pronto para montar?" } = Astro.props;
 <section class="secao bg-primaria text-white" aria-labelledby="cta-final-titulo">
   <div class="container-site text-center">
     <h2 id="cta-final-titulo" class="mb-3 text-white">{titulo}</h2>
-    <p class="mx-auto mb-6 max-w-xl text-white/85">Mande a lista dos móveis e receba o valor em {site.tempoOrcamento}. Atendimento de {site.horario.toLowerCase()}.</p>
+    <p class="mx-auto mb-6 max-w-xl text-white/85">Mande a lista dos móveis pelo WhatsApp e receba o valor. Atendimento de {site.horario.toLowerCase()}.</p>
     <WhatsAppButton origem="cta" servico={servico} regiao={regiao} class="text-lg" />
   </div>
 </section>

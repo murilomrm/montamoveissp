@@ -6,15 +6,27 @@ export interface ContextoWhatsapp {
   mensagem?: string; // sobrescreve a mensagem inteira
 }
 
+// Frase fixa no fim de toda mensagem: já orienta o cliente a mandar o que a gente precisa para orçar.
+const COMPLEMENTO = "Vou te enviar fotos do que é necessário montar e localização com data aproximada.";
+
 export function mensagemWhatsapp(ctx: ContextoWhatsapp = {}): string {
   if (ctx.mensagem) return ctx.mensagem;
-  if (ctx.servico && ctx.regiao) return `Olá! Quero orçamento de ${ctx.servico} em ${ctx.regiao}.`;
-  if (ctx.servico) return `Olá! Quero orçamento de ${ctx.servico}.`;
-  if (ctx.regiao) return `Olá! Quero orçamento de montagem de móveis em ${ctx.regiao}.`;
-  return site.mensagemWhatsappPadrao;
+  let abertura: string;
+  if (ctx.servico && ctx.regiao) abertura = `Olá! Quero orçamento de ${ctx.servico} em ${ctx.regiao}.`;
+  else if (ctx.servico) abertura = `Olá! Quero orçamento de ${ctx.servico}.`;
+  else if (ctx.regiao) abertura = `Olá! Quero orçamento de montagem de móveis em ${ctx.regiao}.`;
+  else abertura = site.mensagemWhatsappPadrao;
+  return `${abertura} ${COMPLEMENTO}`;
 }
 
 // Único ponto do site que monta URL de WhatsApp.
+// Formato api.whatsapp.com/send: abre o app no celular e o WhatsApp Web no desktop sem tela intermediária.
 export function linkWhatsapp(ctx: ContextoWhatsapp = {}): string {
-  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(mensagemWhatsapp(ctx))}`;
+  const params = new URLSearchParams({
+    phone: site.whatsapp,
+    text: mensagemWhatsapp(ctx),
+    type: "phone_number",
+    app_absent: "0",
+  });
+  return `https://api.whatsapp.com/send/?${params.toString()}`;
 }

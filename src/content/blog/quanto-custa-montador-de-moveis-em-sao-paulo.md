@@ -1,7 +1,7 @@
 ---
-title: "Quanto custa montador de móveis em São Paulo (2026)"
-description: "Veja o que faz o preço da montagem de móveis variar em São Paulo, como pedir um orçamento que não muda na hora e como comparar duas propostas."
-pubDate: 2026-09-01
+title: "Quanto custa montador de móveis em São Paulo"
+description: "O que faz o preço da montagem de móveis variar em São Paulo, como pedir um orçamento que não muda na hora e como comparar duas propostas."
+ordem: 1
 tags: ["orçamento", "montagem de móveis", "São Paulo"]
 ---
 
@@ -26,6 +26,12 @@ Montar três móveis no mesmo dia sai melhor do que montar um por vez em três v
 Móvel novo vem com manual, parafusos contados e furos prontos. Móvel usado chega sem manual, com ferragem faltando e com furos que já cederam. O usado quase sempre pede mais tempo, e às vezes pede peça de reposição.
 
 Isso vale para o que você comprou em site como Mobly, MadeiraMadeira ou Magalu e para o que veio de uma mudança.
+
+### Móvel planejado entregue em módulos
+
+Planejado é outra conversa. Ele não vem com manual de loja. Ele chega com um projeto, módulos numerados e ferragem própria, muitas vezes em entregas separadas.
+
+Antes de encostar na parafusadeira, o montador precisa conferir cada módulo contra o projeto. Um perfil que não veio ou uma corrediça trocada trava o dia inteiro. Por isso a [montagem de móveis planejados](/montagem-de-moveis-planejados/) costuma ser cotada por ambiente, e não por peça solta.
 
 ### Andar sem elevador
 
@@ -60,6 +66,7 @@ O segredo é dar informação suficiente antes. Quanto mais o montador enxerga, 
 - Fotos das caixas fechadas, mostrando a etiqueta com nome e modelo do móvel.
 - Lista dos móveis, com o número de portas e gavetas de cada um.
 - Se o móvel é novo na caixa ou usado.
+- Se algum item é planejado, e o projeto do ambiente se você tiver.
 - Andar do imóvel e se tem elevador.
 - Bairro e cidade.
 - Se precisa fixar na parede e qual o tipo de parede.
@@ -71,7 +78,7 @@ Com esses dados, o valor que você recebe é o valor que você paga. Se algo apa
 
 Costuma vir incluso:
 
-- Montagem completa conforme o manual.
+- Montagem completa conforme o manual ou o projeto.
 - Ferramenta do montador.
 - Nivelamento e ajuste de portas e gavetas.
 - Retirada do papelão e do plástico do local de trabalho.
@@ -92,12 +99,13 @@ Comparar só o número final é o erro mais comum. Coloque os dois lado a lado e
 
 1. Os dois cobrem os mesmos móveis, com o mesmo número de peças?
 2. Os dois incluem fixação na parede e ferragens extras?
-3. Qual tem garantia com prazo em dias? Sem prazo escrito, garantia não existe.
-4. Qual combina horário exato em vez de "de manhã" ou "à tarde"?
-5. Qual respondeu com perguntas antes de dar o valor?
+3. Qual explica o que faz se faltar ferragem na caixa?
+4. Qual já montou o tipo de móvel que você tem, planejado inclusive?
+5. Qual combina horário exato em vez de "de manhã" ou "à tarde"?
+6. Qual respondeu com perguntas antes de dar o valor?
 
 O orçamento mais barato que deixa a fixação de fora pode acabar mais caro. O orçamento que pergunta detalhes antes é o que tende a não mudar na hora.
 
-Na MontaMóveis SP o serviço de [montador de móveis](/montador-de-moveis/) tem garantia de 90 dias e valor fechado antes da visita. Atendemos de segunda a sexta das 7h às 20h e sábado das 8h às 18h.
+Na MontaMóveis SP o serviço de [montador de móveis](/montador-de-moveis/) sai com valor fechado antes da visita. Atendemos de segunda a sexta das 7h às 20h e sábado das 8h às 18h. A forma de pagamento é combinada no WhatsApp.
 
-Mande a lista dos seus móveis no WhatsApp com foto das caixas, andar e bairro. Você recebe o valor em até 5 minutos.
+Mande a lista dos seus móveis no WhatsApp com foto das caixas, andar e bairro. Você recebe o valor para o seu caso.
