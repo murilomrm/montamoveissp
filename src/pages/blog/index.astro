@@ -23,9 +23,9 @@ const fmt = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" });
       {posts.map((p) => (
         <li class="card flex flex-col">
           <time datetime={p.data.pubDate.toISOString()} class="mb-2 text-xs text-cinza-medio">{fmt.format(p.data.pubDate)}</time>
-          <h2 class="mb-2 text-lg"><a href={href(`/blog/${p.id}/`)} class="hover:text-acao">{p.data.title}</a></h2>
+          <h2 class="mb-2 text-lg"><a href={href(`/blog/${p.id}/`)} class="hover:text-acao-texto">{p.data.title}</a></h2>
           <p class="mb-3 text-sm text-cinza-medio">{p.data.description}</p>
-          <a href={href(`/blog/${p.id}/`)} class="mt-auto text-sm font-semibold text-acao">Ler artigo</a>
+          <a href={href(`/blog/${p.id}/`)} class="mt-auto text-sm font-semibold text-acao-texto">Ler artigo</a>
         </li>
       ))}
     </ul>
