@@ -1,17 +1,20 @@
 ---
-// Renderiza uma imagem de public/img/ se ela existir no disco durante o build.
-// Sem o arquivo, sai um bloco cinza com a mesma proporção (nunca imagem de banco). Ver docs/FOTOS.md.
-// As dimensões reais vêm de src/data/fotos.json, gerado por scripts/importar-fotos.sh.
-// Isso evita layout shift: o navegador reserva a caixa exata antes de a imagem carregar.
-import fs from "node:fs";
-import path from "node:path";
+// Renderiza uma foto de public/img/. A fonte da verdade é src/data/fotos.json,
+// gerado por scripts/importar-fotos.sh, e NÃO o sistema de arquivos.
+//
+// Por que não ler o disco: `fs.existsSync` depende do diretório de trabalho do processo,
+// que no builder do Cloudflare não é a raiz do projeto. O build passava, as imagens subiam,
+// mas toda página saía com o bloco cinza. O manifesto é determinístico em qualquer ambiente
+// e ainda traz as dimensões reais, que zeram o layout shift.
+//
+// Ao adicionar uma foto nova, rode ./scripts/importar-fotos.sh para regerar o manifesto.
 import { href } from "@/lib/url";
-import dimensoes from "@/data/fotos.json";
+import fotos from "@/data/fotos.json";
 
 interface Props {
   nome: string; // nome do arquivo sem extensão, ex.: "hero"
   alt: string;
-  largura?: number; // usado só se a foto não estiver no manifesto
+  largura?: number; // usado só quando a foto não está no manifesto
   altura?: number;
   prioridade?: boolean; // true no hero (sem lazy)
   class?: string;
@@ -20,15 +23,11 @@ interface Props {
 
 const { nome, alt, largura = 1200, altura = 900, prioridade = false, class: classe = "", legenda } = Astro.props;
 
-const manifesto = dimensoes as Record<string, { largura: number; altura: number }>;
-const real = manifesto[nome];
-const w = real?.largura ?? largura;
-const h = real?.altura ?? altura;
-
-const extensoes = ["webp", "avif", "jpg", "jpeg", "png"];
-const dir = path.resolve("public/img");
-const encontrada = extensoes.find((ext) => fs.existsSync(path.join(dir, `${nome}.${ext}`)));
-const src = encontrada ? href(`/img/${nome}.${encontrada}`) : null;
+const manifesto = fotos as Record<string, { largura: number; altura: number; ext: string }>;
+const foto = manifesto[nome];
+const w = foto?.largura ?? largura;
+const h = foto?.altura ?? altura;
+const src = foto ? href(`/img/${nome}.${foto.ext}`) : null;
 ---
 <figure class={classe}>
   {src ? (

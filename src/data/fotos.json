@@ -1,54 +1,67 @@
 {
   "caixas-fechadas": {
     "largura": 1200,
-    "altura": 896
+    "altura": 896,
+    "ext": "webp"
   },
   "cozinha-armario": {
     "largura": 1200,
-    "altura": 896
+    "altura": 896,
+    "ext": "webp"
   },
   "cozinha-bancada": {
     "largura": 1376,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   },
   "cozinha-planejada": {
     "largura": 1376,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   },
   "escritorio-bancada": {
     "largura": 1376,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   },
   "guarda-roupa": {
     "largura": 1376,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   },
   "hero": {
     "largura": 1376,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   },
   "montador-retrato": {
     "largura": 1200,
-    "altura": 896
+    "altura": 896,
+    "ext": "webp"
   },
   "painel-tv": {
     "largura": 1200,
-    "altura": 896
+    "altura": 896,
+    "ext": "webp"
   },
   "planejado-closet": {
     "largura": 1200,
-    "altura": 896
+    "altura": 896,
+    "ext": "webp"
   },
   "prateleiras": {
     "largura": 1200,
-    "altura": 896
+    "altura": 896,
+    "ext": "webp"
   },
   "rack-suspenso": {
     "largura": 1376,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   },
   "whatsapp-atendimento": {
     "largura": 1408,
-    "altura": 768
+    "altura": 768,
+    "ext": "webp"
   }
 }

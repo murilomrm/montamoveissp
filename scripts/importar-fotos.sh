@@ -136,7 +136,7 @@ if command -v magick >/dev/null 2>&1; then
       largura="${dims%% *}"; altura="${dims##* }"
       [ $primeiro -eq 0 ] && echo ","
       primeiro=0
-      printf '  "%s": { "largura": %s, "altura": %s }' "$base" "$largura" "$altura"
+      printf '  "%s": { "largura": %s, "altura": %s, "ext": "webp" }' "$base" "$largura" "$altura"
     done
     echo
     echo "}"
