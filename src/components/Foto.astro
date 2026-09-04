@@ -1,21 +1,30 @@
 ---
 // Renderiza uma imagem de public/img/ se ela existir no disco durante o build.
 // Sem o arquivo, sai um bloco cinza com a mesma proporção (nunca imagem de banco). Ver docs/FOTOS.md.
+// As dimensões reais vêm de src/data/fotos.json, gerado por scripts/importar-fotos.sh.
+// Isso evita layout shift: o navegador reserva a caixa exata antes de a imagem carregar.
 import fs from "node:fs";
 import path from "node:path";
 import { href } from "@/lib/url";
+import dimensoes from "@/data/fotos.json";
 
 interface Props {
   nome: string; // nome do arquivo sem extensão, ex.: "hero"
   alt: string;
-  largura: number;
-  altura: number;
+  largura?: number; // usado só se a foto não estiver no manifesto
+  altura?: number;
   prioridade?: boolean; // true no hero (sem lazy)
   class?: string;
   legenda?: string;
 }
 
-const { nome, alt, largura, altura, prioridade = false, class: classe = "", legenda } = Astro.props;
+const { nome, alt, largura = 1200, altura = 900, prioridade = false, class: classe = "", legenda } = Astro.props;
+
+const manifesto = dimensoes as Record<string, { largura: number; altura: number }>;
+const real = manifesto[nome];
+const w = real?.largura ?? largura;
+const h = real?.altura ?? altura;
+
 const extensoes = ["webp", "avif", "jpg", "jpeg", "png"];
 const dir = path.resolve("public/img");
 const encontrada = extensoes.find((ext) => fs.existsSync(path.join(dir, `${nome}.${ext}`)));
@@ -26,8 +35,8 @@ const src = encontrada ? href(`/img/${nome}.${encontrada}`) : null;
     <img
       src={src}
       alt={alt}
-      width={largura}
-      height={altura}
+      width={w}
+      height={h}
       loading={prioridade ? "eager" : "lazy"}
       decoding={prioridade ? "sync" : "async"}
       fetchpriority={prioridade ? "high" : undefined}
@@ -38,7 +47,7 @@ const src = encontrada ? href(`/img/${nome}.${encontrada}`) : null;
       role="img"
       aria-label={alt}
       class="w-full rounded-xl bg-gray-200"
-      style={`aspect-ratio: ${largura} / ${altura}`}
+      style={`aspect-ratio: ${w} / ${h}`}
     ></div>
   )}
   {legenda && <figcaption class="mt-2 text-sm text-cinza-medio">{legenda}</figcaption>}

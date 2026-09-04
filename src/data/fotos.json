@@ -1,0 +1,54 @@
+{
+  "caixas-fechadas": {
+    "largura": 1200,
+    "altura": 896
+  },
+  "cozinha-armario": {
+    "largura": 1200,
+    "altura": 896
+  },
+  "cozinha-bancada": {
+    "largura": 1376,
+    "altura": 768
+  },
+  "cozinha-planejada": {
+    "largura": 1376,
+    "altura": 768
+  },
+  "escritorio-bancada": {
+    "largura": 1376,
+    "altura": 768
+  },
+  "guarda-roupa": {
+    "largura": 1376,
+    "altura": 768
+  },
+  "hero": {
+    "largura": 1376,
+    "altura": 768
+  },
+  "montador-retrato": {
+    "largura": 1200,
+    "altura": 896
+  },
+  "painel-tv": {
+    "largura": 1200,
+    "altura": 896
+  },
+  "planejado-closet": {
+    "largura": 1200,
+    "altura": 896
+  },
+  "prateleiras": {
+    "largura": 1200,
+    "altura": 896
+  },
+  "rack-suspenso": {
+    "largura": 1376,
+    "altura": 768
+  },
+  "whatsapp-atendimento": {
+    "largura": 1408,
+    "altura": 768
+  }
+}

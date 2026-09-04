@@ -4,6 +4,10 @@ O componente `src/components/Foto.astro` procura o arquivo em `public/img/` nas 
 
 Ou seja: é só salvar o arquivo com o nome exato e rodar `npm run build`. Nenhum código precisa mudar.
 
+## Estado atual
+
+As 13 fotos já estão em `public/img/`, em WebP, somando cerca de 800 KB. As dimensões reais de cada uma ficam em `src/data/fotos.json`, que o `Foto.astro` usa para reservar a caixa certa e evitar layout shift. Para trocar uma foto, sobrescreva o `.webp` com o mesmo nome e rode o script abaixo, que regera o manifesto.
+
 ## Jeito rápido: o script de importação
 
 Salve as 13 fotos numa pasta qualquer, nomeadas para ficarem em ordem alfabética na sequência da tabela abaixo (`01.jpg`, `02.jpg` ... `13.jpg` resolve). Depois:

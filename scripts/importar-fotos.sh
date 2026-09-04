@@ -122,6 +122,30 @@ for arquivo in "${ARQUIVOS[@]}"; do
   i=$((i+1))
 done
 
+
+# Regera o manifesto de dimensoes usado por Foto.astro (evita layout shift).
+RAIZ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if command -v magick >/dev/null 2>&1; then
+  {
+    echo "{"
+    primeiro=1
+    for arq in "$DESTINO"/*.webp; do
+      [ -e "$arq" ] || continue
+      base="$(basename "$arq" .webp)"
+      dims="$(magick identify -format '%w %h' "$arq")"
+      largura="${dims%% *}"; altura="${dims##* }"
+      [ $primeiro -eq 0 ] && echo ","
+      primeiro=0
+      printf '  "%s": { "largura": %s, "altura": %s }' "$base" "$largura" "$altura"
+    done
+    echo
+    echo "}"
+  } > "$RAIZ/src/data/fotos.json"
+  echo "manifesto src/data/fotos.json atualizado"
+else
+  echo "AVISO: magick nao encontrado. Atualize src/data/fotos.json na mao ou instale com: brew install imagemagick"
+fi
+
 echo
 echo "Pronto. $i foto(s) em public/img/."
 echo "Agora rode: npm run build"
