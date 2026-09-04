@@ -4,7 +4,20 @@ O componente `src/components/Foto.astro` procura o arquivo em `public/img/` nas 
 
 Ou seja: é só salvar o arquivo com o nome exato e rodar `npm run build`. Nenhum código precisa mudar.
 
-## Antes de salvar
+## Jeito rápido: o script de importação
+
+Salve as 13 fotos numa pasta qualquer, nomeadas para ficarem em ordem alfabética na sequência da tabela abaixo (`01.jpg`, `02.jpg` ... `13.jpg` resolve). Depois:
+
+```bash
+./scripts/importar-fotos.sh ~/Desktop/fotos            # só mostra o plano, não escreve nada
+./scripts/importar-fotos.sh ~/Desktop/fotos --aplicar  # renomeia, redimensiona e converte
+```
+
+O primeiro comando imprime uma tabela ligando cada arquivo ao nome de destino e à descrição da foto que deveria estar ali. Confira essa coluna antes de usar `--aplicar`. Se a ordem estiver trocada, renomeie os arquivos de origem e rode de novo.
+
+O script exige `cwebp` (`brew install webp`). Ele mantém a proporção original e não amplia foto menor que a largura alvo. Fotos a menos não são problema: o que faltar continua saindo como bloco cinza.
+
+## Antes de salvar (manualmente)
 
 1. Redimensione para a largura da tabela.
 2. Converta para WebP com qualidade 80. Um comando que resolve, se você tiver o `cwebp` instalado:
