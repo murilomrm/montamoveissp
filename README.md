@@ -81,14 +81,16 @@ Todo deploy de preview sai com `noindex, nofollow` e `robots.txt` bloqueando tud
 
 No projeto do Pages, em Custom domains, adicione `www.montamoveissp.com.br` e `montamoveissp.com.br`. Como o DNS já está na Cloudflare, os registros são criados sozinhos e o certificado sai em minutos.
 
-O canonical do site é o `www`. O redirecionamento do apex para o `www` está em `public/_redirects` como reserva, mas o caminho confiável é uma Redirect Rule na Cloudflare, em Rules > Redirect Rules, porque `_redirects` do Pages trabalha por caminho e não por domínio.
+O canonical do site é o `www`. O redirecionamento do apex para o `www` é feito por Redirect Rule no painel, em Rules > Redirect Rules, e não no código.
 
 ### Cabeçalhos e redirecionamentos
 
 Dois arquivos em `public/`, copiados para a raiz do build e lidos pelo Cloudflare Pages:
 
 - `public/_headers`: segurança (HSTS, nosniff, clickjacking, permissions policy) e cache. Assets com hash no nome ficam imutáveis por um ano; HTML sempre revalida.
-- `public/_redirects`: apex para www e as rotas antigas `/precos` para `/orcamento/`.
+- `public/_redirects`: as rotas antigas `/precos` para `/orcamento/`.
+
+Regras entre hostnames diferentes (ex.: apex → www) devem ser criadas como Redirect Rule no painel do Cloudflare, não neste arquivo, que só aceita caminhos relativos. URL absoluta aqui faz o build do Pages falhar.
 
 Não crie redirecionamento para rota que já existe. Esses arquivos são só para migração e canonical.
 

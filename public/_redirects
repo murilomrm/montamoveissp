@@ -1,6 +1,3 @@
-# Força www (canonical). O Cloudflare também tem regra de página pra isso; deixamos aqui como reserva
-https://montamoveissp.com.br/*  https://www.montamoveissp.com.br/:splat  301
-
 # Rotas antigas que possam aparecer em anúncios antigos e devem cair na home
 /precos           /orcamento/  301
 /precos/          /orcamento/  301
