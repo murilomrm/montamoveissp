@@ -1,0 +1,54 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { paginas } from "@/data/paginas";
+import { schemaBreadcrumb } from "@/lib/seo";
+import { href } from "@/lib/url";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Foto from "@/components/Foto.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Sobre", url: "/sobre/" },
+];
+---
+<Base title={paginas.sobre.title} description={paginas.sobre.description} path="/sobre/" schemas={[schemaBreadcrumb(crumbs)]}>
+  <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
+  <section class="container-site grid items-center gap-8 py-8 md:grid-cols-2 md:py-12">
+    <div>
+      <h1 class="mb-4">Sobre a {site.nome}</h1>
+      <p class="mb-4 text-lg">Serviço de montagem e desmontagem de móveis em São Paulo, ABC e Grande SP. Um canal só, o WhatsApp, e uma promessa só: valor combinado antes, serviço conferido depois, {site.garantiaDias} dias de garantia.</p>
+      <WhatsAppButton origem="hero" />
+    </div>
+    <Foto nome="montador-1" alt="Montador com caixa de ferramentas e nível em frente a guarda-roupa montado" largura={1200} altura={900} legenda="Montagem de guarda-roupa" />
+  </section>
+
+  <section class="secao bg-cinza">
+    <div class="container-site prosa max-w-3xl">
+      <h2>Como selecionamos os montadores</h2>
+      <p>Todo montador que atende pela {site.nome} passa por três filtros antes do primeiro serviço.</p>
+      <ol>
+        <li><strong>Ferramenta própria completa.</strong> Parafusadeira, furadeira de impacto, nível, jogo de brocas para alvenaria, gesso e concreto. Quem não tem o kit não entra.</li>
+        <li><strong>Experiência comprovada.</strong> Pedimos referências de serviços anteriores e conversamos com quem contratou.</li>
+        <li><strong>Montagem de teste.</strong> Um serviço acompanhado, para ver alinhamento de porta, acabamento e cuidado com o piso e a parede do cliente.</li>
+      </ol>
+      <h2>O que você pode esperar</h2>
+      <ul>
+        <li>Resposta com valor fechado em até {site.tempoOrcamento} no horário de atendimento ({site.horario}).</li>
+        <li>Horário combinado e avisado se atrasar.</li>
+        <li>Proteção do piso, embalagem recolhida e sobras de parafuso explicadas.</li>
+        <li>Pagamento só depois de você conferir tudo.</li>
+        <li>{site.garantiaDias} dias de garantia sobre a montagem.</li>
+      </ul>
+      <h2>Empresa</h2>
+      <p>{site.nome} atua em {site.enderecoBase.cidade}, {site.enderecoBase.uf}.
+        {site.temCnpj && site.cnpj ? ` CNPJ ${site.cnpj}${site.razaoSocial ? `, ${site.razaoSocial}` : ""}.` : ""}
+        {/* NOTA FISCAL: liberar aqui quando temCnpj = true (texto sobre emissão de nota) */}
+      </p>
+      <p>Quer montar com a gente? Veja a página <a href={href("/trabalhe-conosco/")}>trabalhe conosco</a>.</p>
+    </div>
+  </section>
+  <CTAFinal />
+</Base>

@@ -1,0 +1,70 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { paginas } from "@/data/paginas";
+import { schemaBreadcrumb } from "@/lib/seo";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Política de privacidade", url: "/politica-de-privacidade/" },
+];
+const atualizada = "4 de setembro de 2026";
+---
+<Base title={paginas.politica.title} description={paginas.politica.description} path="/politica-de-privacidade/" schemas={[schemaBreadcrumb(crumbs)]}>
+  <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
+  <article class="container-site prosa max-w-3xl py-8 md:py-12">
+    <h1>Política de privacidade</h1>
+    <p class="text-sm text-cinza-medio">Última atualização: {atualizada}</p>
+
+    <p>Esta política explica quais dados a {site.nome} coleta quando você usa o site {site.dominio.replace(/^https?:\/\//, "")} ou fala com a gente pelo WhatsApp, para que usamos esses dados e quais são os seus direitos, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
+
+    <h2>1. Quem é o controlador</h2>
+    <p>{site.nome}, com atuação em {site.enderecoBase.cidade}, {site.enderecoBase.uf}.{site.temCnpj && site.cnpj ? ` CNPJ ${site.cnpj}.` : ""} Contato pelo WhatsApp {site.telefoneExibicao}.</p>
+
+    <h2>2. Quais dados coletamos</h2>
+    <ul>
+      <li><strong>Formulário de orçamento:</strong> nome, número de WhatsApp, bairro ou cidade, tipo de serviço, lista de móveis e data desejada.</li>
+      <li><strong>Formulário de montador:</strong> nome, região, experiência, ferramentas e veículo.</li>
+      <li><strong>Conversa no WhatsApp:</strong> o conteúdo que você envia, incluindo fotos dos móveis e endereço para o serviço.</li>
+      <li><strong>Dados de navegação:</strong> página de origem do pedido e parâmetros de campanha (utm) da primeira visita, guardados só na sessão do navegador. Com o seu consentimento, dados de uso do site por ferramentas de medição (ver item 5).</li>
+    </ul>
+
+    <h2>3. Para que usamos</h2>
+    <ul>
+      <li>Responder o pedido de orçamento e agendar o serviço.</li>
+      <li>Avaliar cadastro de montador.</li>
+      <li>Cumprir a garantia de {site.garantiaDias} dias, o que exige guardar o registro do serviço por esse prazo.</li>
+      <li>Medir quantas pessoas chegam ao site e de onde, para melhorar as páginas e os anúncios, quando você aceitar os cookies.</li>
+    </ul>
+    <p>Base legal: execução de contrato ou de medidas pré-contratuais (orçamento e agendamento), legítimo interesse (garantia e segurança) e consentimento (cookies de medição e anúncios).</p>
+
+    <h2>4. Com quem compartilhamos</h2>
+    <ul>
+      <li><strong>Montador responsável pelo serviço:</strong> recebe nome, endereço, telefone e lista de móveis para executar a montagem.</li>
+      <li><strong>WhatsApp (Meta):</strong> a conversa acontece na plataforma deles, sujeita à política de privacidade do WhatsApp.</li>
+      <li><strong>Planilha de controle:</strong> os dados do formulário podem ser gravados em uma planilha interna para organizar os atendimentos.</li>
+      <li><strong>Ferramentas de medição:</strong> Google Tag Manager, Google Analytics, Google Ads e Meta Pixel, só se você aceitar os cookies. Elas recebem dados de navegação, não o conteúdo do formulário.</li>
+    </ul>
+    <p>Não vendemos seus dados e não os repassamos para lista de marketing de terceiros.</p>
+
+    <h2>5. Cookies</h2>
+    <p>O site funciona sem cookies de terceiros. Ao entrar, você vê um aviso e pode aceitar ou recusar. Se recusar, nenhuma ferramenta de medição ou anúncio é carregada. A escolha fica gravada em um cookie próprio por 6 meses. Você pode mudar de ideia limpando os cookies do navegador.</p>
+
+    <h2>6. Por quanto tempo guardamos</h2>
+    <ul>
+      <li>Pedidos de orçamento sem serviço fechado: até 12 meses.</li>
+      <li>Serviços realizados: pelo prazo da garantia e depois pelo tempo exigido por lei para registros de prestação de serviço.</li>
+      <li>Cadastro de montador: enquanto durar a relação ou até você pedir a exclusão.</li>
+    </ul>
+
+    <h2>7. Seus direitos</h2>
+    <p>Você pode pedir a qualquer momento: confirmação de que tratamos seus dados, acesso, correção, anonimização, exclusão, informação sobre compartilhamento e revogação do consentimento. Basta mandar mensagem no WhatsApp {site.telefoneExibicao}. Respondemos em até 15 dias.</p>
+
+    <h2>8. Segurança</h2>
+    <p>Os dados ficam em contas protegidas por senha e verificação em duas etapas, com acesso restrito a quem precisa atender o pedido. O site é servido só por HTTPS.</p>
+
+    <h2>9. Mudanças nesta política</h2>
+    <p>Se mudarmos algo relevante, a data no topo é atualizada. Uso continuado do site depois da mudança significa que você leu a nova versão.</p>
+  </article>
+</Base>

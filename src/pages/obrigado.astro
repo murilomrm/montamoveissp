@@ -1,0 +1,15 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { paginas } from "@/data/paginas";
+import { href } from "@/lib/url";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+---
+<Base title={paginas.obrigado.title} description={paginas.obrigado.description} path="/obrigado/" noindex>
+  <section class="container-site max-w-2xl py-16 text-center">
+    <h1 class="mb-4">Recebemos seu pedido</h1>
+    <p class="mb-6 text-lg">A conversa no WhatsApp deve ter aberto em outra aba. Se não abriu, toque no botão abaixo. Respondemos em até {site.tempoOrcamento} no horário de atendimento ({site.horario}).</p>
+    <WhatsAppButton origem="cta" class="text-lg" texto="Abrir WhatsApp" />
+    <p class="mt-8 text-sm text-cinza-medio"><a href={href("/")} class="underline">Voltar para a página inicial</a></p>
+  </section>
+</Base>

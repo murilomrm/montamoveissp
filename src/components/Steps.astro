@@ -1,0 +1,20 @@
+---
+import { site } from "@/data/site";
+const passos = [
+  { titulo: "Mande a lista ou as fotos", texto: "Pelo WhatsApp: quais móveis, o bairro e o andar. Foto da caixa já resolve." },
+  { titulo: `Receba o valor em ${site.tempoOrcamento}`, texto: "Valor fechado antes de agendar. Sem surpresa na hora." },
+  { titulo: "Escolha dia e horário", texto: `Atendemos de ${site.horario.toLowerCase()}. Normalmente em 24 a 48 horas.` },
+  { titulo: "Confira e pague no fim", texto: `Você testa portas e gavetas, paga por Pix, dinheiro ou cartão e leva ${site.garantiaDias} dias de garantia.` },
+];
+---
+<ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  {passos.map((p, i) => (
+    <li class="flex gap-4">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-acao text-lg font-bold text-white" aria-hidden="true">{i + 1}</span>
+      <div>
+        <h3 class="mb-1">{p.titulo}</h3>
+        <p class="text-sm text-cinza-medio">{p.texto}</p>
+      </div>
+    </li>
+  ))}
+</ol>

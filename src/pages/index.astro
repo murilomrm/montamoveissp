@@ -1,0 +1,75 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { servicos } from "@/data/servicos";
+import { faqGeral } from "@/data/faq";
+import { paginas } from "@/data/paginas";
+import { regioesPrioridade1 } from "@/lib/regioes";
+import { schemaFaq } from "@/lib/seo";
+import { href } from "@/lib/url";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import Provas from "@/components/Provas.astro";
+import ServiceCard from "@/components/ServiceCard.astro";
+import RegionGrid from "@/components/RegionGrid.astro";
+import Steps from "@/components/Steps.astro";
+import Testimonials from "@/components/Testimonials.astro";
+import FAQ from "@/components/FAQ.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+import Foto from "@/components/Foto.astro";
+---
+<Base title={paginas.home.title} description={paginas.home.description} path="/" tipoPagina="home" schemas={[schemaFaq(faqGeral)]}>
+  <section class="bg-cinza">
+    <div class="container-site grid items-center gap-8 py-12 md:grid-cols-2 md:py-16">
+      <div>
+        <h1 class="mb-4">Montador de móveis em São Paulo com garantia de {site.garantiaDias} dias</h1>
+        <p class="mb-6 text-lg">Montagem e desmontagem de guarda-roupa, cozinha, cama, escritório e móvel comprado online. Capital, ABC e Grande SP. Você manda a lista, recebe o valor em {site.tempoOrcamento} e agenda pelo WhatsApp.</p>
+        <div class="mb-8 flex flex-col gap-3 sm:flex-row">
+          <WhatsAppButton origem="hero" class="text-lg" />
+          <a href="#lead-form" class="btn-borda">Preencher formulário</a>
+        </div>
+        <Provas />
+      </div>
+      <Foto nome="hero" alt="Montador de móveis ajustando painel de guarda-roupa em quarto de apartamento" largura={1280} altura={720} prioridade />
+    </div>
+  </section>
+
+  <section id="servicos" class="secao scroll-mt-20" aria-labelledby="servicos-titulo">
+    <div class="container-site">
+      <h2 id="servicos-titulo" class="mb-2">O que montamos</h2>
+      <p class="mb-8 text-cinza-medio">Cada serviço tem página própria com o que está incluso, tempo médio e perguntas comuns.</p>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {servicos.map((s) => <ServiceCard servico={s} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao bg-cinza" aria-labelledby="regioes-titulo">
+    <div class="container-site">
+      <h2 id="regioes-titulo" class="mb-2">Onde atendemos</h2>
+      <p class="mb-6 text-cinza-medio">Toda a capital, o ABC e a Grande São Paulo. Regiões mais atendidas:</p>
+      <RegionGrid regioes={regioesPrioridade1} />
+      <a href={href("/montador-de-moveis/")} class="mt-6 inline-block font-semibold text-primaria underline underline-offset-2">Ver todas as regiões</a>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="como-funciona-titulo">
+    <div class="container-site">
+      <h2 id="como-funciona-titulo" class="mb-8">Como funciona</h2>
+      <Steps />
+      <p class="mt-8 text-sm text-cinza-medio">Sem tabela fixa: o valor depende do móvel e do endereço. <a href={href("/orcamento/")} class="text-primaria underline">Entenda como o orçamento é feito</a>.</p>
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <FAQ itens={faqGeral} />
+
+  <section class="secao bg-cinza" aria-label="Formulário de orçamento">
+    <div class="container-site">
+      <LeadForm />
+    </div>
+  </section>
+
+  <CTAFinal />
+</Base>

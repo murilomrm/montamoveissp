@@ -1,0 +1,35 @@
+---
+// Só injeta o GTM se PUBLIC_GTM_ID estiver preenchido. Sem ID, nenhum script de terceiros entra na página.
+// Consent Mode v2: default denied. GTM só carrega após o cookie mm_consent=granted (ver CookieBanner.astro).
+const gtmId = import.meta.env.PUBLIC_GTM_ID?.trim() || "";
+---
+{gtmId ? (
+  <script is:inline define:vars={{ gtmId }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      wait_for_update: 500,
+    });
+    window.__mmCarregarGtm = function () {
+      if (window.__mmGtmCarregado) return;
+      window.__mmGtmCarregado = true;
+      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtm.js?id=" + gtmId;
+      document.head.appendChild(s);
+    };
+    var m = document.cookie.match(/(?:^|; )mm_consent=(granted|denied)/);
+    if (m && m[1] === "granted") {
+      gtag("consent", "update", { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted", analytics_storage: "granted" });
+      window.__mmCarregarGtm();
+    }
+  </script>
+) : (
+  <script is:inline>window.dataLayer = window.dataLayer || [];</script>
+)}

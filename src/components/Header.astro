@@ -1,0 +1,66 @@
+---
+import { site } from "@/data/site";
+import { href } from "@/lib/url";
+import WhatsAppButton from "./WhatsAppButton.astro";
+
+interface Props { servico?: string; regiao?: string }
+const { servico, regiao } = Astro.props;
+
+const nav = [
+  { nome: "Serviços", url: "/#servicos" },
+  { nome: "Regiões", url: "/montador-de-moveis/" },
+  { nome: "Orçamento", url: "/orcamento/" },
+  { nome: "Sobre", url: "/sobre/" },
+  { nome: "Blog", url: "/blog/" },
+  { nome: "Contato", url: "/contato/" },
+];
+---
+<header class="sticky top-0 z-30 border-b border-gray-200 bg-white/95 backdrop-blur">
+  <div class="container-site flex h-16 items-center justify-between gap-3">
+    <a href={href("/")} class="flex items-center gap-2 font-bold text-primaria" aria-label={`${site.nome}, página inicial`}>
+      <svg class="h-8 w-8" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="28" height="28" rx="6" fill="#1F3A5F"/>
+        <path d="M8 22V10l4 6 4-6 4 6 4-6v12" stroke="#F28C28" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="text-lg leading-none">{site.nome}</span>
+    </a>
+
+    <nav class="hidden items-center gap-5 lg:flex" aria-label="Principal">
+      {nav.map((n) => (
+        <a href={href(n.url)} class="font-medium text-texto hover:text-primaria">{n.nome}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={`tel:+${site.whatsapp}`} class="flex h-12 w-12 items-center justify-center rounded-lg text-primaria hover:bg-cinza lg:hidden" aria-label={`Ligar para ${site.telefoneExibicao}`}>
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+      </a>
+      <a href={`tel:+${site.whatsapp}`} class="hidden font-semibold text-primaria lg:inline">{site.telefoneExibicao}</a>
+      <WhatsAppButton origem="cabecalho" servico={servico} regiao={regiao} texto="Orçamento" class="hidden px-4 text-sm sm:inline-flex" />
+      <WhatsAppButton origem="cabecalho" servico={servico} regiao={regiao} texto="Orçamento no WhatsApp" compacto class="h-12 w-12 !px-0 sm:hidden" />
+      <button type="button" id="menu-botao" class="flex h-12 w-12 items-center justify-center rounded-lg text-primaria hover:bg-cinza lg:hidden" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="menu-mobile" hidden class="border-t border-gray-200 bg-white lg:hidden" aria-label="Menu">
+    <ul class="container-site flex flex-col py-2">
+      {nav.map((n) => (
+        <li><a href={href(n.url)} class="block py-3 font-medium hover:text-primaria">{n.nome}</a></li>
+      ))}
+      <li><a href={`tel:+${site.whatsapp}`} class="block py-3 font-medium">Ligar: {site.telefoneExibicao}</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  const botao = document.getElementById("menu-botao");
+  const menu = document.getElementById("menu-mobile");
+  botao?.addEventListener("click", () => {
+    if (!menu) return;
+    const aberto = !menu.hidden;
+    menu.hidden = aberto;
+    botao.setAttribute("aria-expanded", String(!aberto));
+    botao.setAttribute("aria-label", aberto ? "Abrir menu" : "Fechar menu");
+  });
+</script>

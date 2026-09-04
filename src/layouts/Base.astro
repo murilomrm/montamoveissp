@@ -1,0 +1,58 @@
+---
+import "@fontsource-variable/inter";
+import "@/styles/global.css";
+import SEO from "@/components/SEO.astro";
+import Tracking from "@/components/Tracking.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import WhatsAppFloat from "@/components/WhatsAppFloat.astro";
+import CookieBanner from "@/components/CookieBanner.astro";
+import { href } from "@/lib/url";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  noindex?: boolean;
+  tipo?: "website" | "article";
+  schemas?: Record<string, unknown>[];
+  tipoPagina?: "home" | "servico" | "regiao" | "orcamento" | "outra";
+  servico?: string; // nome em minúsculas para o contexto do WhatsApp
+  regiao?: string;
+}
+
+const { title, description, path, ogImage, noindex, tipo, schemas, tipoPagina = "outra", servico, regiao } = Astro.props;
+const gtmId = import.meta.env.PUBLIC_GTM_ID?.trim() || "";
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1F3A5F" />
+    <link rel="icon" href={href("/favicon.svg")} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={href("/apple-touch-icon.png")} />
+    <link rel="sitemap" href={href("/sitemap-index.xml")} />
+    <SEO title={title} description={description} path={path} ogImage={ogImage} noindex={noindex} tipo={tipo} schemas={schemas} />
+    <Tracking />
+  </head>
+  <body data-tipo-pagina={tipoPagina} class="flex min-h-screen flex-col">
+    {gtmId && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    )}
+    <Header servico={servico} regiao={regiao} />
+    <main id="conteudo" class="flex-1">
+      <slot />
+    </main>
+    <Footer servico={servico} regiao={regiao} />
+    <WhatsAppFloat servico={servico} regiao={regiao} />
+    <CookieBanner />
+    <script>
+      import { iniciarTrackingGlobal } from "@/lib/tracking";
+      import { capturarUtms } from "@/lib/utm";
+      capturarUtms();
+      iniciarTrackingGlobal();
+    </script>
+  </body>
+</html>

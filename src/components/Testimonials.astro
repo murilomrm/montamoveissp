@@ -1,0 +1,22 @@
+---
+import { depoimentos } from "@/data/depoimentos";
+// Placeholders só aparecem com ALLOW_PLACEHOLDERS=1 (dev local). Em produção a seção some até haver avaliação real.
+const permitirPlaceholder = process.env.ALLOW_PLACEHOLDERS === "1";
+const lista = depoimentos.filter((d) => permitirPlaceholder || !d.placeholder);
+---
+{lista.length > 0 && (
+  <section class="secao bg-cinza" aria-labelledby="depoimentos-titulo">
+    <div class="container-site">
+      <h2 id="depoimentos-titulo" class="mb-6">O que dizem os clientes</h2>
+      <ul class="grid gap-4 md:grid-cols-3">
+        {lista.map((d) => (
+          <li class="card">
+            {d.placeholder && <span class="mb-2 inline-block rounded bg-yellow-100 px-2 py-0.5 text-xs font-semibold text-yellow-800">EXEMPLO</span>}
+            <p class="mb-3">“{d.texto}”</p>
+            <p class="text-sm text-cinza-medio"><strong class="text-texto">{d.nome}</strong>, {d.bairro}. {d.servico}.</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}

@@ -1,0 +1,12 @@
+---
+import { href } from "@/lib/url";
+import type { Servico } from "@/data/types";
+
+interface Props { servico: Servico }
+const { servico } = Astro.props;
+---
+<a href={href(`/${servico.slug}/`)} class="card flex h-full flex-col gap-2 hover:border-primaria hover:shadow-md">
+  <h3 class="text-primaria">{servico.nome}</h3>
+  <p class="text-sm text-cinza-medio">{servico.resumo}</p>
+  <span class="mt-auto pt-2 text-sm font-semibold text-acao">Ver detalhes</span>
+</a>

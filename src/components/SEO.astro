@@ -1,0 +1,39 @@
+---
+import { site } from "@/data/site";
+import { absUrl, localBusiness } from "@/lib/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string; // caminho interno sem base, com barra final. Ex.: "/sobre/"
+  ogImage?: string; // caminho interno ou URL absoluta
+  noindex?: boolean;
+  tipo?: "website" | "article";
+  schemas?: Record<string, unknown>[];
+}
+
+const { title, description, path, ogImage = "/og.png", noindex = false, tipo = "website", schemas = [] } = Astro.props;
+const canonical = absUrl(path);
+const imagem = absUrl(ogImage);
+const noindexGlobal = import.meta.env.PUBLIC_NOINDEX_ALL === "1";
+const robots = noindex || noindexGlobal ? "noindex, nofollow" : "index, follow, max-image-preview:large";
+const jsonLd = [localBusiness(), ...schemas];
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={robots} />
+<meta property="og:type" content={tipo} />
+<meta property="og:site_name" content={site.nome} />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imagem} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imagem} />
+{jsonLd.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}

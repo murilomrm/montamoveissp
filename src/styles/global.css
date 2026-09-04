@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primaria: #1f3a5f;
+  --color-primaria-escura: #16294a;
+  --color-acao: #f28c28;
+  --color-acao-escura: #d9781c;
+  --color-texto: #1f2937;
+  --color-cinza: #f3f4f6;
+  --color-cinza-medio: #6b7280;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-escuro: #1ebe5a;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white text-texto font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  h1, h2, h3 {
+    @apply text-primaria font-bold tracking-tight;
+    line-height: 1.2;
+  }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); }
+  h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); }
+  h3 { font-size: 1.2rem; }
+  a { transition: color 150ms, background-color 150ms, border-color 150ms; }
+  :focus-visible { outline: 3px solid var(--color-acao); outline-offset: 2px; }
+  input, select, textarea { font-size: 16px; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 font-semibold text-center;
+    min-height: 48px;
+    transition: background-color 150ms, transform 150ms;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-whatsapp { @apply btn bg-whatsapp text-white hover:bg-whatsapp-escuro; }
+  .btn-acao { @apply btn bg-acao text-white hover:bg-acao-escura; }
+  .btn-primaria { @apply btn bg-primaria text-white hover:bg-primaria-escura; }
+  .btn-borda { @apply btn border-2 border-primaria text-primaria hover:bg-cinza; }
+  .container-site { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .secao { @apply py-12 md:py-16; }
+  .card { @apply rounded-xl border border-gray-200 bg-white p-5 shadow-sm; }
+  .campo {
+    @apply w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-texto;
+    min-height: 48px;
+  }
+  .campo:focus { @apply border-primaria; outline: 2px solid var(--color-primaria); outline-offset: 0; }
+  .prosa :is(h2) { @apply mt-8 mb-3; }
+  .prosa :is(h3) { @apply mt-6 mb-2; }
+  .prosa p { @apply mb-4; }
+  .prosa ul, .prosa ol { @apply mb-4 pl-6; }
+  .prosa ul { @apply list-disc; }
+  .prosa ol { @apply list-decimal; }
+  .prosa li { @apply mb-1; }
+  .prosa a { @apply text-primaria underline underline-offset-2 hover:text-acao; }
+  .prosa strong { @apply font-semibold; }
+}

@@ -1,0 +1,42 @@
+---
+import Base from "@/layouts/Base.astro";
+import { paginas } from "@/data/paginas";
+import { regioesPublicadas, agruparPorMacro } from "@/lib/regioes";
+import { schemaBreadcrumb } from "@/lib/seo";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import RegionGrid from "@/components/RegionGrid.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Regiões", url: "/montador-de-moveis/" },
+];
+const grupos = agruparPorMacro(regioesPublicadas);
+const titulos: Record<string, string> = { Capital: "São Paulo, capital", ABC: "ABC Paulista", "Grande SP": "Grande São Paulo" };
+---
+<Base title={paginas.hubRegioes.title} description={paginas.hubRegioes.description} path="/montador-de-moveis/" schemas={[schemaBreadcrumb(crumbs)]}>
+  <div class="container-site pt-4">
+    <Breadcrumb itens={crumbs} />
+  </div>
+  <section class="container-site py-8 md:py-12">
+    <h1 class="mb-4">Montador de móveis por região</h1>
+    <p class="mb-6 max-w-2xl text-lg">Escolha o seu bairro ou cidade. Cada página explica como é o atendimento naquela região. Não achou a sua? Mande a mensagem mesmo assim, atendemos toda a capital, o ABC e a Grande SP.</p>
+    <WhatsAppButton origem="hero" />
+  </section>
+  <section class="secao bg-cinza">
+    <div class="container-site space-y-10">
+      {Object.entries(grupos).map(([macro, lista]) => lista.length > 0 && (
+        <div>
+          <h2 class="mb-4">{titulos[macro] ?? macro}</h2>
+          <RegionGrid regioes={lista} />
+        </div>
+      ))}
+    </div>
+  </section>
+  <section class="secao" aria-label="Formulário de orçamento">
+    <div class="container-site"><LeadForm /></div>
+  </section>
+  <CTAFinal />
+</Base>

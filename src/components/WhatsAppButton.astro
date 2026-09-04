@@ -1,0 +1,31 @@
+---
+import { linkWhatsapp } from "@/lib/whatsapp";
+import IconeWhatsapp from "./IconeWhatsapp.astro";
+
+interface Props {
+  origem: "flutuante" | "hero" | "card" | "rodape" | "formulario" | "cabecalho" | "cta" | "link";
+  servico?: string; // nome do serviço em minúsculas para a mensagem
+  regiao?: string; // nome da região para a mensagem
+  mensagem?: string;
+  texto?: string;
+  class?: string;
+  compacto?: boolean; // só ícone (usado no cabeçalho mobile)
+}
+
+const { origem, servico, regiao, mensagem, texto = "Pedir orçamento no WhatsApp", class: classe = "", compacto = false } = Astro.props;
+const url = linkWhatsapp({ servico, regiao, mensagem });
+---
+<a
+  href={url}
+  target="_blank"
+  rel="noopener"
+  class:list={["btn-whatsapp", classe]}
+  data-wa
+  data-origem={origem}
+  data-servico={servico ?? ""}
+  data-regiao={regiao ?? ""}
+  aria-label={compacto ? texto : undefined}
+>
+  <IconeWhatsapp class="h-5 w-5 shrink-0" />
+  {!compacto && <span>{texto}</span>}
+</a>

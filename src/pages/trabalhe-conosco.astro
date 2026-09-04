@@ -1,0 +1,97 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { paginas } from "@/data/paginas";
+import { regioesPublicadas } from "@/lib/regioes";
+import { schemaBreadcrumb } from "@/lib/seo";
+import { href } from "@/lib/url";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Trabalhe conosco", url: "/trabalhe-conosco/" },
+];
+---
+<Base title={paginas.trabalheConosco.title} description={paginas.trabalheConosco.description} path="/trabalhe-conosco/" schemas={[schemaBreadcrumb(crumbs)]}>
+  <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
+  <section class="container-site grid gap-10 py-8 md:grid-cols-2 md:py-12">
+    <div class="prosa">
+      <h1>Trabalhe como montador de móveis</h1>
+      <p class="text-lg">Procuramos montadores com ferramenta própria para atender São Paulo, ABC e Grande SP. Você recebe os serviços pelo WhatsApp, com endereço, lista de móveis e valor já combinados com o cliente.</p>
+      <h2>O que pedimos</h2>
+      <ul>
+        <li>Experiência com guarda-roupa, cozinha modulada e móvel de loja online.</li>
+        <li>Kit completo: parafusadeira, furadeira de impacto, nível, brocas, jogo de chaves.</li>
+        <li>Pontualidade e cuidado com piso e parede do cliente.</li>
+        <li>Referência de pelo menos dois serviços anteriores.</li>
+        <li>Veículo próprio é diferencial, não obrigação.</li>
+      </ul>
+      <h2>Como funciona</h2>
+      <ol>
+        <li>Você preenche o cadastro ao lado. Ele abre uma conversa no WhatsApp com seus dados.</li>
+        <li>Conversamos e combinamos uma montagem de teste acompanhada.</li>
+        <li>Aprovado, você passa a receber serviços na sua região.</li>
+      </ol>
+    </div>
+
+    <form id="form-montador" class="card" novalidate data-whatsapp={site.whatsapp}>
+      <h2 class="mb-4 text-xl">Cadastro de montador</h2>
+      <div class="grid gap-4">
+        <div>
+          <label for="m-nome" class="mb-1 block font-medium">Nome</label>
+          <input id="m-nome" name="nome" type="text" class="campo" required minlength="2" maxlength="80" autocomplete="name" />
+        </div>
+        <div>
+          <label for="m-regiao" class="mb-1 block font-medium">Região onde atende</label>
+          <input id="m-regiao" name="regiao" type="text" class="campo" list="m-regioes" required maxlength="80" />
+          <datalist id="m-regioes">{regioesPublicadas.map((r) => <option value={r.nome} />)}</datalist>
+        </div>
+        <div>
+          <label for="m-experiencia" class="mb-1 block font-medium">Experiência (anos e tipos de móvel)</label>
+          <textarea id="m-experiencia" name="experiencia" class="campo" rows="3" required minlength="5" maxlength="400"></textarea>
+        </div>
+        <fieldset>
+          <legend class="mb-1 font-medium">Tem ferramentas próprias?</legend>
+          <label class="mr-4 inline-flex min-h-11 items-center gap-2"><input type="radio" name="ferramentas" value="Sim, kit completo" required /> Sim, kit completo</label>
+          <label class="inline-flex min-h-11 items-center gap-2"><input type="radio" name="ferramentas" value="Parcial" /> Parcial</label>
+        </fieldset>
+        <fieldset>
+          <legend class="mb-1 font-medium">Tem veículo?</legend>
+          <label class="mr-4 inline-flex min-h-11 items-center gap-2"><input type="radio" name="veiculo" value="Carro" required /> Carro</label>
+          <label class="mr-4 inline-flex min-h-11 items-center gap-2"><input type="radio" name="veiculo" value="Moto" /> Moto</label>
+          <label class="inline-flex min-h-11 items-center gap-2"><input type="radio" name="veiculo" value="Não" /> Não</label>
+        </fieldset>
+        <div class="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label for="m-site">Não preencha</label><input id="m-site" name="site_web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="hidden rounded-lg bg-red-50 p-3 text-sm text-red-700" data-erro role="alert"></p>
+        <button type="submit" class="btn-whatsapp w-full">Enviar cadastro pelo WhatsApp</button>
+        <p class="text-center text-xs text-cinza-medio">Você será direcionado ao WhatsApp. <a href={href("/politica-de-privacidade/")} class="underline">Política de privacidade</a></p>
+      </div>
+    </form>
+  </section>
+</Base>
+<script>
+  import { track } from "@/lib/tracking";
+  const form = document.getElementById("form-montador") as HTMLFormElement | null;
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const erro = form.querySelector<HTMLElement>("[data-erro]")!;
+    erro.classList.add("hidden");
+    if (String(fd.get("site_web") || "")) return;
+    const nome = String(fd.get("nome") || "").trim();
+    const regiao = String(fd.get("regiao") || "").trim();
+    const experiencia = String(fd.get("experiencia") || "").trim();
+    const ferramentas = String(fd.get("ferramentas") || "");
+    const veiculo = String(fd.get("veiculo") || "");
+    if (nome.length < 2 || !regiao || experiencia.length < 5 || !ferramentas || !veiculo) {
+      erro.textContent = "Preencha todos os campos.";
+      erro.classList.remove("hidden");
+      return;
+    }
+    const msg = [`Olá! Quero trabalhar como montador de móveis.`, `Nome: ${nome}`, `Região: ${regiao}`, `Experiência: ${experiencia}`, `Ferramentas: ${ferramentas}`, `Veículo: ${veiculo}`].join("\n");
+    track("clique_whatsapp", { origem: "formulario", servico: "trabalhe-conosco", regiao });
+    window.location.href = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(msg)}`;
+  });
+</script>

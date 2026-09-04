@@ -1,0 +1,65 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { paginas } from "@/data/paginas";
+import { schemaBreadcrumb } from "@/lib/seo";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import Foto from "@/components/Foto.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Orçamento", url: "/orcamento/" },
+];
+const fatores = [
+  "Tipo e tamanho do móvel: um guarda-roupa de 6 portas leva mais tempo que uma cômoda.",
+  "Quantidade de peças no mesmo endereço: mais móveis no mesmo dia costumam sair melhor por peça.",
+  "Móvel novo na caixa ou usado e já desmontado.",
+  "Fixação em parede: painel de TV, prateleira, armário aéreo de cozinha.",
+  "Andar e acesso: elevador de serviço, escada, distância do estacionamento.",
+  "Bairro ou cidade, para calcular o deslocamento.",
+];
+---
+<Base title={paginas.orcamento.title} description={paginas.orcamento.description} path="/orcamento/" tipoPagina="orcamento" schemas={[schemaBreadcrumb(crumbs)]}>
+  <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
+  <section class="container-site grid items-center gap-8 py-8 md:grid-cols-2 md:py-12">
+    <div>
+      <h1 class="mb-4">Como funciona o orçamento</h1>
+      <p class="mb-4 text-lg">Não trabalhamos com tabela fixa. Cada montagem é diferente, e um valor genérico quase sempre muda na hora. Por isso o orçamento é feito pelo WhatsApp, em {site.tempoOrcamento}, com base no que você vai montar.</p>
+      <WhatsAppButton origem="hero" class="text-lg" />
+    </div>
+    <Foto nome="whatsapp-atendimento" alt="Pessoa enviando lista de móveis pelo celular" largura={1200} altura={900} />
+  </section>
+
+  <section class="secao bg-cinza">
+    <div class="container-site grid gap-10 md:grid-cols-2">
+      <div class="prosa">
+        <h2>O que você manda</h2>
+        <ol>
+          <li>A lista dos móveis (ou uma foto de cada caixa, que já mostra modelo e tamanho).</li>
+          <li>O bairro ou a cidade e o andar. Diga se tem elevador de serviço.</li>
+          <li>Se precisa de fixação na parede e qual é o tipo de parede, se souber.</li>
+          <li>A data que você prefere. Se for urgente, avise.</li>
+        </ol>
+        <h2>O que você recebe</h2>
+        <p>Uma resposta em até {site.tempoOrcamento} no horário de atendimento, com o valor fechado para aquela lista. Esse valor só muda se aparecer um móvel que não estava combinado. Você agenda quando quiser, sem adiantamento.</p>
+        <p>O pagamento é no fim do serviço, depois de você conferir portas, gavetas e nivelamento. Pix, dinheiro ou cartão. Tudo com {site.garantiaDias} dias de garantia.</p>
+      </div>
+      <div class="prosa">
+        <h2>O que faz o valor mudar</h2>
+        <ul>
+          {fatores.map((f) => <li>{f}</li>)}
+        </ul>
+        <h2>Por que não tem tabela no site</h2>
+        <p>Tabela de site engana. Ela não sabe se o seu guarda-roupa tem 3 ou 8 portas, se a parede é de gesso, se o prédio tem elevador. Quem publica preço fixo costuma refazer a conta na porta. Preferimos combinar antes e cumprir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-label="Formulário de orçamento">
+    <div class="container-site"><LeadForm titulo="Peça o valor agora" /></div>
+  </section>
+  <CTAFinal titulo="Mande a lista e receba o valor" />
+</Base>

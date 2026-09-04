@@ -1,0 +1,22 @@
+---
+import type { FaqItem } from "@/data/types";
+
+interface Props { itens: FaqItem[]; titulo?: string; id?: string }
+const { itens, titulo = "Perguntas frequentes", id = "faq" } = Astro.props;
+---
+<section id={id} class="secao" aria-labelledby={`${id}-titulo`}>
+  <div class="container-site max-w-3xl">
+    <h2 id={`${id}-titulo`} class="mb-6">{titulo}</h2>
+    <div class="divide-y divide-gray-200 rounded-xl border border-gray-200">
+      {itens.map((f) => (
+        <details class="group p-4">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-primaria">
+            <span>{f.pergunta}</span>
+            <span aria-hidden="true" class="text-xl transition-transform duration-150 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 text-texto">{f.resposta}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

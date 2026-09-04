@@ -1,0 +1,55 @@
+---
+import { site } from "@/data/site";
+import { servicos } from "@/data/servicos";
+import { regioesRodape } from "@/lib/regioes";
+import { href } from "@/lib/url";
+import WhatsAppButton from "./WhatsAppButton.astro";
+
+interface Props { servico?: string; regiao?: string }
+const { servico, regiao } = Astro.props;
+const ano = new Date().getFullYear();
+---
+<footer class="border-t border-gray-200 bg-cinza">
+  <div class="container-site grid gap-8 py-12 md:grid-cols-4">
+    <div>
+      <p class="mb-2 text-lg font-bold text-primaria">{site.nome}</p>
+      <p class="mb-3 text-sm text-cinza-medio">Montagem e desmontagem de móveis em São Paulo, ABC e Grande SP.</p>
+      <p class="mb-1 text-sm"><strong>Horário:</strong> {site.horario}</p>
+      <p class="mb-4 text-sm"><a href={`tel:+${site.whatsapp}`} class="font-semibold text-primaria">{site.telefoneExibicao}</a></p>
+      {site.temEmail && site.email && <p class="mb-4 text-sm"><a href={`mailto:${site.email}`}>{site.email}</a></p>}
+      <WhatsAppButton origem="rodape" servico={servico} regiao={regiao} texto="WhatsApp" class="text-sm" />
+    </div>
+    <nav aria-label="Serviços">
+      <p class="mb-2 font-semibold text-primaria">Serviços</p>
+      <ul class="space-y-1 text-sm">
+        {servicos.map((s) => (
+          <li><a href={href(`/${s.slug}/`)} class="hover:text-primaria hover:underline">{s.nome}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <nav aria-label="Regiões">
+      <p class="mb-2 font-semibold text-primaria">Regiões</p>
+      <ul class="space-y-1 text-sm">
+        {regioesRodape.map((r) => (
+          <li><a href={href(`/montador-de-moveis/${r.slug}/`)} class="hover:text-primaria hover:underline">Montador de móveis em {r.nome}</a></li>
+        ))}
+        <li><a href={href("/montador-de-moveis/")} class="font-semibold text-acao hover:underline">Todas as regiões</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Institucional">
+      <p class="mb-2 font-semibold text-primaria">Institucional</p>
+      <ul class="space-y-1 text-sm">
+        <li><a href={href("/orcamento/")} class="hover:text-primaria hover:underline">Como funciona o orçamento</a></li>
+        <li><a href={href("/sobre/")} class="hover:text-primaria hover:underline">Sobre</a></li>
+        <li><a href={href("/blog/")} class="hover:text-primaria hover:underline">Blog</a></li>
+        <li><a href={href("/contato/")} class="hover:text-primaria hover:underline">Contato</a></li>
+        <li><a href={href("/trabalhe-conosco/")} class="hover:text-primaria hover:underline">Trabalhe conosco</a></li>
+        <li><a href={href("/politica-de-privacidade/")} class="hover:text-primaria hover:underline">Política de privacidade</a></li>
+        {site.instagram && <li><a href={site.instagram} rel="noopener" target="_blank" class="hover:text-primaria hover:underline">Instagram</a></li>}
+      </ul>
+    </nav>
+  </div>
+  <div class="border-t border-gray-200 py-4 text-center text-xs text-cinza-medio">
+    <p>© {ano} {site.nome}. {site.enderecoBase.cidade}, {site.enderecoBase.uf}.{site.temCnpj && site.cnpj ? ` CNPJ ${site.cnpj}.` : ""}</p>
+  </div>
+</footer>

@@ -1,0 +1,116 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { servicos } from "@/data/servicos";
+import { regioesParaServico } from "@/lib/regioes";
+import { schemaService, schemaFaq, schemaBreadcrumb } from "@/lib/seo";
+import { href } from "@/lib/url";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import Foto from "@/components/Foto.astro";
+import FAQ from "@/components/FAQ.astro";
+import RegionGrid from "@/components/RegionGrid.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+
+export function getStaticPaths() {
+  return servicos.map((s) => ({ params: { servico: s.slug }, props: { servico: s } }));
+}
+
+const { servico } = Astro.props;
+const path = `/${servico.slug}/`;
+const nomeMin = servico.nome.charAt(0).toLowerCase() + servico.nome.slice(1);
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: servico.nome, url: path },
+];
+const schemas = [
+  schemaService({ nome: servico.nome, descricao: servico.metaDescription, url: path }),
+  schemaFaq(servico.faq),
+  schemaBreadcrumb(crumbs),
+];
+const outros = servicos.filter((s) => s.slug !== servico.slug).slice(0, 6);
+---
+<Base title={servico.tituloSEO} description={servico.metaDescription} path={path} tipoPagina="servico" servico={nomeMin} schemas={schemas}>
+  <div class="container-site pt-4">
+    <Breadcrumb itens={crumbs} />
+  </div>
+
+  <section class="container-site grid items-start gap-8 py-8 md:grid-cols-2 md:py-12">
+    <div>
+      <h1 class="mb-4">{servico.h1}</h1>
+      <p class="mb-6 text-lg">{servico.resumo}</p>
+      <ul class="mb-6 grid gap-2 text-sm sm:grid-cols-3">
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Tempo médio</strong>{servico.tempoMedio}</li>
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Garantia</strong>{site.garantiaDias} dias</li>
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>em {site.tempoOrcamento}</li>
+      </ul>
+      <WhatsAppButton origem="hero" servico={nomeMin} class="text-lg" />
+    </div>
+    {servico.imagem ? (
+      <Foto nome={servico.imagem} alt={servico.nome} largura={1200} altura={900} legenda={servico.nome} />
+    ) : (
+      <div class="card">
+        <h2 class="mb-3 text-lg">Móveis comuns neste serviço</h2>
+        <ul class="grid grid-cols-2 gap-1 text-sm">
+          {servico.moveisExemplo.map((m) => <li>• {m}</li>)}
+        </ul>
+      </div>
+    )}
+  </section>
+
+  <section class="secao bg-cinza">
+    <div class="container-site grid gap-10 md:grid-cols-3">
+      <div class="prosa md:col-span-2">
+        {servico.descricaoLonga.map((p) => <p>{p}</p>)}
+      </div>
+      <aside class="space-y-6">
+        <div class="card">
+          <h2 class="mb-2 text-lg">O que está incluso</h2>
+          <ul class="space-y-1 text-sm">
+            {servico.oQueIncluso.map((i) => <li class="flex gap-2"><span class="text-whatsapp" aria-hidden="true">✓</span>{i}</li>)}
+          </ul>
+        </div>
+        <div class="card">
+          <h2 class="mb-2 text-lg">O que não está incluso</h2>
+          <ul class="space-y-1 text-sm">
+            {servico.naoIncluso.map((i) => <li class="flex gap-2"><span class="text-cinza-medio" aria-hidden="true">✕</span>{i}</li>)}
+          </ul>
+        </div>
+        {servico.imagem && (
+          <div class="card">
+            <h2 class="mb-2 text-lg">Móveis comuns</h2>
+            <ul class="space-y-1 text-sm">
+              {servico.moveisExemplo.map((m) => <li>• {m}</li>)}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  <FAQ itens={servico.faq} titulo={`Perguntas sobre ${nomeMin}`} />
+
+  <section class="secao bg-cinza">
+    <div class="container-site">
+      <h2 class="mb-2">Onde fazemos {nomeMin}</h2>
+      <p class="mb-4 text-cinza-medio">Atendemos toda a capital, o ABC e a Grande São Paulo. Veja as regiões mais pedidas:</p>
+      <RegionGrid regioes={regioesParaServico} />
+      <a href={href("/montador-de-moveis/")} class="mt-4 inline-block font-semibold text-primaria underline underline-offset-2">Todas as regiões</a>
+      <h2 class="mb-3 mt-10">Outros serviços</h2>
+      <ul class="flex flex-wrap gap-2">
+        {outros.map((s) => (
+          <li><a href={href(`/${s.slug}/`)} class="inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-4 text-sm font-medium hover:border-primaria hover:text-primaria">{s.nome}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="secao" aria-label="Formulário de orçamento">
+    <div class="container-site">
+      <LeadForm servicoSlug={servico.slug} titulo={`Orçamento de ${nomeMin}`} />
+    </div>
+  </section>
+
+  <CTAFinal servico={nomeMin} />
+</Base>

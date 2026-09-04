@@ -1,0 +1,33 @@
+---
+import Base from "@/layouts/Base.astro";
+import { paginas } from "@/data/paginas";
+import { regioesPublicadas } from "@/lib/regioes";
+import { href } from "@/lib/url";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+---
+<Base title={paginas.erro404.title} description={paginas.erro404.description} path="/404/" noindex>
+  <section class="container-site max-w-2xl py-16">
+    <h1 class="mb-4">Página não encontrada</h1>
+    <p class="mb-6 text-lg">O endereço que você abriu não existe ou mudou. Procure sua região abaixo ou fale direto no WhatsApp.</p>
+    <label for="busca-regiao" class="mb-1 block font-medium">Buscar região</label>
+    <input id="busca-regiao" type="search" class="campo mb-3" placeholder="Ex.: Moema, Santo André, Osasco" autocomplete="off" />
+    <ul id="lista-regioes" class="mb-8 flex flex-wrap gap-2">
+      {regioesPublicadas.map((r) => (
+        <li data-nome={r.nome.toLowerCase()}>
+          <a href={href(`/montador-de-moveis/${r.slug}/`)} class="inline-flex min-h-11 items-center rounded-full border border-gray-300 px-4 text-sm font-medium hover:border-primaria hover:text-primaria">{r.nome}</a>
+        </li>
+      ))}
+    </ul>
+    <WhatsAppButton origem="cta" />
+    <p class="mt-6 text-sm"><a href={href("/")} class="underline">Ir para a página inicial</a></p>
+  </section>
+</Base>
+<script>
+  const campo = document.getElementById("busca-regiao") as HTMLInputElement | null;
+  const itens = Array.from(document.querySelectorAll<HTMLLIElement>("#lista-regioes li"));
+  const normalizar = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  campo?.addEventListener("input", () => {
+    const q = normalizar(campo.value.trim());
+    for (const li of itens) li.hidden = q.length > 0 && !normalizar(li.dataset.nome || "").includes(q);
+  });
+</script>

@@ -1,0 +1,153 @@
+---
+import { site } from "@/data/site";
+import { servicos } from "@/data/servicos";
+import { regioesPublicadas } from "@/lib/regioes";
+import { href } from "@/lib/url";
+
+interface Props {
+  servicoSlug?: string; // pré-seleciona o serviço
+  regiaoNome?: string; // pré-preenche a região
+  titulo?: string;
+  id?: string;
+}
+
+const { servicoSlug = "", regiaoNome = "", titulo = "Peça seu orçamento", id = "lead-form" } = Astro.props;
+const webhook = import.meta.env.PUBLIC_LEAD_WEBHOOK_URL?.trim() || "";
+const obrigado = href("/obrigado/");
+---
+<form
+  id={id}
+  data-lead-form
+  data-webhook={webhook}
+  data-obrigado={obrigado}
+  data-whatsapp={site.whatsapp}
+  class="card mx-auto w-full max-w-xl scroll-mt-24"
+  novalidate
+  aria-labelledby={`${id}-titulo`}
+>
+  <h2 id={`${id}-titulo`} class="mb-1">{titulo}</h2>
+  <p class="mb-5 text-sm text-cinza-medio">Você preenche em 1 minuto e continua no WhatsApp. Resposta em {site.tempoOrcamento} no horário de atendimento.</p>
+
+  <div class="grid gap-4">
+    <div>
+      <label for={`${id}-nome`} class="mb-1 block font-medium">Seu nome</label>
+      <input id={`${id}-nome`} name="nome" type="text" class="campo" autocomplete="name" required minlength="2" maxlength="80" />
+    </div>
+    <div>
+      <label for={`${id}-whatsapp`} class="mb-1 block font-medium">Seu WhatsApp</label>
+      <input id={`${id}-whatsapp`} name="whatsapp" type="tel" class="campo" inputmode="numeric" autocomplete="tel" placeholder="(11) 90000-0000" required />
+    </div>
+    <div>
+      <label for={`${id}-regiao`} class="mb-1 block font-medium">Bairro ou cidade</label>
+      <input id={`${id}-regiao`} name="regiao" type="text" class="campo" list={`${id}-regioes`} autocomplete="off" value={regiaoNome} required maxlength="60" />
+      <datalist id={`${id}-regioes`}>
+        {regioesPublicadas.map((r) => <option value={r.nome} />)}
+      </datalist>
+    </div>
+    <div>
+      <label for={`${id}-servico`} class="mb-1 block font-medium">Tipo de serviço</label>
+      <select id={`${id}-servico`} name="servico" class="campo" required>
+        <option value="" disabled selected={!servicoSlug}>Escolha</option>
+        {servicos.map((s) => <option value={s.slug} selected={s.slug === servicoSlug}>{s.nome}</option>)}
+      </select>
+    </div>
+    <div>
+      <label for={`${id}-moveis`} class="mb-1 block font-medium">Quais móveis?</label>
+      <textarea id={`${id}-moveis`} name="moveis" class="campo" rows="3" required minlength="5" maxlength="600" placeholder="Ex.: guarda-roupa 6 portas, cômoda, cama box casal"></textarea>
+    </div>
+    <div>
+      <label for={`${id}-data`} class="mb-1 block font-medium">Data desejada <span class="font-normal text-cinza-medio">(opcional)</span></label>
+      <input id={`${id}-data`} name="data" type="date" class="campo" />
+    </div>
+    <div class="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+      <label for={`${id}-site`}>Não preencha este campo</label>
+      <input id={`${id}-site`} name="site_web" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <p class="hidden rounded-lg bg-red-50 p-3 text-sm text-red-700" data-erro role="alert"></p>
+    <button type="submit" class="btn-whatsapp w-full text-lg">Enviar e abrir WhatsApp</button>
+    <p class="text-center text-xs text-cinza-medio">
+      Você será direcionado ao WhatsApp. Não compartilhamos seus dados.
+      <a href={href("/politica-de-privacidade/")} class="underline">Política de privacidade</a>
+    </p>
+  </div>
+</form>
+
+<script>
+  import { track } from "@/lib/tracking";
+  import { lerUtms } from "@/lib/utm";
+
+  const LIMITE_MS = 30_000;
+
+  function mascararTelefone(v: string): string {
+    const d = v.replace(/\D/g, "").slice(0, 11);
+    if (d.length <= 2) return d;
+    if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+  }
+
+  document.querySelectorAll<HTMLFormElement>("form[data-lead-form]").forEach((form) => {
+    const tel = form.querySelector<HTMLInputElement>('input[name="whatsapp"]');
+    tel?.addEventListener("input", () => { tel.value = mascararTelefone(tel.value); });
+
+    const erro = form.querySelector<HTMLElement>("[data-erro]")!;
+    const mostrarErro = (msg: string) => { erro.textContent = msg; erro.classList.remove("hidden"); };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      erro.classList.add("hidden");
+      const fd = new FormData(form);
+      const nome = String(fd.get("nome") || "").trim();
+      const whatsapp = String(fd.get("whatsapp") || "").replace(/\D/g, "");
+      const regiao = String(fd.get("regiao") || "").trim();
+      const servicoSlug = String(fd.get("servico") || "");
+      const moveis = String(fd.get("moveis") || "").trim();
+      const data = String(fd.get("data") || "");
+      const honeypot = String(fd.get("site_web") || "");
+
+      if (honeypot) { window.location.href = form.dataset.obrigado!; return; }
+      if (nome.length < 2) return mostrarErro("Digite seu nome.");
+      if (whatsapp.length < 10 || whatsapp.length > 11) return mostrarErro("Digite um WhatsApp válido com DDD.");
+      if (!regiao) return mostrarErro("Informe o bairro ou a cidade.");
+      if (!servicoSlug) return mostrarErro("Escolha o tipo de serviço.");
+      if (moveis.length < 5) return mostrarErro("Liste os móveis que precisam de montagem.");
+
+      try {
+        const ultimo = Number(sessionStorage.getItem("mm_ultimo_envio") || 0);
+        if (Date.now() - ultimo < LIMITE_MS) return mostrarErro("Aguarde 30 segundos antes de enviar de novo.");
+        sessionStorage.setItem("mm_ultimo_envio", String(Date.now()));
+      } catch { /* sem sessionStorage, segue */ }
+
+      const select = form.querySelector<HTMLSelectElement>('select[name="servico"]')!;
+      const servicoNome = select.options[select.selectedIndex]?.text || servicoSlug;
+      const pagina = window.location.pathname;
+
+      track("gerar_lead", { servico: servicoSlug, regiao, tem_data: Boolean(data) });
+
+      const dataFmt = data ? data.split("-").reverse().join("/") : "";
+      const linhas = [
+        `Olá! Quero orçamento de ${servicoNome.toLowerCase()} em ${regiao}.`,
+        `Nome: ${nome}`,
+        `Móveis: ${moveis}`,
+        dataFmt ? `Data desejada: ${dataFmt}` : "",
+      ].filter(Boolean);
+      const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(linhas.join("\n"))}`;
+
+      // Abre o WhatsApp antes de qualquer await para não cair no bloqueio de pop-up.
+      const aba = window.open(url, "_blank", "noopener");
+
+      const webhook = form.dataset.webhook;
+      if (webhook) {
+        const payload = { nome, whatsapp, regiao, servico: servicoSlug, moveis, data, pagina, enviado_em: new Date().toISOString(), ...lerUtms() };
+        fetch(webhook, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: JSON.stringify(payload) }).catch(() => {});
+      }
+
+      if (aba) {
+        window.location.href = form.dataset.obrigado!;
+      } else {
+        // Pop-up bloqueado: navega na própria aba.
+        window.location.href = url;
+      }
+    });
+  });
+</script>

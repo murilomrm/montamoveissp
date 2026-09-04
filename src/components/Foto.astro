@@ -1,0 +1,45 @@
+---
+// Renderiza uma imagem de public/img/ se ela existir no disco durante o build.
+// Sem o arquivo, sai um bloco cinza com a mesma proporção (nunca imagem de banco). Ver docs/FOTOS.md.
+import fs from "node:fs";
+import path from "node:path";
+import { href } from "@/lib/url";
+
+interface Props {
+  nome: string; // nome do arquivo sem extensão, ex.: "hero"
+  alt: string;
+  largura: number;
+  altura: number;
+  prioridade?: boolean; // true no hero (sem lazy)
+  class?: string;
+  legenda?: string;
+}
+
+const { nome, alt, largura, altura, prioridade = false, class: classe = "", legenda } = Astro.props;
+const extensoes = ["webp", "avif", "jpg", "jpeg", "png"];
+const dir = path.resolve("public/img");
+const encontrada = extensoes.find((ext) => fs.existsSync(path.join(dir, `${nome}.${ext}`)));
+const src = encontrada ? href(`/img/${nome}.${encontrada}`) : null;
+---
+<figure class={classe}>
+  {src ? (
+    <img
+      src={src}
+      alt={alt}
+      width={largura}
+      height={altura}
+      loading={prioridade ? "eager" : "lazy"}
+      decoding={prioridade ? "sync" : "async"}
+      fetchpriority={prioridade ? "high" : undefined}
+      class="h-auto w-full rounded-xl object-cover"
+    />
+  ) : (
+    <div
+      role="img"
+      aria-label={alt}
+      class="w-full rounded-xl bg-gray-200"
+      style={`aspect-ratio: ${largura} / ${altura}`}
+    ></div>
+  )}
+  {legenda && <figcaption class="mt-2 text-sm text-cinza-medio">{legenda}</figcaption>}
+</figure>

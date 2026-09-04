@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import { schemaArticle, schemaBreadcrumb } from "@/lib/seo";
+import { href } from "@/lib/url";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((p) => ({ params: { slug: p.id }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const path = `/blog/${post.id}/`;
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Blog", url: "/blog/" },
+  { nome: post.data.title, url: path },
+];
+const fmt = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" });
+const schemas = [
+  schemaArticle({ titulo: post.data.title, descricao: post.data.description, url: path, publicado: post.data.pubDate, atualizado: post.data.updatedDate, imagem: post.data.ogImage }),
+  schemaBreadcrumb(crumbs),
+];
+const outros = (await getCollection("blog")).filter((p) => p.id !== post.id).slice(0, 3);
+---
+<Base title={post.data.title} description={post.data.description} path={path} tipo="article" ogImage={post.data.ogImage} schemas={schemas}>
+  <div class="container-site pt-4"><Breadcrumb itens={crumbs} /></div>
+  <article class="container-site max-w-3xl py-8 md:py-12">
+    <header class="mb-8">
+      <h1 class="mb-3">{post.data.title}</h1>
+      <p class="mb-2 text-lg text-cinza-medio">{post.data.description}</p>
+      <p class="text-sm text-cinza-medio">
+        Publicado em <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+        {post.data.updatedDate && <> · Atualizado em <time datetime={post.data.updatedDate.toISOString()}>{fmt.format(post.data.updatedDate)}</time></>}
+      </p>
+    </header>
+    <div class="prosa" data-base-links>
+      <Content />
+    </div>
+    <div class="mt-8 rounded-xl bg-cinza p-6 text-center">
+      <p class="mb-4 font-semibold text-primaria">Quer o valor da sua montagem?</p>
+      <WhatsAppButton origem="cta" />
+    </div>
+  </article>
+  {outros.length > 0 && (
+    <section class="secao bg-cinza">
+      <div class="container-site max-w-3xl">
+        <h2 class="mb-4">Leia também</h2>
+        <ul class="space-y-2">
+          {outros.map((p) => <li><a href={href(`/blog/${p.id}/`)} class="font-medium text-primaria underline underline-offset-2">{p.data.title}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+  <CTAFinal />
+</Base>
+<script>
+  // Links internos do Markdown são escritos como "/caminho/". Ajusta o prefixo quando o site roda em subpasta (github.io).
+  const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
+  if (base) {
+    document.querySelectorAll<HTMLAnchorElement>("[data-base-links] a[href^='/']").forEach((a) => {
+      const h = a.getAttribute("href")!;
+      if (!h.startsWith(base + "/")) a.setAttribute("href", base + h);
+    });
+  }
+</script>

@@ -1,0 +1,16 @@
+---
+import { site } from "@/data/site";
+const provas = [
+  { titulo: `Orçamento em ${site.tempoOrcamento}`, texto: "Valor fechado pelo WhatsApp" },
+  { titulo: `Garantia de ${site.garantiaDias} dias`, texto: "Voltamos sem custo se algo soltar" },
+  { titulo: "Montadores verificados", texto: "Ferramenta própria e referência checada" },
+];
+---
+<ul class="grid gap-3 sm:grid-cols-3">
+  {provas.map((p) => (
+    <li class="rounded-lg border border-gray-200 bg-white p-4">
+      <strong class="block text-primaria">{p.titulo}</strong>
+      <span class="text-sm text-cinza-medio">{p.texto}</span>
+    </li>
+  ))}
+</ul>

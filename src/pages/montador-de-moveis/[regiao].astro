@@ -1,0 +1,109 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { servicos } from "@/data/servicos";
+import { regiaoSEO } from "@/data/paginas";
+import { regioesPublicadas, regioesProximas } from "@/lib/regioes";
+import { schemaService, schemaFaq, schemaBreadcrumb } from "@/lib/seo";
+import { href } from "@/lib/url";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import Foto from "@/components/Foto.astro";
+import FAQ from "@/components/FAQ.astro";
+import RegionGrid from "@/components/RegionGrid.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+import type { FaqItem } from "@/data/types";
+
+export function getStaticPaths() {
+  return regioesPublicadas.map((r) => ({ params: { regiao: r.slug }, props: { regiao: r } }));
+}
+
+const { regiao } = Astro.props;
+const path = `/montador-de-moveis/${regiao.slug}/`;
+const title = regiaoSEO.title.replace("{nome}", regiao.nome);
+const description = regiaoSEO.description.replace("{nome}", regiao.nome);
+const semTexto = !regiao.paragrafoUnico.trim();
+const proximas = regioesProximas(regiao, 4);
+
+const crumbs = [
+  { nome: "Início", url: "/" },
+  { nome: "Regiões", url: "/montador-de-moveis/" },
+  { nome: regiao.nome, url: path },
+];
+
+// Bloco padrão de FAQ: mesmo formato em toda região, com o nome da região no texto.
+const faqRegiao: FaqItem[] = [
+  { pergunta: `Vocês atendem ${regiao.nome} em quanto tempo?`, resposta: `Normalmente em 24 a 48 horas. Atendemos ${regiao.nome} de ${site.horario.toLowerCase()}. Se precisar para o mesmo dia, pergunte no WhatsApp: às vezes sobra horário.` },
+  { pergunta: `Como peço orçamento de montagem em ${regiao.nome}?`, resposta: `Mande pelo WhatsApp a lista dos móveis ou uma foto das caixas, o bairro em ${regiao.nome} e o andar. Você recebe o valor fechado em até ${site.tempoOrcamento}.` },
+  { pergunta: `O montador leva as ferramentas?`, resposta: `Sim. Parafusadeira, furadeira, nível, brocas e jogo de chaves. Você só deixa as caixas no cômodo certo e um espaço livre no chão.` },
+  { pergunta: `Tem garantia para o serviço em ${regiao.nome}?`, resposta: `${site.garantiaDias} dias sobre a montagem. Porta desalinhada, gaveta travando ou fixação solta nesse prazo, voltamos sem custo.` },
+  { pergunta: `Montam móvel comprado pela internet em ${regiao.nome}?`, resposta: `Montamos. Móvel de loja online chega em caixa plana com manual, e o montador conhece as linhas mais vendidas. Mande a foto da caixa que a gente confirma o valor.` },
+];
+
+const schemas = [
+  schemaService({ nome: `Montagem de móveis em ${regiao.nome}`, descricao: description, url: path, areaServed: [regiao.nome] }),
+  schemaBreadcrumb(crumbs),
+  ...(semTexto ? [] : [schemaFaq(faqRegiao)]),
+];
+---
+<Base title={title} description={description} path={path} tipoPagina="regiao" regiao={regiao.nome} noindex={semTexto} schemas={schemas}>
+  <div class="container-site pt-4">
+    <Breadcrumb itens={crumbs} />
+  </div>
+
+  <section class="container-site grid items-start gap-8 py-8 md:grid-cols-2 md:py-12">
+    <div>
+      <h1 class="mb-4">Montador de móveis em {regiao.nome}</h1>
+      <p class="mb-6 text-lg">Montagem e desmontagem de móveis em {regiao.nome} com garantia de {site.garantiaDias} dias. Valor fechado pelo WhatsApp em {site.tempoOrcamento}, antes de agendar.</p>
+      <WhatsAppButton origem="hero" regiao={regiao.nome} class="text-lg" />
+    </div>
+    <Foto nome="regiao-predio-sp" alt={`Prédios residenciais em ${regiao.nome}, São Paulo`} largura={1280} altura={720} />
+  </section>
+
+  <section class="secao bg-cinza">
+    <div class="container-site prosa max-w-3xl">
+      <h2>Como é atender em {regiao.nome}</h2>
+      {semTexto ? (
+        <p>Estamos preparando o texto sobre {regiao.nome}. Enquanto isso, mande sua lista de móveis no WhatsApp e receba o valor em {site.tempoOrcamento}.</p>
+      ) : (
+        <p>{regiao.paragrafoUnico}</p>
+      )}
+      {regiao.bairrosVizinhos.length > 0 && (
+        <p>Também atendemos os arredores: {regiao.bairrosVizinhos.join(", ")}. Se o seu endereço fica entre um bairro e outro, informe a rua e a gente confirma.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container-site">
+      <h2 class="mb-2">Serviços em {regiao.nome}</h2>
+      <p class="mb-6 text-cinza-medio">Tudo que montamos e desmontamos, com garantia de {site.garantiaDias} dias.</p>
+      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {servicos.map((s) => (
+          <li><a href={href(`/${s.slug}/`)} class="card block h-full hover:border-primaria"><strong class="text-primaria">{s.nome}</strong><span class="mt-1 block text-sm text-cinza-medio">{s.tempoMedio}</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <FAQ itens={faqRegiao} titulo={`Perguntas sobre montagem em ${regiao.nome}`} />
+
+  {proximas.length > 0 && (
+    <section class="secao bg-cinza">
+      <div class="container-site">
+        <h2 class="mb-4">Regiões próximas</h2>
+        <RegionGrid regioes={proximas} />
+        <a href={href("/montador-de-moveis/")} class="mt-4 inline-block font-semibold text-primaria underline underline-offset-2">Todas as regiões</a>
+      </div>
+    </section>
+  )}
+
+  <section class="secao" aria-label="Formulário de orçamento">
+    <div class="container-site">
+      <LeadForm regiaoNome={regiao.nome} titulo={`Orçamento em ${regiao.nome}`} />
+    </div>
+  </section>
+
+  <CTAFinal regiao={regiao.nome} />
+</Base>
