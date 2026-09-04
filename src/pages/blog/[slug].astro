@@ -60,6 +60,7 @@ const outros = (await getCollection("blog")).filter((p) => p.id !== post.id).sli
 </Base>
 <script>
   // Links internos do Markdown são escritos como "/caminho/". Ajusta o prefixo quando o site roda em subpasta (github.io).
+  // Astro 7 usa o processador Sätteri por padrão; plugin rehype exigiria instalar @astrojs/markdown-remark. Como o subpath é provisório, o ajuste fica no cliente.
   const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
   if (base) {
     document.querySelectorAll<HTMLAnchorElement>("[data-base-links] a[href^='/']").forEach((a) => {

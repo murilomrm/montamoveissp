@@ -1,0 +1,542 @@
+[
+  {
+    "slug": "zona-sul",
+    "nome": "Zona Sul",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Moema", "Campo Belo", "Brooklin", "Santo Amaro", "Jabaquara", "Interlagos"],
+    "paragrafoUnico": "A Zona Sul reúne perfis bem diferentes de moradia. Em Moema, Campo Belo e Brooklin predominam prédios altos com portaria e elevador de serviço. Mais ao sul, em Santo Amaro, Interlagos e Jabaquara, você encontra sobrados, casas de vila e condomínios de apartamentos compactos. O montador circula pela Avenida Santo Amaro, pela Marginal Pinheiros e pelas estações da Linha 5 Lilás. Os pedidos mais comuns são guarda-roupa de apartamento, cozinha modulada e cama box com baú. Em prédio com elevador pequeno, avise antes para o montador subir as peças soltas e montar dentro do quarto. A agenda para a Zona Sul costuma fechar em 24 a 48 horas.",
+    "publicada": true
+  },
+  {
+    "slug": "zona-oeste",
+    "nome": "Zona Oeste",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Pinheiros", "Vila Madalena", "Perdizes", "Lapa", "Butantã", "Vila Leopoldina"],
+    "paragrafoUnico": "Na Zona Oeste você encontra desde os prédios de alto padrão de Pinheiros e Perdizes até as vilas de casas do Butantã e da Lapa. Vila Madalena mistura sobrados reformados com studios novos, e a Vila Leopoldina cresceu com torres de condomínio clube. Estacionar perto da Rua Teodoro Sampaio ou da Vila Madalena é difícil, então o montador prefere chegar cedo. Nos apartamentos novos o pedido típico é home office, painel de TV e guarda-roupa de casal. Nas casas mais antigas aparecem estantes grandes e móveis de marcenaria que precisam de nivelamento. Confirme se o prédio pede cadastro prévio do montador na portaria.",
+    "publicada": true
+  },
+  {
+    "slug": "zona-norte",
+    "nome": "Zona Norte",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Santana", "Tucuruvi", "Casa Verde", "Freguesia do Ó", "Pirituba", "Vila Guilherme"],
+    "paragrafoUnico": "A Zona Norte tem Santana e Tucuruvi como polos de prédios de médio padrão, com portaria e elevador na maioria dos edifícios. Na Casa Verde, na Freguesia do Ó e em Pirituba ainda predominam sobrados e casas com quintal, muitas vezes com escada estreita para o segundo andar. O acesso pela Linha 1 Azul do metrô, pela Marginal Tietê e pela Avenida Braz Leme facilita o deslocamento do montador. Você vai ver muita cozinha modulada, guarda-roupa de seis portas e cama de casal em casas de família. Em sobrado sem elevador, avise se o móvel precisa subir escada, porque isso muda o tempo de montagem.",
+    "publicada": true
+  },
+  {
+    "slug": "zona-leste",
+    "nome": "Zona Leste",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Tatuapé", "Mooca", "Penha", "Anália Franco", "Itaquera", "Vila Prudente"],
+    "paragrafoUnico": "A Zona Leste é a mais populosa da cidade e concentra os bairros com mais famílias em casas próprias. Tatuapé, Mooca e Anália Franco têm prédios altos com portaria 24 horas. Já em Itaquera, Vila Formosa, Penha e São Miguel Paulista o comum é sobrado, casa de fundos e apartamento de conjunto habitacional sem elevador. As linhas 3 Vermelha do metrô e 11 Coral da CPTM cortam a região junto com a Radial Leste. O montador encontra beliche em quarto de criança, rack de sala, guarda-roupa de solteiro e cozinha compacta. Se a rua for estreita ou tiver feira no dia, avise para ajustar o horário de chegada.",
+    "publicada": true
+  },
+  {
+    "slug": "centro",
+    "nome": "Centro",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Bela Vista", "Higienópolis", "República", "Santa Cecília", "Liberdade", "Consolação"],
+    "paragrafoUnico": "No Centro o perfil é de prédios antigos com apartamentos pequenos, kitnets e studios reformados perto da República, da Sé e da Santa Cecília. Muitos edifícios não têm elevador de serviço, e alguns nem elevador. Estacionar na rua é quase impossível, então o montador costuma vir de transporte público pelas estações Anhangabaú, Luz ou República, ou combinar vaga de carga rápida. Os móveis mais comuns aqui são cama de solteiro, guarda-roupa de duas portas, escrivaninha e estante para quem mora sozinho. Também aparecem montagens para coworking e escritório pequeno. Mande o nome do prédio e o andar, porque isso define quanto tempo o montador reserva para o Centro.",
+    "publicada": true
+  },
+  {
+    "slug": "moema",
+    "nome": "Moema",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Vila Mariana", "Campo Belo", "Itaim Bibi", "Vila Nova Conceição", "Brooklin", "Jardins"],
+    "paragrafoUnico": "Moema é bairro de prédios altos com portaria 24 horas, elevador de serviço e regras claras para prestadores. Perto do Parque Ibirapuera e do Shopping Ibirapuera, a maioria dos apartamentos tem dois ou três dormitórios e móvel planejado de bom padrão. Estacionar nas ruas com nomes de índios e de pássaros é difícil, mas muitos condomínios liberam vaga de visitante por algumas horas. O montador atende muito guarda-roupa de casal com portas de correr, painel de TV, mesa de jantar e home office montado no quarto de hóspedes. Se o seu prédio exige cadastro do prestador com antecedência, mande os dados no dia anterior para a visita em Moema não atrasar.",
+    "publicada": true
+  },
+  {
+    "slug": "vila-mariana",
+    "nome": "Vila Mariana",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Moema", "Saúde", "Aclimação", "Paraíso", "Vila Clementino", "Ipiranga"],
+    "paragrafoUnico": "Na Vila Mariana você encontra prédios de médio e alto padrão misturados com casas de vila e sobrados antigos nas ruas perto da Rua Domingos de Morais. As estações Ana Rosa, Vila Mariana e Santa Cruz deixam o bairro fácil de alcançar, e o Parque Ibirapuera fica a poucos minutos. Muitos prédios são dos anos 70 e 80, com elevador de serviço pequeno, o que exige subir peças maiores pela escada. O montador vê bastante guarda-roupa de três portas, estante de livros, cômoda de bebê e mesa de escritório para quem trabalha em casa. Reserve a vaga de visitante ou avise a portaria antes do horário combinado.",
+    "publicada": true
+  },
+  {
+    "slug": "saude",
+    "nome": "Saúde",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Vila Mariana", "Jabaquara", "Vila Clementino", "Mirandópolis", "Planalto Paulista", "Aclimação"],
+    "paragrafoUnico": "O bairro da Saúde fica entre a Vila Mariana e o Jabaquara, ao longo da Linha 1 Azul, com as estações Saúde e Praça da Árvore. É uma região de prédios residenciais de médio padrão, muitos com quatro andares e sem elevador, além de sobrados de família nas ruas mais tranquilas. A Avenida Jabaquara concentra comércio e trânsito, e as ruas internas costumam ter vaga na porta. O montador atende muito guarda-roupa de casal, cômoda, cama box e cozinha modulada de apartamento de dois dormitórios. Em prédio sem elevador, diga o andar na hora de agendar para o montador reservar tempo extra na Saúde.",
+    "publicada": true
+  },
+  {
+    "slug": "campo-belo",
+    "nome": "Campo Belo",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Moema", "Brooklin", "Santo Amaro", "Vila Mascote", "Jabaquara"],
+    "paragrafoUnico": "Campo Belo é um bairro de prédios altos e novos, a maioria com portaria 24 horas e elevador de serviço. Fica entre Moema, Brooklin e o Aeroporto de Congonhas, com a Avenida Vereador José Diniz e a Avenida Santo Amaro como principais acessos. As ruas internas são arborizadas e o estacionamento na porta é raro, mas muitos condomínios liberam vaga de visitante. Muitos apartamentos vieram com planejados de fábrica, então o montador é chamado para ajustar portas, instalar painel de TV, montar guarda-roupa de casal e escrivaninha de home office. Mande o nome do condomínio para o montador conferir as regras de horário do Campo Belo.",
+    "publicada": true
+  },
+  {
+    "slug": "brooklin",
+    "nome": "Brooklin",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Campo Belo", "Itaim Bibi", "Vila Olímpia", "Santo Amaro", "Morumbi", "Moema"],
+    "paragrafoUnico": "O Brooklin mistura dois mundos. No Brooklin Novo e perto da Berrini ficam torres corporativas e prédios residenciais de alto padrão com portaria e elevador de serviço. No Brooklin Velho ainda há casas térreas e sobrados com garagem, em ruas arborizadas e tranquilas. A estação Brooklin da Linha 5 Lilás e a Marginal Pinheiros facilitam a chegada do montador. Nos apartamentos novos o pedido mais frequente é guarda-roupa planejado, home office e mesa de jantar de seis lugares. Nas casas do Brooklin Velho o montador lida com aparadores, cristaleiras e estantes pesadas. Combine o horário com folga, porque o trânsito da Berrini pesa no fim da tarde.",
+    "publicada": true
+  },
+  {
+    "slug": "santo-amaro",
+    "nome": "Santo Amaro",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Campo Belo", "Brooklin", "Interlagos", "Chácara Santo Antônio", "Jardim Marajoara", "Morumbi"],
+    "paragrafoUnico": "Santo Amaro é um bairro grande e antigo da Zona Sul, com centro comercial forte em torno do Largo Treze e da Avenida Adolfo Pinheiro. A moradia vai de sobrados de família em ruas de bairro até prédios novos de dois dormitórios perto das estações Santo Amaro e Largo Treze da Linha 5 Lilás. O trânsito na Avenida Santo Amaro e na Marginal Pinheiros pede horário bem combinado. O montador encontra guarda-roupa de casal, beliche para quarto de criança, rack de sala e cozinha compacta em apartamento de primeiro imóvel. Também atende lojas e escritórios da região comercial. Se a entrega ainda não chegou, agende a montagem para o dia seguinte à chegada das caixas.",
+    "publicada": true
+  },
+  {
+    "slug": "jabaquara",
+    "nome": "Jabaquara",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Saúde", "Campo Belo", "Diadema", "Cidade Vargas", "Planalto Paulista", "Vila Mascote"],
+    "paragrafoUnico": "O Jabaquara fica no fim da Linha 1 Azul, junto ao terminal de ônibus e perto do Aeroporto de Congonhas. É um bairro de prédios de médio padrão com quatro a doze andares, boa parte com portaria simples e sem elevador de serviço, e de sobrados nas ruas que sobem do lado da Avenida Engenheiro Armando de Arruda Pereira. Há também muitos apartamentos de dois dormitórios comprados como primeiro imóvel. O montador monta bastante guarda-roupa de casal, cama box com baú, cômoda e cozinha modulada. Beliche e cama infantil aparecem com frequência em famílias jovens. Avise se a rua tem acesso restrito de carro, porque parte do Jabaquara tem ladeira e vaga difícil.",
+    "publicada": true
+  },
+  {
+    "slug": "morumbi",
+    "nome": "Morumbi",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Butantã", "Brooklin", "Santo Amaro", "Real Parque", "Vila Andrade", "Cidade Jardim"],
+    "paragrafoUnico": "O Morumbi é conhecido pelos condomínios fechados de casas grandes e pelos prédios de alto padrão com quatro suítes, portaria com controle rígido e elevador de serviço separado. Perto do Estádio do Morumbi, do Shopping Morumbi e do Palácio dos Bandeirantes as ruas são largas e as vagas de rua são poucas, mas muitos condomínios recebem o carro do prestador. A estação Morumbi da CPTM e a Marginal Pinheiros ajudam no acesso. Aqui o montador trabalha com móvel planejado de marcenaria, closet, cama king com cabeceira estofada e home office completo. Muitos condomínios pedem lista de ferramentas e documento do montador na entrada, então envie esses dados um dia antes.",
+    "publicada": true
+  },
+  {
+    "slug": "itaim-bibi",
+    "nome": "Itaim Bibi",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Vila Olímpia", "Jardins", "Moema", "Brooklin", "Pinheiros", "Vila Nova Conceição"],
+    "paragrafoUnico": "O Itaim Bibi concentra prédios de alto padrão e torres novas de studios e apartamentos de um dormitório, quase sempre com portaria 24 horas, elevador de serviço e regras de horário para obras e montagens. Entre a Avenida Faria Lima, a Juscelino Kubitschek e a Rua Joaquim Floriano o estacionamento de rua é raro e caro, então o montador costuma usar a vaga de visitante do prédio. Aqui os pedidos vão de guarda-roupa planejado e closet até mesa de escritório para quem mora perto do trabalho. Também é comum montar móveis de escritório em salas comerciais. Nos dias úteis, a agenda do Itaim Bibi fecha rápido, então peça o horário com um ou dois dias de antecedência.",
+    "publicada": true
+  },
+  {
+    "slug": "vila-olimpia",
+    "nome": "Vila Olímpia",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Itaim Bibi", "Brooklin", "Moema", "Vila Nova Conceição", "Berrini"],
+    "paragrafoUnico": "A Vila Olímpia é vizinha do Itaim Bibi e tem o mesmo perfil de torres residenciais novas, com portaria, elevador de serviço e muitos apartamentos de um e dois dormitórios ocupados por quem trabalha nos escritórios da região. A Avenida dos Bandeirantes, a Rua Funchal e o Shopping Vila Olímpia são referências de acesso, e o trânsito no horário de pico atrasa qualquer visita. Os prédios costumam limitar montagem a horário comercial e pedir cadastro do prestador. O montador atende guarda-roupa de casal, painel de TV, mesa de home office e móveis de escritório em salas comerciais. Confirme com o síndico ou a administradora o horário permitido para barulho antes de marcar.",
+    "publicada": true
+  },
+  {
+    "slug": "ipiranga",
+    "nome": "Ipiranga",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Vila Mariana", "Aclimação", "Vila Prudente", "Sacomã", "Cambuci", "São Caetano do Sul"],
+    "paragrafoUnico": "O Ipiranga tem o Museu do Ipiranga e o Parque da Independência como cartões-postais, mas a moradia é de bairro tradicional: sobrados de família, casas de vila e prédios de médio padrão perto da Rua Silva Bueno e das estações Sacomã e Alto do Ipiranga da Linha 2 Verde. Nos últimos anos surgiram muitos prédios novos de dois dormitórios com portaria e elevador. As ruas em ladeira dificultam parar o carro na porta. O montador lida com guarda-roupa de seis portas em quarto de casal, beliche em casa com crianças e cozinha modulada de apartamento novo. Diga se o imóvel é casa ou apartamento para o montador dimensionar o tempo no Ipiranga.",
+    "publicada": true
+  },
+  {
+    "slug": "interlagos",
+    "nome": "Interlagos",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Santo Amaro", "Jardim Marajoara", "Cidade Dutra", "Socorro", "Campo Grande", "Jurubatuba"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "pinheiros",
+    "nome": "Pinheiros",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Vila Madalena", "Itaim Bibi", "Jardins", "Butantã", "Alto de Pinheiros", "Perdizes"],
+    "paragrafoUnico": "Pinheiros mistura prédios antigos de três dormitórios, torres novas de studios e casas de vila em ruas estreitas perto da Rua dos Pinheiros e do Largo da Batata. As estações Faria Lima, Fradique Coutinho e Pinheiros da CPTM facilitam o acesso, mas vaga de rua é quase inexistente e a Zona Azul enche cedo. Muitos prédios antigos têm elevador de serviço apertado. O montador monta studios inteiros para quem acabou de se mudar, incluindo cama, guarda-roupa de duas portas, mesa de trabalho e estante. Também aparece móvel planejado de reforma e cozinha modulada. Se o prédio de Pinheiros não tem vaga de visitante, avise para o montador planejar onde parar.",
+    "publicada": true
+  },
+  {
+    "slug": "vila-madalena",
+    "nome": "Vila Madalena",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Pinheiros", "Perdizes", "Sumaré", "Alto de Pinheiros", "Vila Beatriz"],
+    "paragrafoUnico": "A Vila Madalena é um bairro de ladeiras, com sobrados reformados, casas de vila e prédios novos de studios e apartamentos de um dormitório perto da Rua Harmonia e da Rua Aspicuelta. A estação Vila Madalena da Linha 2 Verde e o Beco do Batman são as referências mais fáceis. Estacionar é complicado em qualquer dia, e nos fins de semana as ruas de bares ficam cheias. Muitos moradores são jovens que alugam apartamento mobiliado ou montam o primeiro imóvel. O montador vê bastante cama de casal simples, guarda-roupa de duas portas, escrivaninha e estante. Em casa antiga, avise se a escada é estreita para o montador levar as peças desmontadas.",
+    "publicada": true
+  },
+  {
+    "slug": "perdizes",
+    "nome": "Perdizes",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Vila Madalena", "Higienópolis", "Lapa", "Pompeia", "Sumaré", "Pacaembu"],
+    "paragrafoUnico": "Perdizes é um bairro de prédios de médio e alto padrão, muitos dos anos 80 e 90, com portaria, elevador de serviço e apartamentos de três dormitórios com dependência. Perto da PUC, da Rua Cardoso de Almeida e do Allianz Parque também há casas de vila e sobrados. As ruas são íngremes e estreitas, e o estacionamento na rua é disputado, principalmente em dia de jogo. O montador atende famílias que reformam o apartamento e trocam guarda-roupa, cozinha modulada e estante da sala, além de estudantes montando quarto com cama, escrivaninha e cômoda. Em dia de evento no Allianz Parque, escolha o período da manhã para a montagem em Perdizes.",
+    "publicada": true
+  },
+  {
+    "slug": "lapa",
+    "nome": "Lapa",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Vila Leopoldina", "Perdizes", "Pompeia", "Alto da Lapa", "Vila Romana", "Pirituba"],
+    "paragrafoUnico": "A Lapa é bairro de comércio de rua forte, com o Mercado da Lapa e a Rua Doze de Outubro como referências, e moradia de sobrados antigos, casas de vila e prédios de médio padrão. Na Lapa de Baixo e perto da estação Lapa da CPTM há mais casas; na Vila Romana e na Pompeia surgiram prédios novos com portaria e elevador. A Marginal Tietê e a Avenida Francisco Matarazzo dão acesso rápido. O montador encontra guarda-roupa de casal, cômoda e cama box em casa de família, e cozinha modulada e painel de TV em apartamento recém-entregue. Se sua casa fica em rua com feira livre, informe o dia para evitar bloqueio.",
+    "publicada": true
+  },
+  {
+    "slug": "butanta",
+    "nome": "Butantã",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Morumbi", "Pinheiros", "Vila Sônia", "Rio Pequeno", "Jaguaré", "Taboão da Serra"],
+    "paragrafoUnico": "O Butantã é vizinho da USP e do Instituto Butantan, com moradia bem variada: casas de vila e sobrados no Jardim Bonfiglioli e na Vila Gomes, prédios de médio padrão perto da estação Butantã da Linha 4 Amarela e condomínios novos ao longo da Avenida Corifeu de Azevedo Marques e da Rodovia Raposo Tavares. As ruas internas costumam ter vaga na porta, mas a Marginal Pinheiros no fim da tarde atrasa a chegada. O montador atende muito estudante montando quarto com cama de solteiro e escrivaninha, e famílias com guarda-roupa, cozinha modulada e beliche. Informe se o acesso à casa é por viela ou escada, porque isso pesa no tempo de montagem no Butantã.",
+    "publicada": true
+  },
+  {
+    "slug": "vila-leopoldina",
+    "nome": "Vila Leopoldina",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Lapa", "Alto de Pinheiros", "Jaguaré", "Vila Hamburguesa", "Osasco"],
+    "paragrafoUnico": "A Vila Leopoldina virou bairro de condomínio clube nos últimos vinte anos. Perto do Ceagesp, da Marginal Pinheiros e das estações Villa-Lobos-Jaguaré e Ceasa da CPTM, os prédios têm portaria 24 horas, elevador de serviço e regras firmes de horário para prestadores. Muitas famílias com filhos moram aqui e usam o Parque Villa-Lobos no fim de semana. Ainda restam sobrados e galpões antigos nas ruas mais próximas da Lapa. O montador monta guarda-roupa infantil, beliche, cômoda de bebê e cozinha modulada em apartamentos de dois e três dormitórios, além de home office. Confira se o condomínio exige apresentação de documento e cadastro de prestador na portaria com antecedência.",
+    "publicada": true
+  },
+  {
+    "slug": "santana",
+    "nome": "Santana",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Tucuruvi", "Casa Verde", "Vila Guilherme", "Carandiru", "Jardim São Paulo", "Mandaqui"],
+    "paragrafoUnico": "Santana é o principal bairro da Zona Norte, com comércio forte na Rua Voluntários da Pátria e acesso pelas estações Santana, Carandiru e Portuguesa-Tietê da Linha 1 Azul. A moradia mistura prédios de médio padrão com portaria e elevador, sobrados de família em ruas planas e prédios novos de dois dormitórios perto do Parque da Juventude. Estacionar perto do comércio é difícil, mas nas ruas residenciais o montador costuma achar vaga. Aqui os pedidos mais comuns são guarda-roupa de casal, cozinha modulada, painel de TV e mesa de home office. Em Santana, a agenda costuma fechar em um ou dois dias, e os horários de manhã são os mais procurados.",
+    "publicada": true
+  },
+  {
+    "slug": "tucuruvi",
+    "nome": "Tucuruvi",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Santana", "Vila Mazzei", "Jaçanã", "Parada Inglesa", "Vila Medeiros", "Mandaqui"],
+    "paragrafoUnico": "O Tucuruvi é a ponta norte da Linha 1 Azul, com a estação Tucuruvi, o Shopping Metrô Tucuruvi e a Avenida Tucuruvi como pontos de referência. É um bairro de famílias, com sobrados de dois andares, casas com garagem e prédios de médio padrão de quatro a quinze andares, boa parte sem elevador de serviço. As ruas sobem em direção à Serra da Cantareira e algumas são bem íngremes. O montador encontra guarda-roupa de seis portas, cama de casal, cômoda e beliche em quartos de criança, além de rack e painel na sala. Se a casa é sobrado, diga em qual andar o móvel fica para o montador do Tucuruvi levar ajuda quando precisar.",
+    "publicada": true
+  },
+  {
+    "slug": "casa-verde",
+    "nome": "Casa Verde",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Santana", "Freguesia do Ó", "Limão", "Cachoeirinha", "Barra Funda"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "freguesia-do-o",
+    "nome": "Freguesia do Ó",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Casa Verde", "Pirituba", "Brasilândia", "Limão", "Lapa"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "pirituba",
+    "nome": "Pirituba",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Freguesia do Ó", "Lapa", "Jaraguá", "Vila Leopoldina", "Osasco", "Perus"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "tatuape",
+    "nome": "Tatuapé",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Mooca", "Anália Franco", "Penha", "Vila Formosa", "Carrão", "Belém"],
+    "paragrafoUnico": "O Tatuapé é um dos bairros mais verticalizados da Zona Leste, com torres de alto padrão perto do Shopping Metrô Tatuapé, do Shopping Anália Franco e da Praça Silvio Romero. A maioria dos prédios tem portaria 24 horas, elevador de serviço e vaga de visitante, mas cobra cadastro de prestador. Perto da estação Tatuapé e da Radial Leste ainda há sobrados e casas de vila. O trânsito da Radial atrasa quem vem do Centro no fim da tarde. Aqui o montador trabalha com guarda-roupa planejado, closet, cozinha modulada de apartamento novo e home office. Antes de ir ao Tatuapé, o montador confirma com você se o prédio libera montagem no sábado.",
+    "publicada": true
+  },
+  {
+    "slug": "mooca",
+    "nome": "Mooca",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Tatuapé", "Ipiranga", "Vila Prudente", "Brás", "Belém", "Cambuci"],
+    "paragrafoUnico": "A Mooca é bairro de tradição italiana, com sobrados antigos, casas de vila e torres altas com portaria e elevador de serviço perto da Rua da Mooca e do Shopping Mooca Plaza. As estações Bresser-Mooca da Linha 3 Vermelha e Mooca da CPTM dão acesso, e a Radial Leste e a Avenida Paes de Barros são as vias principais. As vilas de casas têm ruas estreitas onde o carro do montador nem sempre entra, então as caixas às vezes vão no braço. O montador vê guarda-roupa de casal, cozinha modulada e mesa de jantar grande para família reunida. Em vila fechada, combine com o vizinho ou o zelador onde o montador pode parar.",
+    "publicada": true
+  },
+  {
+    "slug": "vila-prudente",
+    "nome": "Vila Prudente",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Mooca", "Ipiranga", "Vila Formosa", "São Lucas", "Sapopemba", "São Caetano do Sul"],
+    "paragrafoUnico": "A Vila Prudente tem a estação Vila Prudente, onde a Linha 2 Verde encontra o monotrilho da Linha 15 Prata, e a Avenida Professor Luiz Ignácio Anhaia Mello como referências. A moradia é de bairro de família: sobrados com garagem, casas de fundos e prédios de médio padrão de dois dormitórios, muitos sem elevador de serviço. Perto do Parque Ecológico e da Avenida do Oratório o estacionamento na porta ainda é fácil. O montador atende guarda-roupa de seis portas, cama box de casal, beliche para irmãos dividindo quarto e cozinha modulada. Também aparece rack de sala e painel de TV. Se o móvel for para casa de fundos, avise se o corredor é estreito.",
+    "publicada": true
+  },
+  {
+    "slug": "penha",
+    "nome": "Penha",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Tatuapé", "Vila Matilde", "Cangaíba", "Vila Esperança", "Artur Alvim", "Guarulhos"],
+    "paragrafoUnico": "A Penha é um dos bairros mais antigos da Zona Leste, com o Largo do Rosário, a Basílica de Nossa Senhora da Penha e o Shopping Penha como referências. As estações Penha e Vila Matilde da Linha 3 Vermelha e a Radial Leste dão acesso. A moradia é de sobrados de família em ruas de ladeira, casas de fundos e prédios de médio padrão, muitos sem elevador. Perto do comércio do Largo do Rosário o estacionamento é difícil; nas ruas residenciais costuma ter vaga. O montador encontra guarda-roupa de casal, cama de solteiro, beliche e cozinha compacta. Diga se o móvel vai para o segundo andar para o montador reservar mais tempo na Penha.",
+    "publicada": true
+  },
+  {
+    "slug": "analia-franco",
+    "nome": "Anália Franco",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Tatuapé", "Vila Formosa", "Carrão", "Vila Regente Feijó", "Chácara Califórnia"],
+    "paragrafoUnico": "Anália Franco é uma das áreas mais valorizadas da Zona Leste, em volta do Shopping Anália Franco e da Avenida Regente Feijó, entre o Tatuapé e a Vila Formosa. Predominam prédios de alto padrão com três e quatro dormitórios, portaria 24 horas, elevador de serviço e vaga de visitante, além de condomínios de casas em rua fechada. Não há estação de metrô no bairro; o acesso é pela Radial Leste ou pela Avenida Salim Farah Maluf. O montador atende móvel planejado, closet, cozinha modulada de apartamento grande, mesa de jantar de oito lugares e home office. Muitos condomínios pedem cadastro do prestador na administração, então combine isso com o síndico antes da montagem.",
+    "publicada": true
+  },
+  {
+    "slug": "itaquera",
+    "nome": "Itaquera",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Penha", "São Miguel Paulista", "Guaianases", "Cidade Líder", "Artur Alvim", "Vila Carmosina"],
+    "paragrafoUnico": "Itaquera é o centro do extremo leste da cidade, com a estação Corinthians-Itaquera das linhas 3 Vermelha e 11 Coral, o Shopping Metrô Itaquera e a Neo Química Arena como referências. A moradia é de sobrados de família, casas de fundos, conjuntos habitacionais de quatro andares sem elevador e condomínios novos de dois dormitórios com portaria. Em dia de jogo, o trânsito perto da arena trava e vale remarcar para outro horário. O que mais aparece aqui é guarda-roupa de casal, beliche para quarto de criança, rack de sala e cozinha compacta. Avise se o acesso à casa é por escada externa, porque isso muda o tempo em Itaquera.",
+    "publicada": true
+  },
+  {
+    "slug": "vila-formosa",
+    "nome": "Vila Formosa",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Tatuapé", "Anália Franco", "Vila Prudente", "Carrão", "Sapopemba", "Aricanduva"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "sao-miguel-paulista",
+    "nome": "São Miguel Paulista",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Itaquera", "Ermelino Matarazzo", "Vila Jacuí", "Jardim Helena", "Guarulhos", "Itaim Paulista"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "higienopolis",
+    "nome": "Higienópolis",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Centro", "Perdizes", "Bela Vista", "Santa Cecília", "Consolação", "Pacaembu"],
+    "paragrafoUnico": "Higienópolis é bairro de prédios antigos e imponentes, com apartamentos grandes de três e quatro dormitórios, pé-direito alto, portaria com porteiro fixo e elevador de serviço próprio. Fica perto da Avenida Paulista, com a Avenida Angélica e o Shopping Pátio Higienópolis como referências, e as estações Higienópolis-Mackenzie e Marechal Deodoro no entorno. Estacionar na rua é raro; alguns prédios liberam a garagem para o prestador por tempo limitado. O montador atende móvel planejado de reforma, estante de livros de parede inteira, cama king e home office, além de quartos de estudante com cama e escrivaninha. Em prédio antigo, avise se o elevador de serviço é pequeno para o montador trazer as peças em partes.",
+    "publicada": true
+  },
+  {
+    "slug": "bela-vista",
+    "nome": "Bela Vista",
+    "macroRegiao": "Capital",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Centro", "Jardins", "Higienópolis", "Liberdade", "Aclimação", "Paraíso"],
+    "paragrafoUnico": "A Bela Vista abriga o Bixiga, com suas cantinas e casas antigas, e a região da Avenida Paulista, da Rua Augusta e da Avenida Brigadeiro Luís Antônio, cheia de prédios antigos de apartamentos pequenos, kitnets e studios recém-reformados. As estações Brigadeiro, Trianon-Masp e São Joaquim ficam por perto. Muitos edifícios são dos anos 60 e 70, com elevador único e sem vaga de garagem para visitante, e as ruas do Bixiga são estreitas e em ladeira. O montador atende bastante quem mora sozinho: cama de solteiro ou casal, guarda-roupa de duas portas, escrivaninha e estante. Informe se o prédio na Bela Vista tem elevador, porque escada de seis andares muda o serviço.",
+    "publicada": true
+  },
+  {
+    "slug": "aclimacao",
+    "nome": "Aclimação",
+    "macroRegiao": "Capital",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Vila Mariana", "Bela Vista", "Ipiranga", "Liberdade", "Cambuci", "Paraíso"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "jardins",
+    "nome": "Jardins",
+    "macroRegiao": "Capital",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Itaim Bibi", "Pinheiros", "Bela Vista", "Higienópolis", "Paraíso", "Vila Nova Conceição"],
+    "paragrafoUnico": "Os Jardins reúnem o Jardim Paulista, o Jardim América e o Cerqueira César, com prédios de alto padrão nas alamedas perto da Avenida Paulista e da Rua Oscar Freire, e casarões em ruas arborizadas do Jardim Europa. Os prédios têm portaria rigorosa, elevador de serviço e horário fixo para prestadores, e a Zona Azul é a única opção de rua. As estações Consolação, Trianon-Masp e Oscar Freire atendem a região. O montador trabalha com móvel planejado de alto padrão, closet, cama king com cabeceira, adega, estante de sala e home office de marcenaria. Nos Jardins, o montador confirma antes com a portaria se o horário pedido pelo condomínio bate com o seu.",
+    "publicada": true
+  },
+  {
+    "slug": "abc",
+    "nome": "ABC Paulista",
+    "macroRegiao": "ABC",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Santo André", "São Bernardo do Campo", "São Caetano do Sul", "Diadema", "Mauá", "Ribeirão Pires"],
+    "paragrafoUnico": "O ABC Paulista reúne Santo André, São Bernardo do Campo, São Caetano do Sul, Diadema, Mauá, Ribeirão Pires e Rio Grande da Serra. É uma região de famílias com casa própria: sobrados com garagem, casas de vila e, nos centros de Santo André e São Bernardo, prédios de médio e alto padrão com portaria e elevador. O acesso é pela Via Anchieta, pela Avenida dos Estados e pelas estações da Linha 10 Turquesa da CPTM. O montador encontra guarda-roupa de seis portas, cozinha modulada, beliche e mesa de jantar grande, além de home office nos apartamentos novos. Quem mora no ABC pode pedir horário de sábado, que costuma ser o mais procurado por lá.",
+    "publicada": true
+  },
+  {
+    "slug": "santo-andre",
+    "nome": "Santo André",
+    "macroRegiao": "ABC",
+    "prioridade": 1,
+    "bairrosVizinhos": ["São Bernardo do Campo", "São Caetano do Sul", "Mauá", "Ribeirão Pires", "Sapopemba"],
+    "paragrafoUnico": "Santo André tem um centro verticalizado em volta da Rua das Figueiras, do Paço Municipal e do Shopping ABC, com prédios de médio e alto padrão que contam com portaria e elevador de serviço. Nos bairros como Vila Assunção, Jardim e Campestre há sobrados grandes e condomínios de casas. A estação Santo André da Linha 10 Turquesa e a Avenida Industrial são as referências de acesso. Aqui você vê muito guarda-roupa de casal, cozinha modulada, cama box com baú e móvel planejado de apartamento novo. Em Santo André, mande o CEP junto com o endereço para o montador calcular o deslocamento.",
+    "publicada": true
+  },
+  {
+    "slug": "sao-bernardo-do-campo",
+    "nome": "São Bernardo do Campo",
+    "macroRegiao": "ABC",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Santo André", "São Caetano do Sul", "Diadema", "Rudge Ramos", "Riacho Grande"],
+    "paragrafoUnico": "São Bernardo do Campo é a maior cidade do ABC, com centro em volta do Paço Municipal, da Rua Marechal Deodoro e do Shopping Metrópole. A moradia é de sobrados com garagem nos bairros como Rudge Ramos e Baeta Neves, e de prédios de médio e alto padrão no Centro e no Jardim do Mar, com portaria e elevador. O acesso é pela Via Anchieta e pela Rodovia dos Imigrantes, e o trânsito da Anchieta atrasa o deslocamento no fim da tarde. Aqui o montador monta guarda-roupa de seis portas, mesa de jantar grande e beliche em casa com crianças. Se você mora em condomínio de casas, avise se a portaria pede cadastro prévio do prestador.",
+    "publicada": true
+  },
+  {
+    "slug": "sao-caetano-do-sul",
+    "nome": "São Caetano do Sul",
+    "macroRegiao": "ABC",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Santo André", "São Bernardo do Campo", "Ipiranga", "Vila Prudente", "Sacomã", "Heliópolis"],
+    "paragrafoUnico": "São Caetano do Sul é uma cidade pequena e bem cuidada, com ruas planas, calçadas largas e prédios de médio e alto padrão no Centro, no Bairro Santa Paula e no Bairro Cerâmica, perto do Park Shopping São Caetano. Os prédios têm portaria e elevador, e os sobrados de família ainda dominam bairros como Nova Gerty e Olímpico. A estação São Caetano da Linha 10 Turquesa e a Avenida Goiás são as referências, e estacionar na porta costuma ser tranquilo. O montador atende guarda-roupa de casal, cozinha modulada, cama box com baú e móvel planejado de apartamento entregue recentemente. Em São Caetano do Sul, os horários de sábado de manhã são os que acabam primeiro.",
+    "publicada": true
+  },
+  {
+    "slug": "diadema",
+    "nome": "Diadema",
+    "macroRegiao": "ABC",
+    "prioridade": 2,
+    "bairrosVizinhos": ["São Bernardo do Campo", "Jabaquara", "Cidade Ademar", "Pedreira", "Eldorado"],
+    "paragrafoUnico": "Diadema faz divisa com São Bernardo do Campo e com a Zona Sul da capital, com acesso pela Rodovia dos Imigrantes, pela Avenida Piraporinha e pelo Terminal Diadema. É uma cidade de casas: sobrados construídos aos poucos, casas de fundos e conjuntos habitacionais de quatro andares sem elevador, com prédios novos de dois dormitórios perto do Centro e do Shopping Praça da Moça. Muitas ruas são estreitas e em ladeira, mas o montador costuma parar na porta. Os pedidos frequentes são guarda-roupa de casal, beliche para irmãos, cozinha compacta e rack de sala. Se o móvel vai para o andar de cima do sobrado, avise para o montador levar as peças soltas.",
+    "publicada": true
+  },
+  {
+    "slug": "maua",
+    "nome": "Mauá",
+    "macroRegiao": "ABC",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Santo André", "Ribeirão Pires", "Ferraz de Vasconcelos", "São Mateus", "Sapopemba"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "guarulhos",
+    "nome": "Guarulhos",
+    "macroRegiao": "Grande SP",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Penha", "São Miguel Paulista", "Tucuruvi", "Itaquaquecetuba", "Arujá", "Mairiporã"],
+    "paragrafoUnico": "Guarulhos é a segunda maior cidade do estado e tem o Aeroporto Internacional e a Rodovia Presidente Dutra como referências de acesso, além do Internacional Shopping e do Shopping Maia. A moradia vai de sobrados de família em bairros como Vila Rosália e Jardim Tranquilidade a prédios novos de dois dormitórios com portaria e elevador no Centro, na Vila Augusta e no Bosque Maia. O trânsito da Dutra e da Marginal Tietê define o horário: manhã cedo é o melhor período para o montador chegar. O montador atende principalmente guarda-roupa de casal, cozinha modulada, beliche e painel de TV. Confirme se o condomínio em Guarulhos aceita montagem no sábado.",
+    "publicada": true
+  },
+  {
+    "slug": "osasco",
+    "nome": "Osasco",
+    "macroRegiao": "Grande SP",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Barueri", "Carapicuíba", "Vila Leopoldina", "Pirituba", "Cotia", "Taboão da Serra"],
+    "paragrafoUnico": "Osasco fica colada na Zona Oeste da capital, com acesso pela Rodovia Castello Branco, pela Marginal Tietê e pelas estações Osasco e Presidente Altino da CPTM. O Centro e a Vila Yara têm prédios de médio padrão com portaria e elevador, e o Shopping União e o SuperShopping são as referências de comércio. Nos bairros como Jardim das Flores, Rochdale e Quitaúna predominam sobrados de família com garagem e casas de fundos. O montador monta guarda-roupa de casal, cozinha modulada, cama box, beliche e rack de sala. Em Osasco, avise se o endereço fica em rua de subida forte, para o montador não parar longe da casa.",
+    "publicada": true
+  },
+  {
+    "slug": "barueri",
+    "nome": "Barueri",
+    "macroRegiao": "Grande SP",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Alphaville", "Osasco", "Carapicuíba", "Santana de Parnaíba", "Jandira", "Itapevi"],
+    "paragrafoUnico": "Barueri cresceu junto com Alphaville e com as empresas da Rodovia Castello Branco, mas a maior parte da cidade é de bairros de família, como o Centro, Jardim Belval e Parque Imperial, com sobrados, casas de vila e prédios de médio padrão de dois dormitórios. Perto da estação Barueri da CPTM e do Parque Municipal há condomínios novos com portaria e elevador. Estacionar na rua costuma ser tranquilo fora do Centro. O montador atende muito apartamento de primeira compra, com guarda-roupa de casal, cozinha modulada, cama box e painel de TV, e também beliche em casa com crianças. Se seu condomínio em Barueri tem regra de horário para barulho, informe na hora de agendar.",
+    "publicada": true
+  },
+  {
+    "slug": "alphaville",
+    "nome": "Alphaville",
+    "macroRegiao": "Grande SP",
+    "prioridade": 1,
+    "bairrosVizinhos": ["Barueri", "Santana de Parnaíba", "Tamboré", "Osasco", "Carapicuíba", "Aldeia da Serra"],
+    "paragrafoUnico": "Alphaville é formado por residenciais fechados de casas grandes, entre Barueri e Santana de Parnaíba, e por torres de apartamentos de alto padrão perto da Alameda Rio Negro e do Shopping Iguatemi Alphaville. Toda entrada passa por portaria com cadastro de prestador e documento com foto, e alguns residenciais só liberam serviço em dias úteis e horário comercial. O acesso é pela Rodovia Castello Branco, e o trânsito na saída da rodovia pesa de manhã. Aqui o montador trabalha com móvel planejado de marcenaria, closet, cama king, mesa de jantar de oito lugares, home office completo e móveis de área gourmet. Para Alphaville, mande os dados do montador para a portaria no dia anterior.",
+    "publicada": true
+  },
+  {
+    "slug": "taboao-da-serra",
+    "nome": "Taboão da Serra",
+    "macroRegiao": "Grande SP",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Butantã", "Embu das Artes", "Campo Limpo", "Cotia", "Osasco", "Vila Sônia"],
+    "paragrafoUnico": "Taboão da Serra faz divisa com o Butantã e o Campo Limpo, com acesso pela Rodovia Régis Bittencourt e pela Avenida Francisco Morato. É uma cidade de sobrados em ruas de ladeira, casas de fundos e prédios de médio padrão de dois dormitórios, muitos com portaria simples e sem elevador de serviço. Perto do Shopping Taboão e do Centro há condomínios novos com portaria. O trânsito da Régis no fim da tarde atrasa, então o montador prefere horários de manhã. O que mais monta aqui é guarda-roupa de casal, beliche, cama box, cozinha compacta e rack de sala. Se sua rua em Taboão da Serra é estreita, avise para o montador saber onde parar.",
+    "publicada": true
+  },
+  {
+    "slug": "carapicuiba",
+    "nome": "Carapicuíba",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Osasco", "Barueri", "Cotia", "Jandira", "Santana de Parnaíba", "Alphaville"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "cotia",
+    "nome": "Cotia",
+    "macroRegiao": "Grande SP",
+    "prioridade": 2,
+    "bairrosVizinhos": ["Butantã", "Carapicuíba", "Embu das Artes", "Taboão da Serra", "Osasco", "Vargem Grande Paulista"],
+    "paragrafoUnico": "Cotia cresceu ao longo da Rodovia Raposo Tavares, com a Granja Viana como bairro de condomínios fechados de casas grandes e chácaras, e o Centro com sobrados, casas de vila e prédios de médio padrão de dois dormitórios. Muitos condomínios da Granja Viana pedem cadastro do prestador na portaria e liberam serviço só em horário comercial. O trânsito da Raposo no fim da tarde pesa no deslocamento do montador. Na Granja o pedido comum é móvel planejado, closet, home office e mesa de jantar grande; no Centro aparecem guarda-roupa de casal, beliche e cozinha modulada. Se você mora em condomínio em Cotia, envie o nome dele para o montador conferir as regras de acesso.",
+    "publicada": true
+  },
+  {
+    "slug": "santana-de-parnaiba",
+    "nome": "Santana de Parnaíba",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Alphaville", "Barueri", "Cajamar", "Pirapora do Bom Jesus", "Itapevi"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "mogi-das-cruzes",
+    "nome": "Mogi das Cruzes",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Suzano", "Itaquaquecetuba", "Guararema", "Biritiba Mirim", "Arujá", "Bertioga"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "suzano",
+    "nome": "Suzano",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Mogi das Cruzes", "Poá", "Itaquaquecetuba", "Ferraz de Vasconcelos", "Ribeirão Pires"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "itaquaquecetuba",
+    "nome": "Itaquaquecetuba",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Guarulhos", "Poá", "Suzano", "Mogi das Cruzes", "Arujá", "Ferraz de Vasconcelos"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "embu-das-artes",
+    "nome": "Embu das Artes",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Taboão da Serra", "Cotia", "Itapecerica da Serra", "Embu-Guaçu", "Campo Limpo", "Capão Redondo"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "ferraz-de-vasconcelos",
+    "nome": "Ferraz de Vasconcelos",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Poá", "Suzano", "Mauá", "Itaquaquecetuba", "Guaianases", "Itaim Paulista"],
+    "paragrafoUnico": "",
+    "publicada": false
+  },
+  {
+    "slug": "poa",
+    "nome": "Poá",
+    "macroRegiao": "Grande SP",
+    "prioridade": 3,
+    "bairrosVizinhos": ["Ferraz de Vasconcelos", "Suzano", "Itaquaquecetuba", "Mogi das Cruzes"],
+    "paragrafoUnico": "",
+    "publicada": false
+  }
+]

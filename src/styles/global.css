@@ -35,12 +35,13 @@
   input, select, textarea { font-size: 16px; }
 }
 
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 font-semibold text-center;
+  min-height: 48px;
+  transition: background-color 150ms, transform 150ms;
+}
+
 @layer components {
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 font-semibold text-center;
-    min-height: 48px;
-    transition: background-color 150ms, transform 150ms;
-  }
   .btn:active { transform: translateY(1px); }
   .btn-whatsapp { @apply btn bg-whatsapp text-white hover:bg-whatsapp-escuro; }
   .btn-acao { @apply btn bg-acao text-white hover:bg-acao-escura; }
