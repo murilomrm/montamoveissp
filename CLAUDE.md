@@ -22,7 +22,7 @@ A empresa não executa a montagem: ela intermedeia. Isso muda o que o site pode 
 ## Regras que não mudam
 
 1. Todo dado da empresa (WhatsApp, horário) vem de `src/data/site.ts`. Nunca hardcoded em componente.
-2. Todo link de WhatsApp passa por `src/lib/whatsapp.ts`. Formato `api.whatsapp.com/send/?phone=...&text=...&type=phone_number&app_absent=0`. Toda mensagem termina com "Vou te enviar fotos do que é necessário montar e localização com data aproximada." Número atual: `+55 11 94080 3902`.
+2. Todo link de WhatsApp passa por `src/lib/whatsapp.ts`. Formato `api.whatsapp.com/send/?phone=...&text=...&type=phone_number&app_absent=0`. Toda mensagem termina com "Vou te enviar fotos do que é necessário montar e localização com data aproximada." Número atual: `+55 11 98204 3902`.
 3. Todo evento de tracking passa por `src/lib/tracking.ts`. Nomes: `clique_whatsapp`, `gerar_lead`, `clique_telefone`, `visualizar_orcamento`, `scroll_75`. Não criar outros sem atualizar `docs/GTM.md`.
 4. Nenhum script de terceiros carrega se `PUBLIC_GTM_ID` estiver vazio, nem antes do aceite do banner de cookies. GA4, Meta Pixel e Google Ads são configurados dentro do GTM, nunca no código.
 5. Página de região só é gerada se `publicada: true` em `src/data/regioes.json`. Sem `paragrafoUnico`, a página sai com `noindex` e o build avisa.

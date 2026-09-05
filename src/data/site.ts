@@ -1,8 +1,8 @@
 export const site = {
   nome: "MontaMóveis SP",
   dominio: import.meta.env?.PUBLIC_SITE_URL || "https://www.montamoveissp.com.br",
-  whatsapp: "5511940803902", // número pessoal por enquanto. Trocar por chip dedicado ao completar 10 clientes
-  telefoneExibicao: "(11) 94080-3902",
+  whatsapp: "5511982043902", // chip dedicado (trocado do número pessoal em 2026-09-05)
+  telefoneExibicao: "(11) 98204-3902",
   temEmail: false, // sem e-mail nesta fase. Nenhum componente deve exibir e-mail enquanto for false
   email: "",
   temCnpj: false, // vira true quando o MEI for aberto. Enquanto false, nenhum texto pode mencionar nota fiscal
