@@ -24,7 +24,7 @@ A empresa não executa a montagem: ela intermedeia. Isso muda o que o site pode 
 1. Todo dado da empresa (WhatsApp, horário) vem de `src/data/site.ts`. Nunca hardcoded em componente.
 2. Todo link de WhatsApp passa por `src/lib/whatsapp.ts`. Formato `api.whatsapp.com/send/?phone=...&text=...&type=phone_number&app_absent=0`. Toda mensagem termina com "Vou te enviar fotos do que é necessário montar e localização com data aproximada." Número atual: `+55 11 98204 3902`.
 3. Todo evento de tracking passa por `src/lib/tracking.ts`. Nomes: `clique_whatsapp`, `gerar_lead`, `clique_telefone`, `visualizar_orcamento`, `scroll_75`. Não criar outros sem atualizar `docs/GTM.md`.
-4. Nenhum script de terceiros carrega se `PUBLIC_GTM_ID` estiver vazio, nem antes do aceite do banner de cookies. GA4, Meta Pixel e Google Ads são configurados dentro do GTM, nunca no código.
+4. Todo script de terceiros é condicionado a uma variável de ambiente, vazia por padrão: `PUBLIC_GOOGLE_ADS_ID` (Google Ads, hoje o único ativo, ver `docs/TRACKING.md`), `PUBLIC_GTM_ID` (GTM, desligado) e `PUBLIC_CF_ANALYTICS_TOKEN` (Cloudflare Analytics, sem cookie). Variável vazia significa nenhum script externo na página. GA4 e Meta Pixel, se um dia entrarem, vão dentro do GTM, nunca soltos no código. Não ligar GTM e Google Ads ao mesmo tempo: a conversão contaria em dobro.
 5. Página de região só é gerada se `publicada: true` em `src/data/regioes.json`. Sem `paragrafoUnico`, a página sai com `noindex` e o build avisa.
 6. Marcas de loja (Mobly, MadeiraMadeira, Amazon, Magalu, Tok&Stok, Leroy Merlin) só no corpo do texto. Nunca em title, H1, URL ou anúncio.
 7. Uma única imagem OG padrão em `public/og.png`. Páginas de serviço e região podem sobrescrever.

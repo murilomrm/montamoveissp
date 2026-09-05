@@ -4,6 +4,7 @@ import "@/styles/global.css";
 import SEO from "@/components/SEO.astro";
 import Tracking from "@/components/Tracking.astro";
 import CloudflareAnalytics from "@/components/CloudflareAnalytics.astro";
+import GoogleAds from "@/components/GoogleAds.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import WhatsAppFloat from "@/components/WhatsAppFloat.astro";
@@ -37,6 +38,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID?.trim() || "";
     <link rel="sitemap" href={href("/sitemap-index.xml")} />
     <SEO title={title} description={description} path={path} ogImage={ogImage} noindex={noindex} tipo={tipo} schemas={schemas} />
     <Tracking />
+    <GoogleAds />
     <CloudflareAnalytics />
   </head>
   <body data-tipo-pagina={tipoPagina} class="flex min-h-screen flex-col">

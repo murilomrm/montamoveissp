@@ -1,5 +1,7 @@
 # Google Tag Manager
 
+> **Não está em uso nesta fase.** Hoje o site tem só o Google Ads, instalado direto no código, sem GTM. Ver `docs/TRACKING.md`. Este documento serve para quando o GTM entrar. Não ligue os dois ao mesmo tempo: a conversão do Ads contaria em dobro.
+
 Nenhum pixel entra no código. Tudo (GA4, Meta Pixel, Google Ads) é configurado dentro do GTM. O site só carrega o GTM se `PUBLIC_GTM_ID` estiver preenchido e o visitante aceitar os cookies.
 
 ## Ligar

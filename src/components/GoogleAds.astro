@@ -1,0 +1,18 @@
+---
+// Tag do Google Ads (gtag.js), instalada direto no site, sem GTM.
+// Só renderiza com PUBLIC_GOOGLE_ADS_ID preenchida. Vazia: nenhum script externo entra na página.
+// A conversão é disparada em src/lib/tracking.ts, no clique de WhatsApp. Ver docs/TRACKING.md.
+const adsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID?.trim() || "";
+---
+{adsId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${adsId}`}></script>
+    <script is:inline define:vars={{ adsId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = window.gtag || gtag;
+      window.gtag("js", new Date());
+      window.gtag("config", adsId);
+    </script>
+  </>
+)}
