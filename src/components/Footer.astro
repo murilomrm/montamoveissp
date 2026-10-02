@@ -15,7 +15,7 @@ const ano = new Date().getFullYear();
       <p class="mb-3"><Marca /></p>
       <p class="mb-3 text-sm text-cinza-medio">Montagem e desmontagem de móveis em São Paulo, ABC e Grande SP.</p>
       <p class="mb-1 text-sm"><strong>Horário:</strong> {site.horario}</p>
-      <p class="mb-4 text-sm"><a href={`tel:+${site.whatsapp}`} class="font-semibold text-primaria">{site.telefoneExibicao}</a></p>
+      <p class="mb-4 text-sm"><strong>WhatsApp:</strong> {site.telefoneExibicao}</p>
       {site.temEmail && site.email && <p class="mb-4 text-sm"><a href={`mailto:${site.email}`}>{site.email}</a></p>}
     </div>
     <nav aria-label="Serviços">

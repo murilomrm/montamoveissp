@@ -6,16 +6,11 @@ interface Props { servico?: string; regiao?: string; titulo?: string }
 const { servico, regiao, titulo = "Mande a lista e receba o valor" } = Astro.props;
 ---
 <section class="bg-primaria py-14 text-white md:py-20" aria-labelledby="cta-final-titulo">
-  <div class="container-site grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end">
+  <div class="container-site">
     <div>
       <h2 id="cta-final-titulo" class="mb-3 text-white">{titulo}</h2>
-      <p class="mb-6 max-w-[48ch] text-white/80">Quais móveis, o bairro e o andar. Uma foto da caixa ou do projeto já ajuda. {site.horario}.</p>
+      <p class="mb-6 max-w-[48ch] text-white/80">Quais móveis, o bairro e o andar. Uma foto da caixa ou do projeto já ajuda. O atendimento é todo pelo WhatsApp.</p>
       <WhatsAppButton origem="cta" servico={servico} regiao={regiao} class="text-lg" />
-    </div>
-    <div class="border-t border-white/20 pt-5 md:border-t-0 md:border-l md:pl-8 md:pt-0">
-      <p class="mb-1 text-white/70">Prefere ligar?</p>
-      <a href={`tel:+${site.whatsapp}`} data-tel class="font-[family-name:var(--font-titulo)] text-4xl font-bold leading-none text-acao hover:underline md:text-5xl">{site.telefoneExibicao}</a>
-      <p class="mt-2 text-sm text-white/70">Mesmo número do WhatsApp.</p>
     </div>
   </div>
 </section>
