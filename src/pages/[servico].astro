@@ -106,11 +106,14 @@ const outros = servicos.filter((s) => s.slug !== servico.slug).slice(0, 6);
     </div>
   </section>
 
+  {/* Formulário desligado: o CTA final já leva ao WhatsApp, sem repetir o botão. */}
+  {site.formularioAtivo && (
   <section class="secao" aria-label="Formulário de orçamento">
     <div class="container-site">
       <LeadForm servicoSlug={servico.slug} titulo={`Orçamento de ${nomeMin}`} />
     </div>
   </section>
+  )}
 
   <CTAFinal servico={nomeMin} />
 </Base>

@@ -111,11 +111,14 @@ const galeria = [
 
   <FAQ itens={faqGeral} />
 
+  {/* Formulário desligado: o CTA final já leva ao WhatsApp, sem repetir o botão. */}
+  {site.formularioAtivo && (
   <section class="secao bg-cinza" aria-label="Formulário de orçamento">
     <div class="container-site">
       <LeadForm />
     </div>
   </section>
+  )}
 
   <CTAFinal />
 </Base>

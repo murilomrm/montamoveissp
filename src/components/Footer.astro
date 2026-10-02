@@ -3,7 +3,6 @@ import { site } from "@/data/site";
 import { servicos } from "@/data/servicos";
 import { regioesRodape } from "@/lib/regioes";
 import { href } from "@/lib/url";
-import WhatsAppButton from "./WhatsAppButton.astro";
 
 interface Props { servico?: string; regiao?: string }
 const { servico, regiao } = Astro.props;
@@ -17,7 +16,6 @@ const ano = new Date().getFullYear();
       <p class="mb-1 text-sm"><strong>Horário:</strong> {site.horario}</p>
       <p class="mb-4 text-sm"><a href={`tel:+${site.whatsapp}`} class="font-semibold text-primaria">{site.telefoneExibicao}</a></p>
       {site.temEmail && site.email && <p class="mb-4 text-sm"><a href={`mailto:${site.email}`}>{site.email}</a></p>}
-      <WhatsAppButton origem="rodape" servico={servico} regiao={regiao} texto="WhatsApp" class="text-sm" />
     </div>
     <nav aria-label="Serviços">
       <p class="mb-2 font-semibold text-primaria">Serviços</p>

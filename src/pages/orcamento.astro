@@ -58,8 +58,11 @@ const fatores = [
     </div>
   </section>
 
+  {/* Formulário desligado: o CTA final já leva ao WhatsApp, sem repetir o botão. */}
+  {site.formularioAtivo && (
   <section class="secao" aria-label="Formulário de orçamento">
     <div class="container-site"><LeadForm titulo="Peça o valor agora" /></div>
   </section>
+  )}
   <CTAFinal titulo="Mande a lista e receba o valor" />
 </Base>

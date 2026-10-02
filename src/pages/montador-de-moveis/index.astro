@@ -1,4 +1,5 @@
 ---
+import { site } from "@/data/site";
 import Base from "@/layouts/Base.astro";
 import { paginas } from "@/data/paginas";
 import { regioesPublicadas, agruparPorMacro } from "@/lib/regioes";
@@ -35,8 +36,11 @@ const titulos: Record<string, string> = { Capital: "São Paulo, capital", ABC: "
       ))}
     </div>
   </section>
+  {/* Formulário desligado: o CTA final já leva ao WhatsApp, sem repetir o botão. */}
+  {site.formularioAtivo && (
   <section class="secao" aria-label="Formulário de orçamento">
     <div class="container-site"><LeadForm /></div>
   </section>
+  )}
   <CTAFinal />
 </Base>
