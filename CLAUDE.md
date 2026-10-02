@@ -29,7 +29,7 @@ A empresa não executa a montagem: ela intermedeia. Isso muda o que o site pode 
 6. Marcas de loja (Mobly, MadeiraMadeira, Amazon, Magalu, Tok&Stok, Leroy Merlin) só no corpo do texto. Nunca em title, H1, URL ou anúncio.
 7. Uma única imagem OG padrão em `public/og.png`. Páginas de serviço e região podem sobrescrever.
 8. URLs: minúsculas, hifens, sem acento, barra final. Canonical em todas as páginas.
-9. **Nunca exibir preço em reais.** Todo CTA de valor leva ao WhatsApp. `/orcamento/` explica a cotação sem citar números.
+9. **Nunca exibir tabela de preço.** A única exceção é o piso, sempre como "a partir de R$ 400" (`site.valorMinimo`, ligado por `site.exibirValorMinimo`), que precisa bater com o recurso de preço do Google Ads. Qualquer outro valor em reais derruba o build. Todo CTA de valor leva ao WhatsApp.
 10. **Nunca prometer garantia.** Nada de "garantia", "90 dias", "voltamos sem custo", "asseguramos" ou equivalente com outro nome. É marketplace e não assume responsabilidade por serviço de terceiro. `site.prometerGarantia` é `false` e o build falha se o termo aparecer.
 11. **Nunca prometer prazo de resposta nem atendimento no mesmo dia.** O orçamento volta depois da consulta aos fornecedores, sem prazo divulgado. `site.prometerPrazoResposta` é `false`. Dizer quanto dura a montagem (campo `tempoMedio`) é permitido: isso é execução, não resposta.
 12. **Nunca citar forma de pagamento.** Nada de Pix, cartão, maquininha, dinheiro, parcelamento ou adiantamento. Isso é combinado na conversa. `site.exibirFormaDePagamento` é `false`.

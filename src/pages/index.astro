@@ -56,7 +56,7 @@ import Foto from "@/components/Foto.astro";
     <div class="container-site">
       <h2 id="como-funciona-titulo" class="mb-8">Como funciona</h2>
       <Steps />
-      <p class="mt-8 text-sm text-cinza-medio">Sem tabela fixa: o valor depende do móvel e do endereço. <a href={href("/orcamento/")} class="text-primaria underline">Entenda como o orçamento é feito</a>.</p>
+      <p class="mt-8 text-sm text-cinza-medio">{site.exibirValorMinimo && <>Serviços a partir de R$ {site.valorMinimo}. </>}O valor depende do móvel e do endereço, e você recebe o valor fechado antes de agendar. <a href={href("/orcamento/")} class="text-primaria underline">Entenda como o orçamento é feito</a>.</p>
     </div>
   </section>
 

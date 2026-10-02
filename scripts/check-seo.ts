@@ -17,7 +17,8 @@ const MARCAS = ["Mobly", "MadeiraMadeira", "Amazon", "Magalu", "Tok&Stok", "Lero
 
 // Regras de negócio do marketplace: nada de garantia, prazo prometido ou forma de pagamento.
 const PROIBIDOS: { nome: string; re: RegExp; quando: () => boolean }[] = [
-  { nome: "valor em reais", re: /R\$/, quando: () => !site.exibirPrecoNoSite },
+  // Só o piso (site.valorMinimo) pode aparecer, e só se site.exibirValorMinimo for true.
+  { nome: "valor em reais", re: site.exibirValorMinimo ? new RegExp(`R\\$(?!\\s?${site.valorMinimo}\\b)`) : /R\$/, quando: () => !site.exibirPrecoNoSite },
   { nome: "nota fiscal", re: /nota fiscal/i, quando: () => !site.temCnpj },
   { nome: "promessa de garantia", re: /\bgarant(ia|ias|imos|ido|ida|e|em)\b|\b90 dias\b|asseguramos|voltamos sem custo/i, quando: () => !site.prometerGarantia },
   // Só promessa de RESPOSTA ou de ATENDIMENTO. Duração da montagem (tempoMedio) é informação legítima.

@@ -17,8 +17,13 @@ export const site = {
   instagram: "", // preencher com a URL do perfil quando existir
   mensagemWhatsappPadrao: "Olá! Quero um orçamento de montagem de móveis.",
 
-  // REGRA FIXA: nunca true. Nenhuma página exibe valor em reais. Todo CTA de preço leva ao WhatsApp.
+  // REGRA FIXA: nunca true. Nenhuma página exibe tabela de preço. Todo CTA de preço leva ao WhatsApp.
   exibirPrecoNoSite: false,
+
+  // Única exceção ao preço: o piso do serviço, sempre como "a partir de". Filtra quem procura serviço pequeno
+  // e precisa bater com o recurso de preço do Google Ads. O validador só aceita "R$ 400" enquanto isto for true.
+  exibirValorMinimo: true,
+  valorMinimo: 400,
 
   // REGRA FIXA: a MontaMóveis SP é um marketplace que conecta cliente e montador.
   // Nenhum texto do site pode prometer garantia, prazo de resposta ou forma de pagamento.

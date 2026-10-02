@@ -27,7 +27,7 @@ const fatores = [
   <section class="container-site grid items-center gap-8 py-8 md:grid-cols-2 md:py-12">
     <div>
       <h1 class="mb-4">Como funciona o orçamento</h1>
-      <p class="mb-4 text-lg">Não trabalhamos com tabela fixa. Cada montagem é diferente, e um valor genérico quase sempre muda na hora. O orçamento é feito pelo WhatsApp, com base no que você vai montar e em onde você mora.</p>
+      <p class="mb-4 text-lg">Não trabalhamos com tabela fixa. Cada montagem é diferente, e um valor genérico quase sempre muda na hora. O orçamento é feito pelo WhatsApp, com base no que você vai montar e em onde você mora.{site.exibirValorMinimo && <> Os serviços começam em R$ {site.valorMinimo}.</>}</p>
       <WhatsAppButton origem="hero" class="text-lg" />
     </div>
     <Foto nome="whatsapp-atendimento" alt="Pessoa enviando lista de móveis pelo celular" largura={1200} altura={900} />
