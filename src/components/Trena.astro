@@ -1,0 +1,21 @@
+---
+// Fita de trena desenhada em SVG: marcação a cada 0,5 cm e número a cada centímetro.
+// Largura fixa e cortada pelo contêiner, para os números nunca distorcerem no celular.
+interface Props { class?: string }
+const { class: classe = "" } = Astro.props;
+const passo = 8; // px por meio centímetro
+const total = 2000;
+const marcas = Array.from({ length: Math.floor(total / passo) + 1 }, (_, i) => i);
+---
+<div class:list={["overflow-hidden border-y-2 border-primaria bg-acao", classe]} aria-hidden="true">
+  <svg width={total} height="30" viewBox={`0 0 ${total} 30`} class="block">
+    {marcas.map((i) => {
+      const x = i * passo + 0.5;
+      const cm = i % 2 === 0;
+      return <line x1={x} x2={x} y1="0" y2={cm ? (i % 10 === 0 ? 16 : 11) : 6} stroke="#232a31" stroke-width="1" />;
+    })}
+    {marcas.filter((i) => i % 2 === 0 && i > 0).map((i) => (
+      <text x={i * passo + 2} y="27" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="600" font-size="11" fill="#232a31">{i / 2}</text>
+    ))}
+  </svg>
+</div>

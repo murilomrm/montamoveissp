@@ -19,9 +19,10 @@ interface Props {
   prioridade?: boolean; // true no hero (sem lazy)
   class?: string;
   legenda?: string;
+  classeImg?: string; // ex.: "aspect-[4/5]" para recortar a foto num formato fixo
 }
 
-const { nome, alt, largura = 1200, altura = 900, prioridade = false, class: classe = "", legenda } = Astro.props;
+const { nome, alt, largura = 1200, altura = 900, prioridade = false, class: classe = "", legenda, classeImg = "" } = Astro.props;
 
 const manifesto = fotos as Record<string, { largura: number; altura: number; ext: string }>;
 const foto = manifesto[nome];
@@ -39,13 +40,13 @@ const src = foto ? href(`/img/${nome}.${foto.ext}`) : null;
       loading={prioridade ? "eager" : "lazy"}
       decoding={prioridade ? "sync" : "async"}
       fetchpriority={prioridade ? "high" : undefined}
-      class="h-auto w-full rounded-xl object-cover"
+      class:list={["h-auto w-full rounded-sm object-cover", classeImg]}
     />
   ) : (
     <div
       role="img"
       aria-label={alt}
-      class="w-full rounded-xl bg-gray-200"
+      class="w-full rounded-sm bg-gray-200"
       style={`aspect-ratio: ${w} / ${h}`}
     ></div>
   )}

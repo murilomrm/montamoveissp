@@ -10,35 +10,12 @@ const passos = [
   { titulo: "Confira no fim", texto: "Portas, gavetas e nivelamento testados com o montador ainda no local." },
 ];
 ---
-<ol class="grid gap-8 md:grid-cols-4 md:gap-4">
+<ol class="grid gap-10 md:grid-cols-4 md:gap-8">
   {passos.map((p, i) => (
-    <li class="relative flex gap-4 md:flex-col md:gap-0">
-      {/* Trilho até o próximo passo. Some no último. Mobile: vertical. Desktop: horizontal. */}
-      {i < passos.length - 1 && (
-        <span
-          aria-hidden="true"
-          class="pointer-events-none absolute bg-gray-200 left-[21px] top-11 h-[calc(100%-0.75rem)] w-0.5 md:left-11 md:top-[21px] md:h-0.5 md:w-[calc(100%-1.75rem)]"
-        ></span>
-      )}
-
-      <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-acao text-lg font-bold text-primaria">
-        {i + 1}
-      </span>
-
-      {i < passos.length - 1 && (
-        <svg
-          aria-hidden="true"
-          class="absolute right-1 top-[13px] z-10 hidden h-4 w-4 text-gray-400 md:block"
-          viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-        >
-          <path d="M4 2l6 6-6 6" />
-        </svg>
-      )}
-
-      <div class="md:mt-4 md:pr-4">
-        <h3 class="mb-1">{p.titulo}</h3>
-        <p class="text-sm text-cinza-medio">{p.texto}</p>
-      </div>
+    <li class="border-t-2 border-acao pt-4">
+      <span class="block font-[family-name:var(--font-titulo)] text-6xl font-bold leading-none text-acao" aria-hidden="true">{i + 1}</span>
+      <h3 class="mb-1 mt-3 text-white">{p.titulo}</h3>
+      <p class="text-white/80">{p.texto}</p>
     </li>
   ))}
 </ol>

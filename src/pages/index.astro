@@ -17,46 +17,93 @@ import FAQ from "@/components/FAQ.astro";
 import LeadForm from "@/components/LeadForm.astro";
 import CTAFinal from "@/components/CTAFinal.astro";
 import Foto from "@/components/Foto.astro";
+import Trena from "@/components/Trena.astro";
+
+// Planejados e escritório primeiro: são os serviços de maior valor.
+const porSlug = (slug: string) => servicos.find((s) => s.slug === slug)!;
+const destaques = [
+  { servico: porSlug("montagem-de-moveis-planejados"), foto: "real-cozinha-granito", alt: "Cozinha planejada branca com bancada de granito e iluminação embutida" },
+  { servico: porSlug("montagem-de-moveis-de-escritorio"), foto: "real-estante-escritorio", alt: "Estante de ferro preto com prateleiras e gaveteiro em madeira" },
+];
+const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === s.slug));
+
+// Fotos reais de serviços feitos por montadores da rede (enviadas pela empresa em out/2026).
+const galeria = [
+  { foto: "real-painel-ripado-led", alt: "Painel ripado de madeira com TV e rack iluminado", legenda: "Painel ripado com LED" },
+  { foto: "real-cozinha-americana", alt: "Cozinha americana com balcão ripado e armários aéreos", legenda: "Cozinha americana" },
+  { foto: "real-guarda-roupa-espelho", alt: "Guarda-roupa azul com porta de correr espelhada", legenda: "Guarda-roupa de correr" },
+  { foto: "real-banheiro", alt: "Gabinete de banheiro com espelheira e nicho iluminado", legenda: "Banheiro planejado" },
+  { foto: "real-cristaleira", alt: "Cristaleira com portas de vidro e iluminação interna", legenda: "Cristaleira com LED" },
+  { foto: "real-guarda-roupa-madeira", alt: "Guarda-roupa de seis portas em madeira", legenda: "Guarda-roupa 6 portas" },
+  { foto: "real-cozinha-ilha", alt: "Cozinha branca com ilha em granito", legenda: "Cozinha com ilha" },
+  { foto: "real-rack-led", alt: "Rack baixo com iluminação de LED", legenda: "Rack com LED" },
+  { foto: "real-guarda-roupa-portas", alt: "Guarda-roupa branco com gavetas em madeira e porta espelhada", legenda: "Guarda-roupa com espelho" },
+];
 ---
 <Base title={paginas.home.title} description={paginas.home.description} path="/" tipoPagina="home" schemas={[schemaFaq(faqGeral)]}>
   <section class="bg-cinza">
-    <div class="container-site grid items-center gap-8 py-12 md:grid-cols-2 md:py-16">
-      <div>
-        <h1 class="mb-4">Montador de móveis e planejados em São Paulo</h1>
-        <p class="mb-6 text-lg">Montagem e desmontagem de guarda-roupa, cozinha, cama, escritório, móvel comprado online e planejado em módulos. Capital, ABC e Grande SP. Mande a lista com fotos pelo WhatsApp e receba o valor antes de agendar.</p>
-        <div class="mb-8">
+    <div class="container-site grid gap-10 pt-10 pb-12 md:grid-cols-[1.15fr_1fr] md:items-end md:pt-16 md:pb-16">
+      <div class="md:pb-4">
+        <h1 class="mb-5 max-w-[14ch]">Montador de móveis e planejados em São Paulo</h1>
+        <p class="mb-7 max-w-[52ch] text-lg">Guarda-roupa, cozinha, closet, painel de TV e escritório. Você manda fotos pelo WhatsApp, recebe o valor fechado e só agenda se aprovar. Capital, ABC e Grande SP.</p>
+        <div class="mb-9 flex flex-wrap items-center gap-x-5 gap-y-3">
           <WhatsAppButton origem="hero" class="text-lg" />
+          {site.exibirValorMinimo && <span class="text-cinza-medio">Serviços a partir de R$ {site.valorMinimo}</span>}
         </div>
         <Provas />
       </div>
-      <Foto nome="hero" alt="Montador de móveis ajustando painel de guarda-roupa em quarto de apartamento" largura={1280} altura={720} prioridade />
+      <Foto nome="real-closet-ripado" alt="Closet planejado com portas em madeira, puxadores pretos e sanca iluminada" prioridade class="border-2 border-primaria bg-white p-2" classeImg="aspect-[4/5] md:aspect-[4/5]" />
     </div>
+    <Trena />
   </section>
 
   <section id="servicos" class="secao scroll-mt-20" aria-labelledby="servicos-titulo">
     <div class="container-site">
-      <h2 id="servicos-titulo" class="mb-2">O que montamos</h2>
-      <p class="mb-8 text-cinza-medio">Cada serviço tem página própria com o que está incluso, tempo médio e perguntas comuns.</p>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {servicos.map((s) => <ServiceCard servico={s} />)}
+      <h2 id="servicos-titulo" class="mb-3">O que montamos</h2>
+      <p class="mb-10 max-w-[60ch] text-cinza-medio">Do móvel que chegou na caixa ao planejado da marcenaria. Cada serviço tem página com o que está incluso e o tempo médio.</p>
+
+      <div class="mb-6 grid gap-6 md:grid-cols-2">
+        {destaques.map((d) => (
+          <a href={href(`/${d.servico.slug}/`)} class="group block">
+            <Foto nome={d.foto} alt={d.alt} classeImg="aspect-[3/2]" />
+            <h3 class="mt-4 mb-1 text-2xl group-hover:underline group-hover:decoration-acao group-hover:decoration-4 group-hover:underline-offset-4">{d.servico.nome}</h3>
+            <p class="text-cinza-medio">{d.servico.resumo}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="grid border-t border-gray-300 md:grid-cols-2 md:gap-x-10">
+        {demais.map((s) => <ServiceCard servico={s} />)}
       </div>
     </div>
   </section>
 
-  <section class="secao bg-cinza" aria-labelledby="regioes-titulo">
+  <section class="secao bg-cinza" aria-labelledby="trabalhos-titulo">
     <div class="container-site">
-      <h2 id="regioes-titulo" class="mb-2">Onde atendemos</h2>
-      <p class="mb-6 text-cinza-medio">Toda a capital, o ABC e a Grande São Paulo. Regiões mais atendidas:</p>
-      <RegionGrid regioes={regioesPrioridade1} />
-      <a href={href("/montador-de-moveis/")} class="mt-6 inline-block font-semibold text-primaria underline underline-offset-2">Ver todas as regiões</a>
+      <h2 id="trabalhos-titulo" class="mb-3">Trabalhos de montadores da rede</h2>
+      <p class="mb-8 max-w-[60ch] text-cinza-medio">Fotos tiradas no dia da montagem, sem edição.</p>
+      <ul class="columns-2 gap-3 md:columns-3 md:gap-4 [&>li]:mb-3 md:[&>li]:mb-4">
+        {galeria.map((g) => (
+          <li class="break-inside-avoid"><Foto nome={g.foto} alt={g.alt} legenda={g.legenda} /></li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="como-funciona-titulo">
+  <section class="secao" aria-labelledby="regioes-titulo">
     <div class="container-site">
-      <h2 id="como-funciona-titulo" class="mb-8">Como funciona</h2>
+      <h2 id="regioes-titulo" class="mb-3">Onde atendemos</h2>
+      <p class="mb-6 text-cinza-medio">Toda a capital, o ABC e a Grande São Paulo. Regiões mais atendidas:</p>
+      <RegionGrid regioes={regioesPrioridade1} />
+      <a href={href("/montador-de-moveis/")} class="mt-6 inline-block font-semibold text-primaria underline decoration-acao decoration-2 underline-offset-4">Ver todas as regiões</a>
+    </div>
+  </section>
+
+  <section class="secao bg-primaria" aria-labelledby="como-funciona-titulo">
+    <div class="container-site">
+      <h2 id="como-funciona-titulo" class="mb-10 text-white">Como funciona</h2>
       <Steps />
-      <p class="mt-8 text-sm text-cinza-medio">{site.exibirValorMinimo && <>Serviços a partir de R$ {site.valorMinimo}. </>}O valor depende do móvel e do endereço, e você recebe o valor fechado antes de agendar. <a href={href("/orcamento/")} class="text-primaria underline">Entenda como o orçamento é feito</a>.</p>
+      <p class="mt-10 text-white/80">{site.exibirValorMinimo && <>Serviços a partir de R$ {site.valorMinimo}. </>}O valor depende do móvel e do endereço, e você recebe o valor fechado antes de agendar. <a href={href("/orcamento/")} class="text-acao underline underline-offset-4">Entenda como o orçamento é feito</a>.</p>
     </div>
   </section>
 

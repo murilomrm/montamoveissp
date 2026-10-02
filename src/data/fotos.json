@@ -59,6 +59,86 @@
     "altura": 768,
     "ext": "webp"
   },
+  "real-bancada-escritorio": {
+    "largura": 1200,
+    "altura": 675,
+    "ext": "webp"
+  },
+  "real-banheiro": {
+    "largura": 927,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-closet-ripado": {
+    "largura": 900,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-cozinha-americana": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-cozinha-compacta": {
+    "largura": 900,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-cozinha-granito": {
+    "largura": 937,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-cozinha-ilha": {
+    "largura": 938,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-cristaleira": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-estante-escritorio": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-guarda-roupa-claro": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-guarda-roupa-espelho": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-guarda-roupa-madeira": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-guarda-roupa-portas": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-painel-ripado-led": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-painel-tv": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-rack-led": {
+    "largura": 900,
+    "altura": 1200,
+    "ext": "webp"
+  },
   "whatsapp-atendimento": {
     "largura": 1408,
     "altura": 768,
