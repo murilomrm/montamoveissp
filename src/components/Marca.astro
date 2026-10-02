@@ -1,0 +1,16 @@
+---
+// Marca em SVG, na paleta do site. Quadrado amarelo de trena com o M em grafite,
+// e o nome ao lado em Barlow Condensed. Substitui o logo.png antigo (navy e laranja).
+import { site } from "@/data/site";
+interface Props { class?: string }
+const { class: classe = "" } = Astro.props;
+---
+<span class:list={["inline-flex items-center gap-2.5", classe]}>
+  <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" class="shrink-0">
+    <rect width="36" height="36" fill="#f5c518" />
+    <path d="M7 29V8h4.6l6.4 12.2L24.4 8H29v21h-4.2V16.1l-5.3 10.1h-3L11.2 16.1V29z" fill="#232a31" />
+    <path d="M3 33h30" stroke="#232a31" stroke-width="2" />
+    <path d="M6 33v-3M12 33v-2M18 33v-3M24 33v-2M30 33v-3" stroke="#232a31" stroke-width="1.5" />
+  </svg>
+  <span class="font-[family-name:var(--font-titulo)] text-2xl font-bold leading-none tracking-tight text-primaria">{site.nome}</span>
+</span>

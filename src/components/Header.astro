@@ -2,6 +2,7 @@
 import { site } from "@/data/site";
 import { href } from "@/lib/url";
 import WhatsAppButton from "./WhatsAppButton.astro";
+import Marca from "./Marca.astro";
 
 interface Props { servico?: string; regiao?: string }
 const { servico, regiao } = Astro.props;
@@ -17,10 +18,7 @@ const nav = [
 ---
 <header class="sticky top-0 z-30 border-b border-gray-200 bg-white/95 backdrop-blur">
   <div class="container-site flex h-16 items-center justify-between gap-3">
-    <a href={href("/")} class="flex items-center gap-2 font-[family-name:var(--font-titulo)] font-bold text-primaria" aria-label={`${site.nome}, página inicial`}>
-<img src={href("/logo.png")} alt="" width="32" height="32" class="h-8 w-8 rounded-md" />
-      <span class="text-2xl leading-none">{site.nome}</span>
-    </a>
+    <a href={href("/")} aria-label={`${site.nome}, página inicial`}><Marca /></a>
 
     <nav class="hidden items-center gap-5 lg:flex" aria-label="Principal">
       {nav.map((n) => (

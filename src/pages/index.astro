@@ -18,6 +18,7 @@ import LeadForm from "@/components/LeadForm.astro";
 import CTAFinal from "@/components/CTAFinal.astro";
 import Foto from "@/components/Foto.astro";
 import Trena from "@/components/Trena.astro";
+import Conversa from "@/components/Conversa.astro";
 
 // Planejados e escritório primeiro: são os serviços de maior valor.
 const porSlug = (slug: string) => servicos.find((s) => s.slug === slug)!;
@@ -42,17 +43,17 @@ const galeria = [
 ---
 <Base title={paginas.home.title} description={paginas.home.description} path="/" tipoPagina="home" schemas={[schemaFaq(faqGeral)]}>
   <section class="bg-cinza">
-    <div class="container-site grid gap-10 pt-10 pb-12 md:grid-cols-[1.15fr_1fr] md:items-end md:pt-16 md:pb-16">
-      <div class="md:pb-4">
+    <div class="container-site grid gap-x-12 gap-y-8 pt-10 pb-12 md:grid-cols-[1.1fr_1fr] md:grid-rows-[auto_1fr] md:pt-16 md:pb-16">
+      <div>
         <h1 class="mb-5 max-w-[14ch]">Montador de móveis e planejados em São Paulo</h1>
-        <p class="mb-7 max-w-[52ch] text-lg">Guarda-roupa, cozinha, closet, painel de TV e escritório. Você manda fotos pelo WhatsApp, recebe o valor fechado e só agenda se aprovar. Capital, ABC e Grande SP.</p>
-        <div class="mb-9 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <p class="mb-7 max-w-[52ch] text-lg">Guarda-roupa, cozinha, closet, painel de TV e escritório. Você manda fotos pelo WhatsApp, recebe o valor fechado e só agenda se aprovar.</p>
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
           <WhatsAppButton origem="hero" class="text-lg" />
           {site.exibirValorMinimo && <span class="text-cinza-medio">Serviços a partir de R$ {site.valorMinimo}</span>}
         </div>
-        <Provas />
       </div>
-      <Foto nome="real-closet-ripado" alt="Closet planejado com portas em madeira, puxadores pretos e sanca iluminada" prioridade class="border-2 border-primaria bg-white p-2" classeImg="aspect-[4/5] md:aspect-[4/5]" />
+      <Foto nome="real-closet-ripado" alt="Closet planejado com portas em madeira, puxadores pretos e sanca iluminada" prioridade classeImg="aspect-[4/5]" legenda="Closet planejado, montado a partir do projeto da marcenaria" class="md:row-span-2" />
+      <div class="md:self-start"><Provas /></div>
     </div>
     <Trena />
   </section>
@@ -100,10 +101,13 @@ const galeria = [
   </section>
 
   <section class="secao bg-primaria" aria-labelledby="como-funciona-titulo">
-    <div class="container-site">
-      <h2 id="como-funciona-titulo" class="mb-10 text-white">Como funciona</h2>
-      <Steps />
-      <p class="mt-10 text-white/80">{site.exibirValorMinimo && <>Serviços a partir de R$ {site.valorMinimo}. </>}O valor depende do móvel e do endereço, e você recebe o valor fechado antes de agendar. <a href={href("/orcamento/")} class="text-acao underline underline-offset-4">Entenda como o orçamento é feito</a>.</p>
+    <div class="container-site grid gap-10 md:grid-cols-2 md:gap-16">
+      <div>
+        <h2 id="como-funciona-titulo" class="mb-8 text-white">Como funciona</h2>
+        <Steps />
+      </div>
+      <Conversa />
+      <p class="text-white/80 md:col-span-2">{site.exibirValorMinimo && <>Serviços a partir de R$ {site.valorMinimo}. </>}O valor depende do móvel e do endereço, e você recebe o valor fechado antes de agendar. <a href={href("/orcamento/")} class="text-acao underline underline-offset-4">Entenda como o orçamento é feito</a>.</p>
     </div>
   </section>
 

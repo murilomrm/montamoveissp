@@ -1,0 +1,36 @@
+---
+// Exemplo de como o orçamento acontece no WhatsApp. Conversa fictícia e sem valores:
+// mostrar preço aqui violaria a regra 9, e prazo de resposta violaria a regra 11.
+import { site } from "@/data/site";
+
+const mensagens = [
+  { de: "cliente", texto: "Oi! Comprei um guarda-roupa de 6 portas e chega quinta. Vocês montam em Moema? Prédio com elevador." },
+  { de: "cliente", foto: true, texto: "Foto da caixa e da nota" },
+  { de: "empresa", texto: "Oi! Montamos sim. Recebi as fotos, vou conferir com o montador e te retorno com o valor fechado." },
+  { de: "empresa", texto: "Pronto. Te mandei o valor por aqui. Se aprovar, é só escolher o dia." },
+  { de: "cliente", texto: "Fechado. Pode ser sábado de manhã?" },
+  { de: "empresa", texto: "Pode. Sábado, 9h. O montador leva ferramenta própria e você confere tudo com ele antes de ir embora." },
+];
+---
+<figure class="rounded-md border border-gray-300 bg-[#e5ddd5] p-3 sm:p-4" aria-label="Exemplo de conversa pelo WhatsApp">
+  <div class="mb-3 flex items-center gap-2 border-b border-black/10 pb-3">
+    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-primaria font-[family-name:var(--font-titulo)] text-lg font-bold text-acao">M</span>
+    <span class="leading-tight">
+      <strong class="block text-sm text-primaria">{site.nome}</strong>
+      <span class="text-xs text-cinza-medio">{site.telefoneExibicao}</span>
+    </span>
+  </div>
+  <ol class="flex flex-col gap-2">
+    {mensagens.map((m) => (
+      <li class:list={["max-w-[85%] rounded-lg px-3 py-2 text-[0.95rem] leading-snug shadow-[0_1px_0_rgba(0,0,0,.08)]", m.de === "cliente" ? "self-end rounded-tr-none bg-[#dcf8c6] text-texto" : "self-start rounded-tl-none bg-white text-texto"]}>
+        {m.foto ? (
+          <span class="flex items-center gap-2 text-cinza-medio">
+            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><circle cx="10" cy="10" r="2.5"/><path d="M7 4.5l1-2h4l1 2"/></svg>
+            {m.texto}
+          </span>
+        ) : m.texto}
+      </li>
+    ))}
+  </ol>
+  <figcaption class="mt-3 text-xs text-cinza-medio">Exemplo de conversa. O valor é combinado no WhatsApp, conforme o móvel e o endereço.</figcaption>
+</figure>

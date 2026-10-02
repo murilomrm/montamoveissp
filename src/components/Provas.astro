@@ -1,19 +1,19 @@
 ---
-// Sem promessa de garantia, de prazo de resposta ou de forma de pagamento (ver site.ts).
-const provas = [
-  { titulo: "Valor fechado antes", texto: "Você aprova e só depois agenda" },
-  { titulo: "Ferramenta própria", texto: "Montador com referência checada" },
-  { titulo: "Planejado e escritório", texto: "Além de móvel de caixa" },
+// Ficha rápida: o que o cliente quer saber antes de chamar. Só fatos de site.ts.
+// Sem promessa de garantia, de prazo de resposta ou de forma de pagamento.
+import { site } from "@/data/site";
+const linhas = [
+  { rotulo: "Atende", valor: "Capital, ABC e Grande SP" },
+  { rotulo: "Horário", valor: site.horario },
+  { rotulo: "Quem monta", valor: "Montadores da rede, com ferramenta própria" },
+  { rotulo: "Como pedir", valor: "Fotos e bairro pelo WhatsApp. Valor fechado antes de agendar" },
 ];
 ---
-<ul class="grid gap-4 border-t border-gray-300 pt-5 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-gray-300">
-  {provas.map((p) => (
-    <li class="flex gap-2 sm:px-4 sm:first:pl-0">
-      <svg class="mt-1 h-4 w-4 shrink-0 text-acao-texto" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg>
-      <span>
-        <strong class="block font-semibold leading-tight text-primaria">{p.titulo}</strong>
-        <span class="text-sm text-cinza-medio">{p.texto}</span>
-      </span>
-    </li>
+<dl class="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-t-2 border-primaria pt-4 text-[0.95rem]">
+  {linhas.map((l) => (
+    <>
+      <dt class="font-[family-name:var(--font-titulo)] text-lg font-semibold leading-snug text-primaria">{l.rotulo}</dt>
+      <dd class="leading-snug text-texto">{l.valor}</dd>
+    </>
   ))}
-</ul>
+</dl>

@@ -1,7 +1,6 @@
 ---
 import { site } from "@/data/site";
-// Fluxo em 4 etapas. No desktop a linha e as setas mostram a ordem da esquerda para a direita.
-// No mobile vira coluna com a linha na vertical. O trilho é desenhado por item e para no último passo.
+// Fluxo em 4 etapas, numerado porque é uma sequência de verdade.
 // Nenhum passo promete prazo de resposta, garantia ou cita forma de pagamento (ver site.ts).
 const passos = [
   { titulo: "Mande a lista", texto: "Pelo WhatsApp: quais móveis, o bairro e o andar. Foto da caixa ou do projeto já resolve." },
@@ -10,12 +9,14 @@ const passos = [
   { titulo: "Confira no fim", texto: "Portas, gavetas e nivelamento testados com o montador ainda no local." },
 ];
 ---
-<ol class="grid gap-10 md:grid-cols-4 md:gap-8">
+<ol class="flex flex-col">
   {passos.map((p, i) => (
-    <li class="border-t-2 border-acao pt-4">
-      <span class="block font-[family-name:var(--font-titulo)] text-6xl font-bold leading-none text-acao" aria-hidden="true">{i + 1}</span>
-      <h3 class="mb-1 mt-3 text-white">{p.titulo}</h3>
-      <p class="text-white/80">{p.texto}</p>
+    <li class="flex gap-4 border-t border-white/20 py-5 first:border-t-0 first:pt-0">
+      <span class="w-7 shrink-0 font-[family-name:var(--font-titulo)] text-2xl font-bold leading-none text-acao" aria-hidden="true">{i + 1}.</span>
+      <span>
+        <h3 class="mb-1 text-white">{p.titulo}</h3>
+        <p class="text-white/80">{p.texto}</p>
+      </span>
     </li>
   ))}
 </ol>

@@ -3,6 +3,7 @@ import { site } from "@/data/site";
 import { servicos } from "@/data/servicos";
 import { regioesRodape } from "@/lib/regioes";
 import { href } from "@/lib/url";
+import Marca from "./Marca.astro";
 
 interface Props { servico?: string; regiao?: string }
 const { servico, regiao } = Astro.props;
@@ -11,7 +12,7 @@ const ano = new Date().getFullYear();
 <footer class="border-t border-gray-200 bg-cinza">
   <div class="container-site grid gap-8 py-12 md:grid-cols-4">
     <div>
-      <p class="mb-2 text-lg font-bold text-primaria">{site.nome}</p>
+      <p class="mb-3"><Marca /></p>
       <p class="mb-3 text-sm text-cinza-medio">Montagem e desmontagem de móveis em São Paulo, ABC e Grande SP.</p>
       <p class="mb-1 text-sm"><strong>Horário:</strong> {site.horario}</p>
       <p class="mb-4 text-sm"><a href={`tel:+${site.whatsapp}`} class="font-semibold text-primaria">{site.telefoneExibicao}</a></p>
