@@ -89,6 +89,11 @@
     "altura": 772,
     "ext": "webp"
   },
+  "real-cozinha-alto-padrao": {
+    "largura": 746,
+    "altura": 745,
+    "ext": "webp"
+  },
   "real-cozinha-americana": {
     "largura": 675,
     "altura": 1200,
@@ -114,9 +119,19 @@
     "altura": 1200,
     "ext": "webp"
   },
+  "real-cozinha-integrada": {
+    "largura": 996,
+    "altura": 995,
+    "ext": "webp"
+  },
   "real-cristaleira": {
     "largura": 675,
     "altura": 1200,
+    "ext": "webp"
+  },
+  "real-dormitorio-planejado": {
+    "largura": 451,
+    "altura": 449,
     "ext": "webp"
   },
   "real-estante-escritorio": {
@@ -142,6 +157,11 @@
   "real-guarda-roupa-portas": {
     "largura": 675,
     "altura": 1200,
+    "ext": "webp"
+  },
+  "real-guarda-roupa-vidro": {
+    "largura": 946,
+    "altura": 1072,
     "ext": "webp"
   },
   "real-painel-ripado-led": {

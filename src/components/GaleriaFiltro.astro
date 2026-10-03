@@ -1,0 +1,48 @@
+---
+// Galeria com filtro por categoria. Sem dependência: botões com aria-pressed e um script curto.
+// Sem JavaScript, todas as fotos aparecem e os botões ficam ocultos.
+import Foto from "./Foto.astro";
+import { categorias, galeria } from "@/data/galeria";
+const contagem = Object.fromEntries(categorias.map((c) => [c.id, galeria.filter((g) => g.cat.includes(c.id)).length]));
+---
+<div data-galeria>
+  <div class="mb-6 hidden flex-wrap gap-2" data-filtros role="group" aria-label="Filtrar fotos por tipo de serviço">
+    <button type="button" data-filtro="todos" aria-pressed="true" class="filtro">Todos <span>{galeria.length}</span></button>
+    {categorias.map((c) => (
+      <button type="button" data-filtro={c.id} aria-pressed="false" class="filtro">{c.nome} <span>{contagem[c.id]}</span></button>
+    ))}
+  </div>
+  <ul class="columns-2 gap-3 md:columns-3 md:gap-4 [&>li]:mb-3 md:[&>li]:mb-4">
+    {galeria.map((g) => (
+      <li class="break-inside-avoid" data-cat={g.cat.join(" ")}><Foto nome={g.foto} alt={g.alt} legenda={g.legenda} /></li>
+    ))}
+  </ul>
+</div>
+<style>
+  .filtro {
+    display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: 0 1rem;
+    border: 2px solid var(--color-primaria); border-radius: 4px; background: #fff;
+    font-family: var(--font-titulo); font-size: 1.1rem; font-weight: 600; color: var(--color-primaria);
+    cursor: pointer; transition: background-color 120ms;
+  }
+  .filtro span { font-family: var(--font-sans); font-size: .8rem; font-weight: 500; opacity: .7; }
+  .filtro:hover { background: var(--color-cinza); }
+  .filtro[aria-pressed="true"] { background: var(--color-acao); }
+</style>
+<script>
+  for (const raiz of document.querySelectorAll<HTMLElement>("[data-galeria]")) {
+    const barra = raiz.querySelector<HTMLElement>("[data-filtros]");
+    const botoes = raiz.querySelectorAll<HTMLButtonElement>("[data-filtro]");
+    const itens = raiz.querySelectorAll<HTMLElement>("li[data-cat]");
+    if (!barra) continue;
+    barra.classList.remove("hidden");
+    barra.classList.add("flex");
+    for (const b of botoes) {
+      b.addEventListener("click", () => {
+        const f = b.dataset.filtro!;
+        botoes.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        itens.forEach((li) => { li.hidden = f !== "todos" && !li.dataset.cat!.split(" ").includes(f); });
+      });
+    }
+  }
+</script>
