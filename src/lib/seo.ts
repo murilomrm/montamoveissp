@@ -21,7 +21,7 @@ export function localBusiness() {
     url: absUrl("/"),
     telephone: `+${site.whatsapp}`,
     image: absUrl("/og.png"),
-    priceRange: "$$",
+    priceRange: site.exibirValorMinimo ? `A partir de R$ ${site.valorMinimo}` : "$$",
     address: {
       "@type": "PostalAddress",
       addressLocality: site.enderecoBase.cidade,

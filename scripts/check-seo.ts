@@ -22,7 +22,7 @@ const PROIBIDOS: { nome: string; re: RegExp; quando: () => boolean }[] = [
   { nome: "nota fiscal", re: /nota fiscal/i, quando: () => !site.temCnpj },
   { nome: "promessa de garantia", re: /\bgarant(ia|ias|imos|ido|ida|e|em)\b|\b90 dias\b|asseguramos|voltamos sem custo/i, quando: () => !site.prometerGarantia },
   // Só promessa de RESPOSTA ou de ATENDIMENTO. Duração da montagem (tempoMedio) é informação legítima.
-  { nome: "promessa de prazo", re: /resposta imediata|(?:or[çc]amento|resposta|retorno|respondemos|retornamos|receb[ae]\w*)[^.]{0,25}\bem at[ée]?\s*\d+\s*(?:minutos?|min|horas?|h)\b|\bem at[ée]\s*\d+\s*(?:minutos?|min|horas?|h)\b|(?:atendemos|montamos|agendamos|vamos)[^.]{0,25}no mesmo dia|\b\d+\s*minutos?\b[^.]{0,25}(?:or[çc]amento|resposta|retorno)/i, quando: () => !site.prometerPrazoResposta },
+  { nome: "promessa de prazo", re: /agenda[^.]{0,40}\b\d+\s*(?:a\s*\d+\s*)?(?:horas?|h|dias?)\b|resposta imediata|(?:or[çc]amento|resposta|retorno|respondemos|retornamos|receb[ae]\w*)[^.]{0,25}\bem at[ée]?\s*\d+\s*(?:minutos?|min|horas?|h)\b|\bem at[ée]\s*\d+\s*(?:minutos?|min|horas?|h)\b|(?:atendemos|montamos|agendamos|vamos)[^.]{0,25}no mesmo dia|\b\d+\s*minutos?\b[^.]{0,25}(?:or[çc]amento|resposta|retorno)/i, quando: () => !site.prometerPrazoResposta },
   { nome: "forma de pagamento", re: /\bpix\b|cart[ãa]o de cr[ée]dito|maquininha|\bdinheiro\b|adiantamento|\bparcelad/i, quando: () => !site.exibirFormaDePagamento },
 ];
 
