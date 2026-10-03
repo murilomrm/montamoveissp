@@ -20,6 +20,7 @@ import Foto from "@/components/Foto.astro";
 import Trena from "@/components/Trena.astro";
 import Conversa from "@/components/Conversa.astro";
 import GaleriaFiltro from "@/components/GaleriaFiltro.astro";
+import HeroCarrossel from "@/components/HeroCarrossel.astro";
 
 // Planejados e escritório primeiro: são os serviços de maior valor.
 const porSlug = (slug: string) => servicos.find((s) => s.slug === slug)!;
@@ -36,13 +37,13 @@ const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === 
     <div class="container-site grid gap-x-12 gap-y-8 pt-10 pb-12 md:grid-cols-[1.1fr_1fr] md:grid-rows-[auto_1fr] md:pt-16 md:pb-16">
       <div>
         <h1 class="mb-5 max-w-[14ch]">Montador de móveis e planejados em São Paulo</h1>
-        <p class="mb-7 max-w-[52ch] text-lg">Guarda-roupa, cozinha, closet, painel de TV e escritório. Você manda fotos pelo WhatsApp, recebe o valor fechado e só agenda se aprovar.</p>
+        <p class="mb-7 max-w-[40ch] text-xl leading-snug"><strong class="font-semibold text-primaria">Mande fotos pelo WhatsApp.</strong> Receba o valor fechado. Só agende se aprovar.</p>
         <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
           <WhatsAppButton origem="hero" class="text-lg" />
           {site.exibirValorMinimo && <span class="text-cinza-medio">Serviços a partir de R$ {site.valorMinimo}</span>}
         </div>
       </div>
-      <Foto nome="real-closet-ripado" alt="Closet planejado com portas em madeira, puxadores pretos e sanca iluminada" prioridade classeImg="aspect-[4/5]" legenda="Closet planejado, montado a partir do projeto da marcenaria" class="md:row-span-2" />
+      <div class="md:row-span-2"><HeroCarrossel /></div>
       <div class="md:self-start"><Provas /></div>
     </div>
     <Trena />

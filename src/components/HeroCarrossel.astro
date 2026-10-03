@@ -1,0 +1,71 @@
+---
+// Carrossel do topo sem dependência: scroll-snap nativo, setas, pontos e avanço automático a cada 5 s.
+// O avanço para quando a pessoa interage, quando a aba fica oculta ou com "reduzir movimento" ligado.
+// Só a primeira foto carrega com prioridade; as demais são lazy.
+import Foto from "./Foto.astro";
+const slides = [
+  { foto: "real-closet-ripado", alt: "Closet planejado com portas em madeira, puxadores pretos e sanca iluminada", legenda: "Closet planejado" },
+  { foto: "real-cozinha-alto-padrao", alt: "Cozinha planejada branca com portas almofadadas, torre de fornos e nichos iluminados", legenda: "Cozinha planejada com torre quente" },
+  { foto: "real-guarda-roupa-vidro", alt: "Guarda-roupa com portas de correr em vidro fumê e coluna de nichos iluminados", legenda: "Guarda-roupa com portas de vidro" },
+  { foto: "real-cozinha-integrada", alt: "Cozinha integrada com balcão ripado, armários cinza e painel de TV com LED", legenda: "Cozinha integrada à sala" },
+  { foto: "real-despensa-planejada", alt: "Despensa planejada com armários do chão ao teto e prateleiras abertas", legenda: "Despensa planejada" },
+  { foto: "real-painel-ripado-led", alt: "Painel ripado de madeira com TV e rack iluminado", legenda: "Painel ripado com LED" },
+];
+---
+<div class="relative" data-carrossel aria-roledescription="carrossel" aria-label="Trabalhos de montadores da rede">
+  <ul class="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-trilho>
+    {slides.map((s, i) => (
+      <li class="w-full shrink-0 snap-center" aria-roledescription="slide" aria-label={`${i + 1} de ${slides.length}: ${s.legenda}`}>
+        <div class="relative">
+          <Foto nome={s.foto} alt={s.alt} prioridade={i === 0} classeImg="aspect-[4/5] md:aspect-[4/5]" />
+          <span class="absolute bottom-0 left-0 bg-primaria px-3 py-1.5 font-[family-name:var(--font-titulo)] text-lg font-semibold text-white">{s.legenda}</span>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <button type="button" data-anterior aria-label="Foto anterior" class="seta left-2">
+    <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5"/></svg>
+  </button>
+  <button type="button" data-proxima aria-label="Próxima foto" class="seta right-2">
+    <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg>
+  </button>
+  <div class="mt-3 flex justify-center gap-2" data-pontos>
+    {slides.map((s, i) => (
+      <button type="button" data-ponto={i} aria-label={`Ver foto ${i + 1}: ${s.legenda}`} aria-current={i === 0 ? "true" : "false"} class="ponto"></button>
+    ))}
+  </div>
+</div>
+<style>
+  .seta {
+    position: absolute; top: calc(50% - 1.5rem); display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 999px; background: rgb(255 255 255 / .9); color: var(--color-primaria);
+    box-shadow: 0 1px 3px rgb(0 0 0 / .25); cursor: pointer;
+  }
+  .seta:hover { background: var(--color-acao); }
+  .ponto { width: 10px; height: 10px; border-radius: 999px; background: rgb(35 42 49 / .25); padding: 0; cursor: pointer; }
+  .ponto[aria-current="true"] { width: 28px; background: var(--color-primaria); }
+  @media (max-width: 767px) { .seta { display: none; } }
+</style>
+<script>
+  for (const raiz of document.querySelectorAll<HTMLElement>("[data-carrossel]")) {
+    const trilho = raiz.querySelector<HTMLElement>("[data-trilho]")!;
+    const pontos = [...raiz.querySelectorAll<HTMLButtonElement>("[data-ponto]")];
+    const total = pontos.length;
+    const atual = () => Math.round(trilho.scrollLeft / trilho.clientWidth);
+    const ir = (i: number) => trilho.scrollTo({ left: ((i + total) % total) * trilho.clientWidth, behavior: "smooth" });
+    let timer: number | undefined;
+    const parar = () => { if (timer) clearInterval(timer); timer = undefined; };
+    raiz.querySelector("[data-anterior]")?.addEventListener("click", () => { parar(); ir(atual() - 1); });
+    raiz.querySelector("[data-proxima]")?.addEventListener("click", () => { parar(); ir(atual() + 1); });
+    pontos.forEach((p, i) => p.addEventListener("click", () => { parar(); ir(i); }));
+    trilho.addEventListener("scroll", () => {
+      const i = atual();
+      pontos.forEach((p, j) => p.setAttribute("aria-current", String(i === j)));
+    }, { passive: true });
+    ["pointerdown", "touchstart", "wheel", "keydown"].forEach((ev) => trilho.addEventListener(ev, parar, { passive: true }));
+    const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduzir) {
+      timer = window.setInterval(() => { if (!document.hidden) ir(atual() + 1); }, 5000);
+    }
+  }
+</script>
