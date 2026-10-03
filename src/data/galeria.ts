@@ -4,7 +4,7 @@ export type Categoria = "planejados" | "alto-padrao" | "comercial" | "movel-pron
 
 export const categorias: { id: Categoria; nome: string }[] = [
   { id: "planejados", nome: "Planejados" },
-  { id: "alto-padrao", nome: "Alto padrão" },
+  { id: "alto-padrao", nome: "Médio/alto padrão" },
   { id: "comercial", nome: "Comercial" },
   { id: "movel-pronto", nome: "Móvel pronto" },
 ];
