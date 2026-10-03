@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { site } from "@/data/site";
+import { href } from "@/lib/url";
 import { paginas } from "@/data/paginas";
 import { faqGeral } from "@/data/faq";
 import { schemaBreadcrumb, schemaFaq } from "@/lib/seo";
@@ -34,6 +35,12 @@ const faqCurta = faqGeral.slice(0, 5);
           <dt class="font-semibold text-primaria">Horário</dt>
           <dd>{site.horario}</dd>
         </div>
+        {site.instagram && (
+          <div class="rounded-lg border border-gray-200 p-4">
+            <dt class="font-semibold text-primaria">Instagram</dt>
+            <dd><a href={site.instagram} rel="noopener" target="_blank" class="underline">{site.instagramUsuario}</a></dd>
+          </div>
+        )}
         {site.temEmail && site.email && (
           <div class="rounded-lg border border-gray-200 p-4">
             <dt class="font-semibold text-primaria">E-mail</dt>
@@ -42,7 +49,7 @@ const faqCurta = faqGeral.slice(0, 5);
         )}
         <div class="rounded-lg border border-gray-200 p-4 sm:col-span-2">
           <dt class="font-semibold text-primaria">Onde atendemos</dt>
-          <dd>São Paulo (todas as zonas), ABC e Grande São Paulo.</dd>
+          <dd>São Paulo (todas as zonas), ABC, Grande São Paulo e região de Jundiaí, Campinas e Atibaia. <a href={href("/montador-de-moveis/")} class="underline">Ver todas as cidades</a>.</dd>
         </div>
       </dl>
     </div>

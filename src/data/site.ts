@@ -15,6 +15,7 @@ export const site = {
     { dias: ["Saturday"], abre: "08:00", fecha: "18:00" },
   ],
   instagram: "https://www.instagram.com/montamoveis.sp/",
+  instagramUsuario: "@montamoveis.sp",
   mensagemWhatsappPadrao: "Olá! Quero um orçamento de montagem de móveis.",
 
   // REGRA FIXA: nunca true. Nenhuma página exibe tabela de preço. Todo CTA de preço leva ao WhatsApp.

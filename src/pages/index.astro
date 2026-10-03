@@ -76,6 +76,15 @@ const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === 
       <h2 id="trabalhos-titulo" class="mb-3">Trabalhos de montadores da rede</h2>
       <p class="mb-6 max-w-[60ch] text-cinza-medio">Fotos tiradas no dia da montagem, sem edição. Escolha o tipo de serviço:</p>
       <GaleriaFiltro />
+      {site.instagram && (
+        <p class="mt-8 text-cinza-medio">
+          Mais trabalhos e dicas no Instagram:
+          <a href={site.instagram} rel="noopener" target="_blank" class="ml-1 inline-flex items-center gap-1.5 font-semibold text-primaria underline decoration-acao decoration-2 underline-offset-4">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            {site.instagramUsuario}
+          </a>
+        </p>
+      )}
     </div>
   </section>
 
@@ -84,7 +93,7 @@ const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === 
   <section class="secao" aria-labelledby="regioes-titulo">
     <div class="container-site">
       <h2 id="regioes-titulo" class="mb-3">Onde atendemos</h2>
-      <p class="mb-6 text-cinza-medio">Toda a capital, o ABC e a Grande São Paulo. Regiões mais atendidas:</p>
+      <p class="mb-6 text-cinza-medio">Capital, ABC, Grande São Paulo e região de Jundiaí, Campinas e Atibaia. Regiões mais atendidas:</p>
       <RegionGrid regioes={regioesPrioridade1} />
       <a href={href("/montador-de-moveis/")} class="mt-6 inline-block font-semibold text-primaria underline decoration-acao decoration-2 underline-offset-4">Ver todas as regiões</a>
     </div>
