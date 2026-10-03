@@ -139,6 +139,16 @@
     "altura": 1200,
     "ext": "webp"
   },
+  "real-estante-ferro-madeira": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-expositor-loja": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
   "real-guarda-roupa-claro": {
     "largura": 675,
     "altura": 1200,
@@ -150,6 +160,11 @@
     "ext": "webp"
   },
   "real-guarda-roupa-madeira": {
+    "largura": 675,
+    "altura": 1200,
+    "ext": "webp"
+  },
+  "real-guarda-roupa-nogueira": {
     "largura": 675,
     "altura": 1200,
     "ext": "webp"
@@ -177,6 +192,11 @@
   "real-parede-planejada": {
     "largura": 1080,
     "altura": 765,
+    "ext": "webp"
+  },
+  "real-porta-ripada": {
+    "largura": 675,
+    "altura": 1200,
     "ext": "webp"
   },
   "real-quarto-planejado": {
