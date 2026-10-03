@@ -512,6 +512,78 @@ export const servicos: Servico[] = [
     ],
   },
   {
+    slug: "mudanca-de-escritorio",
+    nome: "Mudança de escritório e remanejamento de estações",
+    nomeCurto: "Empresas",
+    imagem: "real-estante-escritorio",
+    tituloSEO: "Mudança de Escritório e Estações de Trabalho em SP",
+    h1: "Mudança de escritório e remanejamento de estações de trabalho em São Paulo",
+    metaDescription:
+      "Desmontagem, transporte interno e remontagem de estações de trabalho, armários e salas de reunião. Equipe para 10 a 100 estações, à noite ou no sábado.",
+    palavraChave: "mudança de escritório",
+    resumo:
+      "Desmontagem e remontagem de estações de trabalho, armários e salas de reunião para mudança de layout, de andar ou de endereço, com equipe dimensionada para o volume.",
+    descricaoLonga: [
+      "Mudança de layout, troca de andar, novo escritório ou devolução de sala: em todos os casos o trabalho é o mesmo, desmontar dezenas de estações sem perder peça e remontar tudo no lugar certo antes da equipe voltar. O serviço cobre estações de trabalho em plataforma, em L e em ilha, armários altos e baixos, gaveteiros, mesas de reunião e balcões de recepção, em São Paulo e Grande SP.",
+      "O ponto que mais dá errado em mudança corporativa é a remontagem. Por isso cada estação é desmontada com etiqueta de posição, e a ferragem de cada uma vai num saco identificado. Na outra ponta, a equipe remonta seguindo a planta do novo layout, nivela os tampos de cada plataforma na mesma altura e confere as calhas de passagem de cabo.",
+      "O tamanho da equipe acompanha o volume. Para um remanejamento de 50 estações, o normal é uma equipe de três a quatro montadores trabalhando em sequência: um grupo desmonta, outro remonta, e o ambiente fica liberado por partes. Dá para fazer à noite ou no fim de semana, para a operação não parar.",
+      "Para o orçamento, mande pelo WhatsApp a quantidade e o tipo de cada móvel, fotos de um exemplar de cada, a planta ou um rascunho do novo layout e os dois endereços, se a mudança for de prédio. Informe também as regras dos condomínios: cadastro de prestador, horário de doca e uso do elevador de carga.",
+      "Ao final, cada estação é entregue nivelada, com gavetas e fechaduras testadas e as chaves separadas por posição. As caixas e embalagens ficam reunidas num ponto combinado com o responsável pela mudança.",
+    ],
+    oQueIncluso: [
+      "Desmontagem com etiqueta de posição e ferragem identificada",
+      "Remontagem seguindo a planta do novo layout",
+      "Nivelamento de plataformas e mesas de reunião",
+      "Montagem e fixação de armários altos e baixos",
+      "Teste de gavetas, fechaduras e chaves por posição",
+      "Equipe dimensionada para o volume, à noite ou no sábado",
+    ],
+    naoIncluso: [
+      "Transporte entre prédios (combinado com a transportadora da sua escolha)",
+      "Passagem de cabos de rede e elétrica",
+      "Remoção de entulho e descarte de móveis",
+      "Furação em piso elevado ou vidro",
+    ],
+    tempoMedio: "15 a 25 min para desmontar e 30 a 45 min para remontar cada estação simples",
+    faq: [
+      {
+        pergunta: "Vocês atendem mudança de 50 estações ou mais?",
+        resposta:
+          "Sim. A equipe é montada conforme o volume. Para 50 estações, o normal são três ou quatro montadores, com desmontagem e remontagem em sequência para liberar o ambiente por partes.",
+      },
+      {
+        pergunta: "Dá para fazer à noite ou no fim de semana?",
+        resposta:
+          "Dá. Remanejamento costuma ser feito depois do expediente ou no sábado para a equipe voltar com tudo pronto. Informe a janela disponível no orçamento.",
+      },
+      {
+        pergunta: "Vocês fazem o transporte entre os prédios?",
+        resposta:
+          "O serviço é a desmontagem e a remontagem. O transporte fica com a transportadora da sua escolha, e a equipe trabalha alinhada com ela no horário de doca de cada prédio.",
+      },
+      {
+        pergunta: "Como evitam que as peças se misturem?",
+        resposta:
+          "Cada estação recebe etiqueta de posição na desmontagem, e a ferragem vai num saco identificado. Na remontagem, a equipe segue a planta do novo layout com a mesma numeração.",
+      },
+      {
+        pergunta: "O que preciso mandar para receber o valor?",
+        resposta:
+          "Quantidade e tipo de cada móvel, fotos de um exemplar de cada, a planta ou um rascunho do novo layout, os endereços e as regras dos condomínios. Com isso o orçamento sai fechado.",
+      },
+    ],
+    moveisExemplo: [
+      "Estação de trabalho em plataforma",
+      "Estação em L",
+      "Mesa de reunião",
+      "Armário alto e baixo",
+      "Gaveteiro volante",
+      "Balcão de recepção",
+      "Divisória baixa de estação",
+      "Arquivo de aço",
+    ],
+  },
+  {
     slug: "montagem-de-cama",
     nome: "Montagem de cama box, beliche e berço",
     nomeCurto: "Camas",
