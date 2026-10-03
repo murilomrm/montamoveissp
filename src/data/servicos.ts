@@ -3,7 +3,7 @@ import type { Servico } from "./types";
 export const servicos: Servico[] = [
   {
     slug: "montagem-de-moveis",
-    imagem: "rack-suspenso",
+    imagem: "real-painel-ripado-led",
     nome: "Montagem de móveis",
     nomeCurto: "Montagem",
     tituloSEO: "Montagem de Móveis em São Paulo | MontaMóveis SP",
@@ -224,7 +224,7 @@ export const servicos: Servico[] = [
     slug: "montagem-de-guarda-roupa",
     nome: "Montagem de guarda-roupa",
     nomeCurto: "Guarda-roupa",
-    imagem: "guarda-roupa",
+    imagem: "real-guarda-roupa-madeira",
     tituloSEO: "Montagem de Guarda-Roupa em São Paulo | MontaMóveis SP",
     h1: "Montagem de guarda-roupa em São Paulo e Grande SP",
     metaDescription:
@@ -296,7 +296,7 @@ export const servicos: Servico[] = [
     slug: "montagem-de-cozinha",
     nome: "Montagem de cozinha e armários",
     nomeCurto: "Cozinha",
-    imagem: "cozinha-armario",
+    imagem: "real-cozinha-cinza",
     tituloSEO: "Montagem de Cozinha e Armários em SP | MontaMóveis SP",
     h1: "Montagem de cozinha e armários em São Paulo e Grande SP",
     metaDescription:
@@ -367,7 +367,7 @@ export const servicos: Servico[] = [
   },
   {
     slug: "montagem-de-moveis-planejados",
-    imagem: "cozinha-planejada",
+    imagem: "real-parede-planejada",
     nome: "Montagem de móveis planejados",
     nomeCurto: "Planejados",
     tituloSEO: "Montagem de Móveis Planejados em SP | MontaMóveis SP",
@@ -442,7 +442,7 @@ export const servicos: Servico[] = [
     slug: "montagem-de-moveis-de-escritorio",
     nome: "Montagem de móveis de escritório",
     nomeCurto: "Escritório",
-    imagem: "escritorio-bancada",
+    imagem: "real-armario-comercial",
     tituloSEO: "Montagem de Móveis de Escritório em SP | MontaMóveis SP",
     h1: "Montagem de móveis de escritório em São Paulo e Grande SP",
     metaDescription:
@@ -585,7 +585,7 @@ export const servicos: Servico[] = [
   },
   {
     slug: "montagem-de-moveis-comprados-online",
-    imagem: "painel-tv",
+    imagem: "real-rack-led",
     nome: "Montagem de móveis comprados online",
     nomeCurto: "Compra online",
     tituloSEO: "Montagem de Móveis Comprados Online em SP | MontaMóveis",
@@ -661,7 +661,7 @@ export const servicos: Servico[] = [
     slug: "instalacao-de-prateleiras-e-suportes",
     nome: "Instalação de prateleiras, painéis e suporte de TV",
     nomeCurto: "Prateleiras e TV",
-    imagem: "prateleiras",
+    imagem: "real-painel-tv",
     tituloSEO: "Prateleiras, Painéis e Suporte de TV em SP | MontaMóveis",
     h1: "Instalação de prateleiras, painéis e suporte de TV em São Paulo",
     metaDescription:

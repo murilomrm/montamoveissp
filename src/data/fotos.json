@@ -59,6 +59,16 @@
     "altura": 768,
     "ext": "webp"
   },
+  "real-armario-comercial": {
+    "largura": 1080,
+    "altura": 1024,
+    "ext": "webp"
+  },
+  "real-balcao-copa": {
+    "largura": 1080,
+    "altura": 763,
+    "ext": "webp"
+  },
   "real-bancada-escritorio": {
     "largura": 1200,
     "altura": 675,
@@ -74,9 +84,19 @@
     "altura": 1200,
     "ext": "webp"
   },
+  "real-copa-comercial": {
+    "largura": 1080,
+    "altura": 772,
+    "ext": "webp"
+  },
   "real-cozinha-americana": {
     "largura": 675,
     "altura": 1200,
+    "ext": "webp"
+  },
+  "real-cozinha-cinza": {
+    "largura": 1200,
+    "altura": 675,
     "ext": "webp"
   },
   "real-cozinha-compacta": {
@@ -132,6 +152,16 @@
   "real-painel-tv": {
     "largura": 675,
     "altura": 1200,
+    "ext": "webp"
+  },
+  "real-parede-planejada": {
+    "largura": 1080,
+    "altura": 765,
+    "ext": "webp"
+  },
+  "real-quarto-planejado": {
+    "largura": 1080,
+    "altura": 1056,
     "ext": "webp"
   },
   "real-rack-led": {

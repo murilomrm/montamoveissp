@@ -24,21 +24,24 @@ import Conversa from "@/components/Conversa.astro";
 const porSlug = (slug: string) => servicos.find((s) => s.slug === slug)!;
 const destaques = [
   { servico: porSlug("montagem-de-moveis-planejados"), foto: "real-cozinha-granito", alt: "Cozinha planejada branca com bancada de granito e iluminação embutida" },
-  { servico: porSlug("montagem-de-moveis-de-escritorio"), foto: "real-estante-escritorio", alt: "Estante de ferro preto com prateleiras e gaveteiro em madeira" },
+  { servico: porSlug("montagem-de-moveis-de-escritorio"), foto: "real-armario-comercial", alt: "Armários e prateleiras planejados para estoque de loja" },
 ];
 const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === s.slug));
 
 // Fotos reais de serviços feitos por montadores da rede (enviadas pela empresa em out/2026).
 const galeria = [
+  { foto: "real-parede-planejada", alt: "Parede inteira de armários planejados com nichos, gaveteiro e espaço para TV", legenda: "Parede planejada com nichos" },
+  { foto: "real-copa-comercial", alt: "Bancada de copa comercial com pia de inox e armários brancos", legenda: "Copa de empresa" },
   { foto: "real-painel-ripado-led", alt: "Painel ripado de madeira com TV e rack iluminado", legenda: "Painel ripado com LED" },
+  { foto: "real-quarto-planejado", alt: "Quarto planejado com guarda-roupa de correr, painel de TV e escrivaninha", legenda: "Quarto planejado" },
+  { foto: "real-estante-escritorio", alt: "Estante de ferro preto com prateleiras e gaveteiro em madeira", legenda: "Estante para escritório" },
   { foto: "real-cozinha-americana", alt: "Cozinha americana com balcão ripado e armários aéreos", legenda: "Cozinha americana" },
+  { foto: "real-balcao-copa", alt: "Balcão de copa com frigobar embutido e cesto aramado", legenda: "Balcão de copa com frigobar" },
   { foto: "real-guarda-roupa-espelho", alt: "Guarda-roupa azul com porta de correr espelhada", legenda: "Guarda-roupa de correr" },
   { foto: "real-banheiro", alt: "Gabinete de banheiro com espelheira e nicho iluminado", legenda: "Banheiro planejado" },
   { foto: "real-cristaleira", alt: "Cristaleira com portas de vidro e iluminação interna", legenda: "Cristaleira com LED" },
-  { foto: "real-guarda-roupa-madeira", alt: "Guarda-roupa de seis portas em madeira", legenda: "Guarda-roupa 6 portas" },
+  { foto: "real-cozinha-cinza", alt: "Cozinha planejada cinza com bancada de granito preto", legenda: "Cozinha planejada" },
   { foto: "real-cozinha-ilha", alt: "Cozinha branca com ilha em granito", legenda: "Cozinha com ilha" },
-  { foto: "real-rack-led", alt: "Rack baixo com iluminação de LED", legenda: "Rack com LED" },
-  { foto: "real-guarda-roupa-portas", alt: "Guarda-roupa branco com gavetas em madeira e porta espelhada", legenda: "Guarda-roupa com espelho" },
 ];
 ---
 <Base title={paginas.home.title} description={paginas.home.description} path="/" tipoPagina="home" schemas={[schemaFaq(faqGeral)]}>
