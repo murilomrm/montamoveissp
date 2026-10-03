@@ -442,7 +442,7 @@ export const servicos: Servico[] = [
     slug: "montagem-de-moveis-de-escritorio",
     nome: "Montagem de móveis de escritório",
     nomeCurto: "Escritório",
-    imagem: "real-armario-comercial",
+    imagem: "real-estante-escritorio",
     tituloSEO: "Montagem de Móveis de Escritório em SP | MontaMóveis SP",
     h1: "Montagem de móveis de escritório em São Paulo e Grande SP",
     metaDescription:

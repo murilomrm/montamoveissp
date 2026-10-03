@@ -59,11 +59,6 @@
     "altura": 768,
     "ext": "webp"
   },
-  "real-armario-comercial": {
-    "largura": 1080,
-    "altura": 1024,
-    "ext": "webp"
-  },
   "real-balcao-copa": {
     "largura": 1080,
     "altura": 763,
@@ -127,6 +122,11 @@
   "real-cristaleira": {
     "largura": 675,
     "altura": 1200,
+    "ext": "webp"
+  },
+  "real-despensa-planejada": {
+    "largura": 1080,
+    "altura": 1024,
     "ext": "webp"
   },
   "real-dormitorio-planejado": {

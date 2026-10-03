@@ -25,7 +25,7 @@ import GaleriaFiltro from "@/components/GaleriaFiltro.astro";
 const porSlug = (slug: string) => servicos.find((s) => s.slug === slug)!;
 const destaques = [
   { servico: porSlug("montagem-de-moveis-planejados"), foto: "real-cozinha-granito", alt: "Cozinha planejada branca com bancada de granito e iluminação embutida" },
-  { servico: porSlug("montagem-de-moveis-de-escritorio"), foto: "real-armario-comercial", alt: "Armários e prateleiras planejados para estoque de loja" },
+  { servico: porSlug("montagem-de-moveis-de-escritorio"), foto: "real-estante-escritorio", alt: "Estante de ferro preto com prateleiras e gaveteiro em madeira" },
 ];
 const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === s.slug));
 

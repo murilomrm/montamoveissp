@@ -14,7 +14,7 @@ export const galeria: { foto: string; alt: string; legenda: string; cat: Categor
   { foto: "real-guarda-roupa-vidro", alt: "Guarda-roupa com portas de correr em vidro fumê e coluna de nichos iluminados", legenda: "Guarda-roupa com portas de vidro", cat: ["planejados", "alto-padrao"] },
   { foto: "real-closet-ripado", alt: "Closet planejado com portas em madeira, puxadores pretos e sanca iluminada", legenda: "Closet planejado", cat: ["planejados", "alto-padrao"] },
   { foto: "real-cozinha-integrada", alt: "Cozinha integrada com balcão ripado, armários cinza e painel de TV com LED", legenda: "Cozinha integrada à sala", cat: ["planejados", "alto-padrao"] },
-  { foto: "real-armario-comercial", alt: "Armários e prateleiras planejados para estoque de loja", legenda: "Estoque de loja", cat: ["comercial", "planejados"] },
+  { foto: "real-despensa-planejada", alt: "Despensa planejada com armários do chão ao teto e prateleiras abertas", legenda: "Despensa planejada", cat: ["planejados", "alto-padrao"] },
   { foto: "real-banheiro", alt: "Gabinete de banheiro com espelheira e nicho iluminado", legenda: "Banheiro planejado", cat: ["planejados", "alto-padrao"] },
   { foto: "real-parede-planejada", alt: "Parede inteira de armários planejados com nichos, gaveteiro e espaço para TV", legenda: "Parede planejada com nichos", cat: ["planejados"] },
   { foto: "real-painel-ripado-led", alt: "Painel ripado de madeira com TV e rack iluminado", legenda: "Painel ripado com LED", cat: ["planejados", "alto-padrao"] },
