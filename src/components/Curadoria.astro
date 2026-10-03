@@ -1,0 +1,44 @@
+---
+// Como a rede escolhe os montadores. Descreve o processo, sem prometer garantia (regra 10).
+const reclamacoes = [
+  "Não aparece no dia ou chega horas atrasado sem avisar",
+  "Porta desalinhada, gaveta pegando e parafuso sobrando",
+  "Piso riscado, parede marcada e sujeira deixada para trás",
+  "Valor que muda na hora, depois que o serviço começou",
+  "Falta de educação e de postura dentro da casa ou da empresa",
+];
+const etapas = [
+  { titulo: "Entrevista e referências", texto: "Conversa com cada montador e contato com clientes que ele já atendeu." },
+  { titulo: "Ferramenta própria completa", texto: "Parafusadeira, furadeira de impacto, nível e brocas para cada tipo de parede. Sem o kit, não entra." },
+  { titulo: "Período de experiência", texto: "Começa por montagens simples e só passa para planejados e escritórios depois de aprovado nas anteriores." },
+  { titulo: "Avaliação a cada serviço", texto: "Pontualidade, acabamento e comportamento são conferidos depois de cada montagem. Quem não mantém o padrão deixa de receber serviços." },
+];
+---
+<section class="secao" aria-labelledby="curadoria-titulo">
+  <div class="container-site grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-16">
+    <div>
+      <h2 id="curadoria-titulo" class="mb-4">Como escolhemos quem entra na sua casa</h2>
+      <p class="mb-5 text-cinza-medio">O que mais se ouve de quem já contratou montador:</p>
+      <ul class="space-y-3">
+        {reclamacoes.map((r) => (
+          <li class="flex gap-3">
+            <svg class="mt-1 h-4 w-4 shrink-0 text-red-700" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
+            <span>{r}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6 border-l-4 border-acao pl-4 font-semibold text-primaria">Por isso a rede é pequena de propósito. Preferimos qualidade, pontualidade e comportamento a ter muitos montadores.</p>
+    </div>
+    <ol class="flex flex-col">
+      {etapas.map((e, i) => (
+        <li class="flex gap-4 border-t border-gray-300 py-5 first:border-t-0 first:pt-0">
+          <span class="w-7 shrink-0 font-[family-name:var(--font-titulo)] text-2xl font-bold leading-none text-acao-texto" aria-hidden="true">{i + 1}.</span>
+          <span>
+            <h3 class="mb-1">{e.titulo}</h3>
+            <p class="text-cinza-medio">{e.texto}</p>
+          </span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

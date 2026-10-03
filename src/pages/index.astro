@@ -21,6 +21,7 @@ import Trena from "@/components/Trena.astro";
 import Conversa from "@/components/Conversa.astro";
 import GaleriaFiltro from "@/components/GaleriaFiltro.astro";
 import HeroCarrossel from "@/components/HeroCarrossel.astro";
+import Curadoria from "@/components/Curadoria.astro";
 
 // Planejados e escritório primeiro: são os serviços de maior valor.
 const porSlug = (slug: string) => servicos.find((s) => s.slug === slug)!;
@@ -77,6 +78,8 @@ const demais = servicos.filter((s) => !destaques.some((d) => d.servico.slug === 
       <GaleriaFiltro />
     </div>
   </section>
+
+  <Curadoria />
 
   <section class="secao" aria-labelledby="regioes-titulo">
     <div class="container-site">
