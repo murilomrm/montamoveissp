@@ -1,0 +1,11 @@
+// Só arquivos estáticos (pasta dist do Astro). Sem Worker, sem adapter, sem SSR.
+// Existe porque o deploy do Cloudflare (Workers Builds) passou a rodar "astro add cloudflare"
+// quando não acha configuração, o que quebra o build. Ver regra 20 do CLAUDE.md.
+{
+  "name": "montamoveissp",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
