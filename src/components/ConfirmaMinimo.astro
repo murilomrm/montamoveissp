@@ -1,26 +1,38 @@
 ---
 import { site } from "@/data/site";
-import IconeWhatsapp from "./IconeWhatsapp.astro";
 // Caixinha que aparece antes de abrir o WhatsApp. Filtra quem procura serviço abaixo do piso:
 // só quem confirma o valor mínimo segue para a conversa (e só aí conta a conversão do Google Ads).
+// Os dois botões têm exatamente o mesmo peso visual: a caixinha não pode empurrar ninguém para o "Sim".
 // A lógica do clique fica em src/lib/tracking.ts (iniciarTrackingGlobal).
 ---
 {site.exibirValorMinimo && (
   <dialog
     id="confirma-minimo"
     aria-labelledby="confirma-minimo-titulo"
-    class="m-auto w-[calc(100%-2rem)] max-w-md rounded-lg border-t-8 border-acao bg-white p-6 text-texto shadow-xl backdrop:bg-primaria/70"
+    aria-describedby="confirma-minimo-pergunta"
+    class="m-auto w-[calc(100%-2rem)] max-w-md overflow-hidden rounded-lg bg-white p-0 text-texto shadow-xl backdrop:bg-primaria/75"
   >
-    <p id="confirma-minimo-titulo" class="text-xl font-bold text-primaria">
-      Trabalhamos com orçamento total mínimo de R$ {site.valorMinimo}.
-    </p>
-    <p class="mt-2 text-lg">Ok pra você?</p>
-    <div class="mt-6 flex flex-col gap-3">
-      <button type="button" data-confirma="sim" class="btn-whatsapp w-full">
-        <IconeWhatsapp class="h-5 w-5 shrink-0" />
-        <span>Sim, seguir para o WhatsApp</span>
-      </button>
-      <button type="button" data-confirma="nao" class="btn-borda w-full">Não, é um serviço menor</button>
+    <div class="bg-primaria px-6 pb-6 pt-5 text-center text-white">
+      <p id="confirma-minimo-titulo" tabindex="-1" autofocus class="text-base font-semibold uppercase tracking-wide text-white/80 outline-none">
+        Orçamento total mínimo
+      </p>
+      <p class="mt-1 font-[family-name:var(--font-titulo)] text-7xl font-bold leading-none text-acao">
+        R$ {site.valorMinimo}
+      </p>
+    </div>
+    <div class="trena h-3" aria-hidden="true"></div>
+    <div class="px-6 pb-6 pt-5">
+      <p id="confirma-minimo-pergunta" class="text-center text-lg font-semibold text-primaria">
+        Seu orçamento chega a esse valor?
+      </p>
+      <div class="mt-5 grid grid-cols-2 gap-3">
+        <button type="button" data-confirma="sim" class="btn-borda h-full w-full px-3 py-3 leading-tight">
+          Sim, tenho orçamento de R$ {site.valorMinimo} ou mais
+        </button>
+        <button type="button" data-confirma="nao" class="btn-borda h-full w-full px-3 py-3 leading-tight">
+          Não tenho
+        </button>
+      </div>
     </div>
   </dialog>
 )}
