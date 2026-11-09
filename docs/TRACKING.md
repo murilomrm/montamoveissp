@@ -56,7 +56,7 @@ Continuam existindo, independentes do Ads. Se um dia entrar GTM, ele lê estes e
 
 | Evento | Quando | Parâmetros | Conta como conversão |
 |---|---|---|---|
-| `clique_whatsapp` | clique em botão ou link de WhatsApp | `origem`, `pagina`, `servico`, `regiao` | sim |
+| `clique_whatsapp` | clique em botão ou link de WhatsApp, depois do "Sim" na caixinha do valor mínimo (`ConfirmaMinimo`) | `origem`, `pagina`, `servico`, `regiao` | sim |
 | `gerar_lead` | envio válido do formulário | `servico`, `regiao`, `pagina`, `tem_data`, `tem_foto` | sim |
 | `clique_telefone` | clique em link `tel:` | `pagina` | não |
 | `visualizar_orcamento` | entrada em `/orcamento/` | `pagina` | não |

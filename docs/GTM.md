@@ -18,7 +18,7 @@ O site chama `gtag('consent','default', denied)` antes do GTM e `gtag('consent',
 
 | Evento | Quando | Parâmetros |
 |---|---|---|
-| `clique_whatsapp` | clique em qualquer link ou botão de WhatsApp | `origem` (flutuante, hero, card, rodape, formulario, cabecalho, cta), `pagina`, `servico`, `regiao` |
+| `clique_whatsapp` | clique em qualquer link ou botão de WhatsApp, depois do "Sim" na caixinha do valor mínimo | `origem` (flutuante, hero, card, rodape, formulario, cabecalho, cta), `pagina`, `servico`, `regiao` |
 | `gerar_lead` | envio válido do formulário, antes de abrir o WhatsApp | `servico`, `regiao`, `pagina`, `tem_data` |
 | `clique_telefone` | clique em link `tel:` | `pagina` |
 | `visualizar_orcamento` | ao entrar em `/orcamento/` | `pagina` |

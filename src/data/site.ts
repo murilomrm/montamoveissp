@@ -22,9 +22,10 @@ export const site = {
   exibirPrecoNoSite: false,
 
   // Única exceção ao preço: o piso do serviço, sempre como "a partir de". Filtra quem procura serviço pequeno
-  // e precisa bater com o recurso de preço do Google Ads. O validador só aceita "R$ 400" enquanto isto for true.
+  // e precisa bater com o recurso de preço do Google Ads. O validador só aceita "R$ 500" enquanto isto for true.
+  // Também alimenta a caixinha que aparece antes do WhatsApp (src/components/ConfirmaMinimo.astro).
   exibirValorMinimo: true,
-  valorMinimo: 400,
+  valorMinimo: 500,
 
   // REGRA FIXA: a MontaMóveis SP é um marketplace que conecta cliente e montador.
   // Nenhum texto do site pode prometer garantia, prazo de resposta ou forma de pagamento.

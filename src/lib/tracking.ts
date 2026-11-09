@@ -37,15 +37,54 @@ export function iniciarTrackingGlobal(): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
 
+  // Caixinha do valor mínimo (src/components/ConfirmaMinimo.astro). Se ela existir, o clique no WhatsApp
+  // para nela: só quem responde "Sim" segue para a conversa, e só aí dispara clique_whatsapp (conversão do Ads).
+  // Quem já confirmou nesta sessão vai direto.
+  const dialogo = document.getElementById("confirma-minimo") as HTMLDialogElement | null;
+  const CHAVE_OK = "mm_minimo_ok";
+  let pendente: HTMLAnchorElement | null = null;
+  const jaConfirmou = () => {
+    try { return sessionStorage.getItem(CHAVE_OK) === "1"; } catch { return false; }
+  };
+  const registrarClique = (a: HTMLAnchorElement) =>
+    track("clique_whatsapp", {
+      origem: a.dataset.origem || "link",
+      servico: a.dataset.servico || "",
+      regiao: a.dataset.regiao || "",
+    });
+
+  if (dialogo && typeof dialogo.showModal === "function") {
+    dialogo.addEventListener("click", (e) => {
+      const botao = (e.target as HTMLElement | null)?.closest("[data-confirma]") as HTMLElement | null;
+      if (!botao) {
+        if (e.target === dialogo) dialogo.close(); // clique no fundo escuro fecha
+        return;
+      }
+      const a = pendente;
+      pendente = null;
+      dialogo.close();
+      if (botao.dataset.confirma !== "sim" || !a) return;
+      try { sessionStorage.setItem(CHAVE_OK, "1"); } catch { /* sem storage, pergunta de novo na próxima */ }
+      registrarClique(a);
+      // Sem "noopener" no window.open porque com ele o retorno é sempre null; o opener é limpo logo depois.
+      const aba = window.open(a.href, "_blank");
+      if (aba) aba.opener = null;
+      else window.location.href = a.href; // pop-up bloqueado: abre na mesma aba
+
+    });
+  }
+
   document.addEventListener("click", (e) => {
     const alvo = (e.target as HTMLElement | null)?.closest("a") as HTMLAnchorElement | null;
     if (!alvo) return;
     if (alvo.hasAttribute("data-wa")) {
-      track("clique_whatsapp", {
-        origem: alvo.dataset.origem || "link",
-        servico: alvo.dataset.servico || "",
-        regiao: alvo.dataset.regiao || "",
-      });
+      if (dialogo && typeof dialogo.showModal === "function" && !jaConfirmou()) {
+        e.preventDefault();
+        pendente = alvo;
+        dialogo.showModal();
+        return;
+      }
+      registrarClique(alvo);
       return;
     }
     if (alvo.getAttribute("href")?.startsWith("tel:")) {

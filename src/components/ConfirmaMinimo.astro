@@ -1,0 +1,26 @@
+---
+import { site } from "@/data/site";
+import IconeWhatsapp from "./IconeWhatsapp.astro";
+// Caixinha que aparece antes de abrir o WhatsApp. Filtra quem procura serviço abaixo do piso:
+// só quem confirma o valor mínimo segue para a conversa (e só aí conta a conversão do Google Ads).
+// A lógica do clique fica em src/lib/tracking.ts (iniciarTrackingGlobal).
+---
+{site.exibirValorMinimo && (
+  <dialog
+    id="confirma-minimo"
+    aria-labelledby="confirma-minimo-titulo"
+    class="m-auto w-[calc(100%-2rem)] max-w-md rounded-lg border-t-8 border-acao bg-white p-6 text-texto shadow-xl backdrop:bg-primaria/70"
+  >
+    <p id="confirma-minimo-titulo" class="text-xl font-bold text-primaria">
+      Trabalhamos com orçamento total mínimo de R$ {site.valorMinimo}.
+    </p>
+    <p class="mt-2 text-lg">Ok pra você?</p>
+    <div class="mt-6 flex flex-col gap-3">
+      <button type="button" data-confirma="sim" class="btn-whatsapp w-full">
+        <IconeWhatsapp class="h-5 w-5 shrink-0" />
+        <span>Sim, seguir para o WhatsApp</span>
+      </button>
+      <button type="button" data-confirma="nao" class="btn-borda w-full">Não, é um serviço menor</button>
+    </div>
+  </dialog>
+)}
