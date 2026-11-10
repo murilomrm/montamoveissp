@@ -1,0 +1,12 @@
+---
+// Pixel do ChatGPT Ads (ads.openai.com), instalado direto no site, sem GTM.
+// Só renderiza com PUBLIC_OPENAI_PIXEL_ID preenchida. Vazia: nenhum script externo entra na página.
+// A conversão (lead_created) é disparada em src/lib/tracking.ts, no clique de WhatsApp. Ver docs/TRACKING.md.
+const pixelId = import.meta.env.PUBLIC_OPENAI_PIXEL_ID?.trim() || "";
+---
+{pixelId && (
+  <script is:inline define:vars={{ pixelId }}>
+    !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+    window.oaiq("init", { pixelId: pixelId });
+  </script>
+)}

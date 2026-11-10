@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly PUBLIC_GOOGLE_ADS_ID?: string;
   readonly PUBLIC_GOOGLE_ADS_CONVERSION_LABEL?: string;
+  readonly PUBLIC_OPENAI_PIXEL_ID?: string;
   readonly PUBLIC_GTM_ID?: string;
   readonly PUBLIC_LEAD_ENDPOINT?: string;
   readonly PUBLIC_CF_ANALYTICS_TOKEN?: string;
@@ -17,4 +18,5 @@ interface ImportMeta {
 interface Window {
   dataLayer: Record<string, unknown>[];
   gtag?: (...args: unknown[]) => void;
+  oaiq?: (...args: unknown[]) => void;
 }

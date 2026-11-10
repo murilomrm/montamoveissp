@@ -9,6 +9,7 @@ import SEO from "@/components/SEO.astro";
 import Tracking from "@/components/Tracking.astro";
 import CloudflareAnalytics from "@/components/CloudflareAnalytics.astro";
 import GoogleAds from "@/components/GoogleAds.astro";
+import OpenAIAds from "@/components/OpenAIAds.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import ConfirmaMinimo from "@/components/ConfirmaMinimo.astro";
@@ -44,6 +45,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID?.trim() || "";
     <SEO title={title} description={description} path={path} ogImage={ogImage} noindex={noindex} tipo={tipo} schemas={schemas} />
     <Tracking />
     <GoogleAds />
+    <OpenAIAds />
     <CloudflareAnalytics />
   </head>
   <body data-tipo-pagina={tipoPagina} class="flex min-h-screen flex-col">

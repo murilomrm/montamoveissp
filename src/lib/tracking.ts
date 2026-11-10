@@ -1,10 +1,11 @@
-// Único ponto do site que fala com window.dataLayer e com o gtag do Google Ads.
+// Único ponto do site que fala com window.dataLayer, com o gtag do Google Ads e com o oaiq do ChatGPT Ads.
 // Eventos: clique_whatsapp, gerar_lead, clique_telefone, visualizar_orcamento, scroll_75. Ver docs/TRACKING.md.
 export type Evento = "clique_whatsapp" | "gerar_lead" | "clique_telefone" | "visualizar_orcamento" | "scroll_75";
 
 // Vindas do ambiente, nunca hardcoded. Vazias: nada é enviado e nada quebra.
 const ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID?.trim() || "";
 const ADS_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION_LABEL?.trim() || "";
+const OPENAI_PIXEL_ID = import.meta.env.PUBLIC_OPENAI_PIXEL_ID?.trim() || "";
 
 // Eventos que contam como conversão no Google Ads.
 // clique_whatsapp cobre botão flutuante, hero, cards, rodapé, cabeçalho, CTA e páginas de região.
@@ -23,13 +24,27 @@ export function dispararConversaoGoogleAds(): void {
   window.gtag("event", "conversion", { send_to: `${ADS_ID}/${ADS_LABEL}` });
 }
 
+/**
+ * Dispara a conversão no ChatGPT Ads (evento lead_created, "Clique WhatsApp" no Ads Manager).
+ * Mesma regra do Google Ads: sem variável de ambiente ou sem o pixel carregado, não faz nada.
+ */
+export function dispararConversaoOpenAI(): void {
+  if (typeof window === "undefined") return;
+  if (!OPENAI_PIXEL_ID) return;
+  if (typeof window.oaiq !== "function") return;
+  window.oaiq("measure", "lead_created", { type: "customer_action" });
+}
+
 export function track(evento: Evento, params: Record<string, string | boolean | number | undefined> = {}): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: evento, pagina: window.location.pathname, ...params });
 
   // A conversão do Ads é adicional: o push acima continua acontecendo do mesmo jeito.
-  if (EVENTOS_DE_CONVERSAO.includes(evento)) dispararConversaoGoogleAds();
+  if (EVENTOS_DE_CONVERSAO.includes(evento)) {
+    dispararConversaoGoogleAds();
+    dispararConversaoOpenAI();
+  }
 }
 
 // Delegação global: qualquer <a data-wa> dispara clique_whatsapp; qualquer href="tel:" dispara clique_telefone.

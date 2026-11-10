@@ -1,6 +1,6 @@
 # Tracking
 
-Nesta fase o site tem **só o Google Ads**, instalado direto no código, sem GTM. Nada de GA4, Meta Pixel ou qualquer outro script de terceiros.
+Nesta fase o site tem **Google Ads** e o **pixel do ChatGPT Ads**, os dois instalados direto no código, sem GTM. Nada de GA4, Meta Pixel ou qualquer outro script de terceiros.
 
 ## O que está configurado
 
@@ -69,3 +69,27 @@ O formulário de cadastro de montador dispara `clique_whatsapp` com `origem: "fo
 ## Se um dia entrar GTM
 
 Esvazie `PUBLIC_GOOGLE_ADS_ID`, preencha `PUBLIC_GTM_ID` e configure a conversão do Ads dentro do contêiner, escutando o evento `gerar_lead` ou `clique_whatsapp`. O passo a passo está em `docs/GTM.md`. Não deixe os dois ligados ao mesmo tempo: a conversão contaria em dobro.
+
+## ChatGPT Ads (ads.openai.com)
+
+| Item | Valor |
+|---|---|
+| Data source | Site montamoveissp.com.br |
+| Pixel ID | `XDiHh26mA9p7jDrKzJrB2b` |
+| Evento | `lead_created`, chamado "Clique WhatsApp" no Ads Manager |
+| Quando dispara | Mesmo momento da conversão do Google Ads: `clique_whatsapp` (depois do "Sim" na caixinha do mínimo) e `gerar_lead` |
+
+Variável no Cloudflare (escopo Production, tipo Text):
+
+```
+PUBLIC_OPENAI_PIXEL_ID = XDiHh26mA9p7jDrKzJrB2b
+```
+
+| Arquivo | Papel |
+|---|---|
+| `src/components/OpenAIAds.astro` | Injeta o pixel (`oaiq.min.js`) no `<head>`. Só renderiza com a variável preenchida |
+| `src/lib/tracking.ts` | `dispararConversaoOpenAI()`, chamada junto com a do Google Ads |
+
+Os anúncios levam UTMs (`utm_source=chatgpt&utm_medium=cpc`), então a origem também aparece em qualquer leitura de UTM do site.
+
+Para testar: clique num botão de WhatsApp, responda "Sim" e veja o evento em Ads Manager > Conversions > **Event Stream**.
