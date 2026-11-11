@@ -1,0 +1,79 @@
+---
+// Página de destino do Google Ads (grupo Geral). Fora da busca orgânica: noindex e fora do sitemap
+// (ver lista noindex em astro.config.mjs). O texto repete as palavras que a pessoa pesquisou
+// ("montador de móveis em São Paulo") para subir a nota de experiência na página.
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { servicos } from "@/data/servicos";
+import { galeria } from "@/data/galeria";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import Foto from "@/components/Foto.astro";
+import Steps from "@/components/Steps.astro";
+import FAQ from "@/components/FAQ.astro";
+import CTAFinal from "@/components/CTAFinal.astro";
+
+const path = "/montador-de-moveis-sp/";
+const servico = "montagem de móveis";
+const base = servicos.find((s) => s.slug === "montagem-de-moveis");
+const fotos = galeria.slice(0, 6);
+const tipos = ["Guarda-roupa", "Cozinha e armários", "Cama, beliche e berço", "Rack e painel de TV", "Móveis planejados", "Escritório e estações de trabalho"];
+---
+<Base
+  title="Montador de Móveis em São Paulo | MontaMóveis SP"
+  description="Montador de móveis em São Paulo e Grande SP. Mande a lista no WhatsApp e receba o valor antes de agendar. Orçamento total mínimo de R$ 500."
+  path={path}
+  noindex={true}
+  tipoPagina="servico"
+  servico={servico}
+>
+  <section class="container-site grid items-start gap-8 py-8 md:grid-cols-2 md:py-12">
+    <div>
+      <h1 class="mb-4">Montador de móveis em São Paulo</h1>
+      <p class="mb-6 text-lg">Precisa de um montador de móveis em SP? Mande a lista no WhatsApp, receba o valor antes de agendar e escolha o dia. Montadores parceiros com ferramenta própria, na capital e na Grande SP.</p>
+      <ul class="mb-6 grid gap-2 text-sm sm:grid-cols-3">
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Atendimento</strong>{site.horario}</li>
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Valor</strong>combinado antes do serviço</li>
+        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>total mínimo de R$ {site.valorMinimo}</li>
+      </ul>
+      <WhatsAppButton origem="hero" servico={servico} class="text-lg" />
+    </div>
+    <Foto nome={fotos[0].foto} alt={fotos[0].alt} legenda={fotos[0].legenda} prioridade={true} />
+  </section>
+
+  <section class="secao bg-cinza">
+    <div class="container-site">
+      <h2 class="mb-2">O que o montador de móveis faz</h2>
+      <p class="mb-6 max-w-[65ch]">Montagem, desmontagem e instalação de móveis novos, comprados online ou de mudança. A rede também tem montadores para móveis planejados, o serviço que mais exige experiência.</p>
+      <ul class="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+        {tipos.map((t) => <li class="card flex gap-2"><span class="text-whatsapp" aria-hidden="true">✓</span>{t}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container-site">
+      <h2 class="mb-2">Móveis montados por montadores da rede</h2>
+      <p class="mb-6 text-cinza-medio">Fotos reais de serviços feitos em São Paulo e região.</p>
+      <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {fotos.slice(1).concat(galeria.slice(6, 7)).map((f) => (
+          <Foto nome={f.foto} alt={f.alt} legenda={f.legenda} classeImg="aspect-[4/3] object-cover" />
+        ))}
+      </div>
+      <div class="mt-8"><WhatsAppButton origem="card" servico={servico} /></div>
+    </div>
+  </section>
+
+  <section class="bg-primaria py-14 text-white md:py-20">
+    <div class="container-site grid gap-8 md:grid-cols-2">
+      <div>
+        <h2 class="mb-3 text-white">Como funciona</h2>
+        <p class="text-white/80">Tudo pelo WhatsApp. Você manda a lista, recebe o valor e só agenda se aprovar.</p>
+      </div>
+      <Steps />
+    </div>
+  </section>
+
+  {base && <FAQ itens={base.faq} titulo="Perguntas sobre montador de móveis" />}
+
+  <CTAFinal servico={servico} titulo="Chame um montador de móveis em SP" />
+</Base>

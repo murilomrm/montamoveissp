@@ -11,6 +11,7 @@ const siteUrl = process.env.PUBLIC_SITE_URL || "https://www.montamoveissp.com.br
 // Páginas noindex nunca entram no sitemap.
 const noindex = [
   "/obrigado/",
+  "/montador-de-moveis-sp/", // página de destino do Google Ads
   "/404",
   ...regioes.filter((r) => r.publicada && !r.paragrafoUnico.trim()).map((r) => `/montador-de-moveis/${r.slug}/`),
 ];
