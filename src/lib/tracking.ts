@@ -1,3 +1,5 @@
+import { marcarCliqueAnuncio } from "@/lib/codigo";
+
 // Único ponto do site que fala com window.dataLayer, com o gtag do Google Ads e com o oaiq do ChatGPT Ads.
 // Eventos: clique_whatsapp, gerar_lead, clique_telefone, visualizar_orcamento, scroll_75. Ver docs/TRACKING.md.
 export type Evento = "clique_whatsapp" | "gerar_lead" | "clique_telefone" | "visualizar_orcamento" | "scroll_75";
@@ -61,12 +63,14 @@ export function iniciarTrackingGlobal(): void {
   const jaConfirmou = () => {
     try { return sessionStorage.getItem(CHAVE_OK) === "1"; } catch { return false; }
   };
-  const registrarClique = (a: HTMLAnchorElement) =>
+  const registrarClique = (a: HTMLAnchorElement) => {
+    marcarCliqueAnuncio(a);
     track("clique_whatsapp", {
       origem: a.dataset.origem || "link",
       servico: a.dataset.servico || "",
       regiao: a.dataset.regiao || "",
     });
+  };
 
   if (dialogo && typeof dialogo.showModal === "function") {
     dialogo.addEventListener("click", (e) => {

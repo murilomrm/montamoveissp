@@ -1,6 +1,6 @@
 // Guarda utm_* da primeira visita em sessionStorage (nunca localStorage, regra do projeto).
 const CHAVE = "mm_utm";
-const CAMPOS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"] as const;
+const CAMPOS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid"] as const;
 
 export type Utms = Partial<Record<(typeof CAMPOS)[number], string>>;
 

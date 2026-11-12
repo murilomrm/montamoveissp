@@ -93,3 +93,10 @@ PUBLIC_OPENAI_PIXEL_ID = XDiHh26mA9p7jDrKzJrB2b
 Os anúncios levam UTMs (`utm_source=chatgpt&utm_medium=cpc`), então a origem também aparece em qualquer leitura de UTM do site.
 
 Para testar: clique num botão de WhatsApp, responda "Sim" e veja o evento em Ads Manager > Conversions > **Event Stream**.
+
+
+## Serviço fechado como conversão (código no WhatsApp)
+
+1. Quem chega com `gclid`, `gbraid` ou `wbraid` e clica no WhatsApp ganha um código de 4 letras na mensagem, por exemplo "(Cód. K7P2)". O site manda código e clique para o webhook `site.webhookCliques` (n8n, tabela `mmsp_cliques`).
+2. Quando o serviço fecha, o Murilo manda `#fechou 11999998888 750` no chat do número pessoal com o número da empresa (ou responde citando o aviso do cliente com `#fechou 750`).
+3. O n8n acha o código na conversa daquele cliente, pega o `gclid` e põe na fila do script do Google Ads a conversão "Serviço fechado" com o valor. O script envia na rodada seguinte (de hora em hora).

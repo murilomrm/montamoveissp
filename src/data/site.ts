@@ -16,6 +16,10 @@ export const site = {
   ],
   instagram: "https://www.instagram.com/montamoveis.sp/",
   instagramUsuario: "@montamoveis.sp",
+  // Recebe o código curto que vai na mensagem do WhatsApp de quem veio do Google Ads (src/lib/codigo.ts).
+  // Liga o clique do anúncio ao serviço fechado: o n8n guarda código + gclid e o script do Google Ads
+  // envia a venda como conversão. Vazio desliga tudo (a mensagem volta a sair sem código).
+  webhookCliques: "https://cliente-xyz-n8n.cfgkgd.easypanel.host/webhook/mmsp-clique",
   mensagemWhatsappPadrao: "Olá! Quero um orçamento de montagem de móveis.",
 
   // REGRA FIXA: nunca true. Nenhuma página exibe tabela de preço. Todo CTA de preço leva ao WhatsApp.
