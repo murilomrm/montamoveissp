@@ -37,10 +37,21 @@ export function dispararConversaoOpenAI(): void {
   window.oaiq("measure", "lead_created", { type: "customer_action" });
 }
 
+/**
+ * Manda o evento para o GA4 (G-0Z383X048N). O GA4 não está no código: ele é destino da mesma tag do Google
+ * que o site já carrega (AW-18433016209), configurado no painel do GA4. Por isso o gtag("event") sem send_to
+ * chega ao GA4 sem precisar de outro script nem de variável nova. Sem gtag carregado, não faz nada.
+ */
+function enviarParaGA4(evento: Evento, params: Record<string, string | boolean | number | undefined>): void {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", evento, params);
+}
+
 export function track(evento: Evento, params: Record<string, string | boolean | number | undefined> = {}): void {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: evento, pagina: window.location.pathname, ...params });
+  enviarParaGA4(evento, { pagina: window.location.pathname, ...params });
 
   // A conversão do Ads é adicional: o push acima continua acontecendo do mesmo jeito.
   if (EVENTOS_DE_CONVERSAO.includes(evento)) {

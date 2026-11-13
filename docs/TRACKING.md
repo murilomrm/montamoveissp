@@ -1,6 +1,22 @@
 # Tracking
 
-Nesta fase o site tem **Google Ads** e o **pixel do ChatGPT Ads**, os dois instalados direto no código, sem GTM. Nada de GA4, Meta Pixel ou qualquer outro script de terceiros.
+Nesta fase o site tem **Google Ads**, **GA4** e o **pixel do ChatGPT Ads**, sem GTM. Nada de Meta Pixel ou outro script de terceiros.
+
+## GA4 (desde nov/2026)
+
+| Item | Valor |
+|---|---|
+| Conta / propriedade | MontaMóveis SP / montamoveissp.com.br (ID 564242082), conta Google 2020montamoveis |
+| ID da métrica | `G-0Z383X048N` |
+| Como entra no site | Destino da mesma tag do Google que o site já carrega (`AW-18433016209`, contêiner `GT-NMKB683L`). Configurado no painel do GA4, **sem script novo no código** |
+| Eventos do site | `track()` em `src/lib/tracking.ts` também chama `gtag("event", ...)`, então os 5 eventos abaixo chegam ao GA4 com os mesmos parâmetros |
+| Evento principal | `clique_whatsapp`, contado uma vez por sessão |
+| Dimensões personalizadas | `origem`, `servico`, `regiao`, `tipo_pagina` (escopo de evento) |
+| Retenção | 14 meses |
+| Vínculos | Google Ads 537-340-9215 (auto-tagging ligado) e Search Console (domínio) |
+| Google Signals | Desligado de propósito: com pouco volume ele faz o GA4 esconder números por limite de privacidade |
+
+Como o GA4 é destino da tag do Google, desligar `PUBLIC_GOOGLE_ADS_ID` também desliga o GA4. Se um dia entrar GTM, a configuração do GA4 vai para dentro do contêiner, como manda a regra 4 do CLAUDE.md.
 
 ## O que está configurado
 
