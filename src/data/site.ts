@@ -1,8 +1,10 @@
 export const site = {
   nome: "MontaMóveis SP",
   dominio: import.meta.env?.PUBLIC_SITE_URL || "https://www.montamoveissp.com.br",
-  whatsapp: "5511982043902", // chip dedicado (trocado do número pessoal em 2026-09-05)
-  telefoneExibicao: "(11) 98204-3902",
+  whatsapp: "5511970577180", // Paulo, montador parceiro, atende direto (desde 2026-11-17; antes era o chip da MMSP 5511982043902)
+  telefoneExibicao: "(11) 97057-7180",
+  // Cada clique no WhatsApp vira uma execução neste webhook do n8n (fluxo "MMSP | Cliques WhatsApp do site"), para contar quantos contatos vão para o Paulo.
+  webhookContagem: "https://cliente-xyz-n8n.cfgkgd.easypanel.host/webhook/mmsp-clique-whatsapp",
   temEmail: false, // sem e-mail nesta fase. Nenhum componente deve exibir e-mail enquanto for false
   email: "",
   temCnpj: false, // vira true quando o MEI for aberto. Enquanto false, nenhum texto pode mencionar nota fiscal

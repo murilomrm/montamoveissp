@@ -1,3 +1,4 @@
+import { site } from "@/data/site";
 import { marcarCliqueAnuncio } from "@/lib/codigo";
 
 // Único ponto do site que fala com window.dataLayer, com o gtag do Google Ads e com o oaiq do ChatGPT Ads.
@@ -60,6 +61,21 @@ export function track(evento: Evento, params: Record<string, string | boolean | 
   }
 }
 
+// Conta o clique no n8n (fluxo "MMSP | Cliques WhatsApp do site"). Formulário urlencoded para o sendBeacon não precisar de preflight.
+function contarClique(a: HTMLAnchorElement): void {
+  try {
+    if (!site.webhookContagem || typeof navigator.sendBeacon !== "function") return;
+    const dados = new URLSearchParams({
+      pagina: window.location.pathname,
+      origem: a.dataset.origem || "link",
+      servico: a.dataset.servico || "",
+      regiao: a.dataset.regiao || "",
+      ref: document.referrer || "",
+    });
+    navigator.sendBeacon(site.webhookContagem, dados);
+  } catch { /* contagem nunca pode travar o clique */ }
+}
+
 // Delegação global: qualquer <a data-wa> dispara clique_whatsapp; qualquer href="tel:" dispara clique_telefone.
 export function iniciarTrackingGlobal(): void {
   if (typeof window === "undefined") return;
@@ -75,6 +91,7 @@ export function iniciarTrackingGlobal(): void {
     try { return sessionStorage.getItem(CHAVE_OK) === "1"; } catch { return false; }
   };
   const registrarClique = (a: HTMLAnchorElement) => {
+    contarClique(a);
     marcarCliqueAnuncio(a);
     track("clique_whatsapp", {
       origem: a.dataset.origem || "link",
