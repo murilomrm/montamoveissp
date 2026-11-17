@@ -20,7 +20,7 @@ const tipos = ["Guarda-roupa", "Cozinha e armários", "Cama, beliche e berço", 
 ---
 <Base
   title="Montador de Móveis em São Paulo | MontaMóveis SP"
-  description="Montador de móveis em São Paulo e Grande SP. Mande a lista no WhatsApp e receba o valor antes de agendar. Orçamento total mínimo de R$ 500."
+  description="Montador de móveis em São Paulo e Grande SP. Mande a lista no WhatsApp e receba o valor antes de agendar. Orçamento pelo WhatsApp, sem compromisso."
   path={path}
   noindex={true}
   tipoPagina="servico"
@@ -33,7 +33,7 @@ const tipos = ["Guarda-roupa", "Cozinha e armários", "Cama, beliche e berço", 
       <ul class="mb-6 grid gap-2 text-sm sm:grid-cols-3">
         <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Atendimento</strong>{site.horario}</li>
         <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Valor</strong>combinado antes do serviço</li>
-        <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>total mínimo de R$ {site.valorMinimo}</li>
+        {site.exibirValorMinimo ? <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>total mínimo de R$ {site.valorMinimo}</li> : <li class="rounded-lg bg-cinza p-3"><strong class="block text-primaria">Orçamento</strong>pelo WhatsApp, sem compromisso</li>}
       </ul>
       <WhatsAppButton origem="hero" servico={servico} class="text-lg" />
     </div>
